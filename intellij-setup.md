@@ -1,8 +1,8 @@
 # How to use the IntelliJ Scala IDE with the chisel3 project.
 
-***
+The chisel3 repo as cloned is not a correctly set up IntelliJ Scala/SBT Project.  To make it one use the following steps that worked on a MacBookPro running El Capitan.  IntelliJ had already been setup with the Scala plugin
 
-The chisel3 repo is not a valid Chisel3 project.  To make it one locally you must do the following
+
 * Get into the IntelliJ project directory, which is somewhere in your home directory as IdeaProjects or IntelliJProjects
 * Clone the chisel3 repo `git clone https://github.com/ucb-bar/chisel3.git`
 * Now import the project by starting IntelliJ (and closing any open projects you have) which gets you to a dialog that has an *Import Project*.  Choose that.  
