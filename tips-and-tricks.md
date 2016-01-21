@@ -5,7 +5,7 @@ I have added this to my bash startup files
 ```   
 # Usage goto_chisel_temp <pattern>
 # Example:
-# >> goto_chisel_temp Router
+# >> goto_chisel_temp Small
 Changing to latest tempdir for Small SmallOdds3Tester7903104241751344739/
 # will place the user in latest temp directory associated with a chisel simulation
 # >>>
