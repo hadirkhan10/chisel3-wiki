@@ -10,7 +10,7 @@ The chisel3 repo as cloned is not a correctly set up IntelliJ Scala/SBT Project.
 * Then under the Import Project dialog, Select *Import project from external model* and from the list select SBT as the external model.  Click *Next*
 * Next dialog has a bunch of unclicked options (leave them that way).  I used *Project SDK: 1.8*, Click *Finish*
 
-This game me a functional Project with the files where I expected to find them. There may be other ways to do this, but I have not found one, I have found many ways that don't work, but have decided not to document those.
+This gave me a functional Project with the files where I expected to find them. There may be other ways to do this, but I have not found one, I have found many ways that don't work, but have decided not to document those.
 
 
 
