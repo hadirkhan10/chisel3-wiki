@@ -11,9 +11,7 @@ Changing to latest tempdir for Small SmallOdds3Tester7903104241751344739/
 # >>>
 function goto_chisel_temp {
       cd $TMPDIR
-      #ls -ltr | awk "/$1/"' { print $NF}'
       dir=`ls -ltr | awk "/$1/"' { print $NF }' | tail -1`
-      # debug: echo "got dir $dir"
       if test -n "4dir"; then
         echo "Changing to latest tempdir for $1 $dir"
         cd $dir
