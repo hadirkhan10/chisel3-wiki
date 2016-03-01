@@ -1,9 +1,9 @@
 ## Summary
 1. [Install gpg](#install-gpg)
-2. [Edit the plugins.sbt file](#edit-the-plugins.sbt-file)
-3. Get next version identifier
-4. Enable distribution on sonatype.org
-5. Tag the release
+2. [Edit the plugins.sbt file](#edit-the-pluginssbt-file)
+3. [Get next version identifier](#get-next-version-identifier)
+4. [Enable distribution on sonatype.org](#enable-distribution-on-sonatypeorg)
+5. [Tag the release](#tag-the-release)
 
 ## From Jonathan's Notes
 ### Install GPG
