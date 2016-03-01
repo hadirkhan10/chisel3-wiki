@@ -2,10 +2,12 @@
 1. Install gpg
 2. Edit the plugins.sbt file
 3. Get next version identifier
+4. Tag the release
 
 ## From Jonathan's Notes
-### install gpg 
-~/.sbt/sonatype.sbt
+### Install GPG
+Add the following lines to ~/.sbt/sonatype.sbt
+```
 import com.typesafe.sbt.pgp._
 
 pgpPassphrase := Some("".toArray)
@@ -14,8 +16,8 @@ credentials += Credentials("Sonatype Nexus Repository Manager",
                            "oss.sonatype.org", 
                            "jenkinss142",
                            "xxxx")
-
-### edit the plugins sbt file
+```
+### Edit the plugins sbt file
 ~/.sbt/plugins/build.sbt
 ```
 resolvers += Resolver.url("scalasbt", new URL("http://scalasbt.artifactoryonline.com/scalasbt/sbt-plugin-releases")) (Resolver.ivyStylePatterns)
@@ -31,7 +33,7 @@ pgp-cmd key-gen
 
 // may have to publish your key ???
 
-### get next version identifier 
+### Get next version identifier 
 From: http://central.maven.org/maven2/edu/berkeley/cs/chisel_2.10/
 ```
 cd ~/bar/chisel
@@ -40,7 +42,7 @@ sbt publish-signed
 ```
 --
 ### Enable distribution on sonatype.org
-go to https://oss.sonatype.org/
+Go to https://oss.sonatype.org/
 ```
 login with jenkins142 account (from .sbt/....)
 click on staging repositories
@@ -51,6 +53,5 @@ hit refresh
 wait for release button to appear
 hit release
 ```
----
-incorporate git has
-tag git repo with version number
+### Tag the release
+incorporate git hash tag with git repo with version number
