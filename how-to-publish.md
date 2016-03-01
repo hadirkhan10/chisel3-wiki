@@ -4,7 +4,7 @@
 3. [Get next version identifier](#get-next-version-identifier)
 4. [Enable distribution on sonatype.org](#enable-distribution-on-sonatypeorg)
 5. [Tag the release](#tag-the-release)
-6. [Check to see if it's there][#check-to-see-if-its-there]
+6. [Check to see if it's there](#check-to-see-if-its-there)
 
 ## From Jonathan's Notes
 ### Install GPG
