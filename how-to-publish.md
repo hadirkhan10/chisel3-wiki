@@ -18,7 +18,7 @@ credentials += Credentials("Sonatype Nexus Repository Manager",
                            "jenkinss142",
                            "xxxx")
 ```
-### Edit the plugins sbt file
+### Edit the plugins.sbt file
 ~/.sbt/plugins/build.sbt
 ```
 resolvers += Resolver.url("scalasbt", new URL("http://scalasbt.artifactoryonline.com/scalasbt/sbt-plugin-releases")) (Resolver.ivyStylePatterns)
