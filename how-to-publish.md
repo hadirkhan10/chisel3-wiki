@@ -39,8 +39,9 @@ edit ~/bar/chisel/project/build.scala and put in version number
 sbt publish-signed
 ```
 --
+### Enable distribution on sonatype.org
 go to https://oss.sonatype.org/
-
+```
 login with jenkins142 account (from .sbt/....)
 click on staging repositories
 hit refresh
@@ -49,7 +50,7 @@ hit close
 hit refresh 
 wait for release button to appear
 hit release
-
+```
 ---
 incorporate git has
 tag git repo with version number
