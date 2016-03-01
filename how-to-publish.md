@@ -4,6 +4,7 @@
 3. [Get next version identifier](#get-next-version-identifier)
 4. [Enable distribution on sonatype.org](#enable-distribution-on-sonatypeorg)
 5. [Tag the release](#tag-the-release)
+6. [Check to see if it's there][#check-to-see-if-its-there]
 
 ## From Jonathan's Notes
 ### Install GPG
@@ -56,3 +57,9 @@ hit release
 ```
 ### Tag the release
 incorporate git hash tag with git repo with version number
+
+### Check to see if it's there
+Go to 
+[https://repo1.maven.org/maven2/edu/berkeley/cs/]
+look for 
+chisel-hwiotesters_2.11/
