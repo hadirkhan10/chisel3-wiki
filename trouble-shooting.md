@@ -5,13 +5,21 @@ The following example will produce a firrtl error
 ```scala
 class MyModule extends Module {
   val x = UInt(INPUT)
-  def nonZero(): Bool = {
+  def nonZero: Bool = {
     x > UInt(0)
   }
 }
 ```
 ```
 firrtl.passes.CheckHighForm$NotUniqueException: Example.fir@10.4: [module MyModule] Reference nonZero does not have a unique name.
-
+```
+The work-around: Give the function a dummy argument with a default value
+```scala
+class MyModule extends Module {
+  val x = UInt(INPUT)
+  def nonZero(dummy: Int = 0): Bool = {
+    x > UInt(0)
+  }
+}
 ```
 
