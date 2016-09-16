@@ -38,7 +38,7 @@ specification model, particularly in an instructional setting.
 language is our desire to change the way that electronic system design
 takes place.  We believe that it is important to not only teach
 students how to design circuits, but also to teach them how to design
-{\em circuit generators}---programs that automatically generate
+*circuit generators* ---programs that automatically generate
 designs from a high-level set of design parameters and constraints.
 Through circuit generators, we hope to leverage the hard work of
 design experts and raise the level of design abstraction for everyone.
