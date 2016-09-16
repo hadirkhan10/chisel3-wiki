@@ -1,3 +1,5 @@
+* [Frequently Asked Questions] (Frequently Asked Questions)
+* [Troubleshooting] (Troubleshooting)
 * Chisel Tutorial
   1. [Introduction] (Chisel Introduction)
   1. [Hardware Expressible in Chisel] (Hardware Expressible in Chisel)
