@@ -10,9 +10,9 @@ using the following expression:
 (a & b) | (~c & d)
 ```
 
-The syntax should look familiar, with ```\&``` and ```|```
-representing bitwise-AND and -OR respectively, and ```\~```
-representing bitwise-NOT.  The names ```a``` through ```d```
+The syntax should look familiar, with `&` and `|`
+representing bitwise-AND and -OR respectively, and `~`
+representing bitwise-NOT.  The names `a` through `d`
 represent named wires of some (unspecified) width.
 
 Any simple expression can be converted directly into a circuit tree,
@@ -32,9 +32,9 @@ val sel = a | b
 val out = (sel & in1) | (~sel & in0)
 ```
 
-The keyword ```val``` is part of Scala, and is used to name variables
+The keyword `val` is part of Scala, and is used to name variables
 that have values that won't change.  It is used here to name the
-Chisel wire, ```sel```, holding the output of the first bitwise-OR
+Chisel wire, `sel`, holding the output of the first bitwise-OR
 operator so that the output can be used multiple times in the second
 expression.
 
