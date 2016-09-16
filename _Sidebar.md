@@ -1,6 +1,6 @@
 * [Frequently Asked Questions] (Frequently Asked Questions)
 * [Troubleshooting] (Troubleshooting)
-* A Short Users Guide to Chisel
+* [A Short Users Guide to Chisel](Short Users Guide to Chisel)
   1. [Introduction] (Chisel Introduction)
   1. [Hardware Expressible in Chisel] (Hardware Expressible in Chisel)
   1. [Datatypes in Chisel] (Datatypes in Chisel)
