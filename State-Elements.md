@@ -10,7 +10,8 @@ def risingedge(x: Bool) = x && !Reg(next = x)
 Counters are an important sequential circuit. To construct an up-counter that counts up to a maxi- mum value, max, then wraps around back to zero (i.e., modulo max+1), we write:
 ```scala
 def counter(max: UInt) = {
-  val x = Reg(init = UInt(0, max.getWidth)) x := Mux(x === max, 0.U, x + 1.U)
+  val x = Reg(init = UInt(0, max.getWidth))
+  x := Mux(x === max, 0.U, x + 1.U)
   x
 }
 ```
@@ -24,7 +25,8 @@ A square-wave generator can then be toggled by the pulse train, toggling between
 ```scala
 // Flip internal state when input true.
 def toggle(p: Bool) = {
-  val x = Reg(init = Bool(false)) x := Mux(p, !x, x)
+  val x = Reg(init = Bool(false))
+  x := Mux(p, !x, x)
   x
 }
 // Square wave of a given period.
