@@ -49,16 +49,16 @@ calculates node output bit widths from their respective input bit widths accordi
 
 | operation        | bit width           |
 | ---------        | ---------           |
-| ```z = x + y```        | ```wz = max(w x, wy)```   |
-| ```z = x - y```        | ```wz = max(wx, wy)```    |
-| ```z = x & y```        | ```wz = min(wx, wy)```    |
-| ```z = Mux(c, x, y)``` | ```wz = max(wx, wy)```    |
-| ```z = w * y```        | ```wz = wx + w```y        |
-| ```z = x << n```       | ```wz = wx + maxNum(n)``` |
-| ```z = x >> n```       | ```wz = wx - minNum(n)``` |
-| ```z = Cat(x, y)```    | ```wz = wx + w```y        |
-| ```z = Fill(n, x)```   | ```wz = wx * maxNum(n)``` |
->where for instance *wz* is the bit width of wire *z*, and the *&*
+| ```z = x + y```        | ```w(z) = max(w(x), w(y))```   |
+| ```z = x - y```        | ```w(z) = max(w(x), w(y))```    |
+| ```z = x & y```        | ```w(z) = min(w(x), w(y))```    |
+| ```z = Mux(c, x, y)``` | ```w(z) = max(w(x), w(y))```    |
+| ```z = w * y```        | ```w(z) = w(x) + w(y)```        |
+| ```z = x << n```       | ```w(z) = w(x) + maxNum(n)``` |
+| ```z = x >> n```       | ```w(z) = w(x) - minNum(n)``` |
+| ```z = Cat(x, y)```    | ```w(z) = w(x) + w(y)```        |
+| ```z = Fill(n, x)```   | ```w(z) = w(x) * maxNum(n)``` |
+>where for instance *w(z)* is the bit width of wire *z*, and the *&*
 rule applies to all bitwise logical operations.
 
 The bit width inference process continues until no bit width changes.
