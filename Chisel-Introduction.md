@@ -4,10 +4,10 @@ construction language embedded in the high-level programming language
 Scala.  At some point we will provide a proper reference manual, in
 addition to more tutorial examples.  In the meantime, this document
 along with a lot of trial and error should set you on your way to
-using Chisel.  Chisel is really only a set of special class
+using Chisel. _Chisel is really only a set of special class
 definitions, predefined objects, and usage conventions within Scala,
-so when you write a Chisel program you are actually writing a Scala
-program.  However, for the tutorial we don't presume that you
+so when you write Chisel you are actually writing a Scala
+program that constructs a hardware graph._  However, for the tutorial we don't presume that you
 understand how to program in Scala.  We will point out necessary Scala
 features through the Chisel examples we give, and significant hardware
 designs can be completed using only the material contained herein.
