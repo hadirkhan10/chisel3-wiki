@@ -1,5 +1,6 @@
 * [Frequently Asked Questions] (Frequently Asked Questions)
 * [Troubleshooting] (Troubleshooting)
+* [Printing in Chisel] (Printing in Chisel)
 * [A Short Users Guide to Chisel](Short Users Guide to Chisel)
   1. [Introduction] (Chisel Introduction)
   1. [Hardware Expressible in Chisel] (Hardware Expressible in Chisel)
