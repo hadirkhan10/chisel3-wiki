@@ -1,3 +1,4 @@
+* [Cookbook] (Cookbook)
 * [Frequently Asked Questions] (Frequently Asked Questions)
 * [Troubleshooting] (Troubleshooting)
 * [Printing in Chisel] (Printing in Chisel)
