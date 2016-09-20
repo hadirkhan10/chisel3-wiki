@@ -28,7 +28,7 @@ form of a ```Bundle```.  The interface to the module is defined
 through a field named ```io```.  For ```Mux2```, ```io``` is
 defined as a bundle with four fields, one for each multiplexer port.
 
-The ```:=```ssignment operator, used here in the body of the
+The ```:=``` assignment operator, used here in the body of the
 definition, is a special operator in Chisel that wires the input of
 left-hand side to the output of the right-hand side.
 
