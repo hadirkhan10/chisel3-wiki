@@ -1,5 +1,8 @@
 Chisel provides the `printf` function for debugging purposes. It comes in two flavors:
 
+* [Scala-style](#scala-style)
+* [C-style](#c-style)
+
 ### Scala-style
 
 Chisel also supports printf in a style similar to [Scala's String Interpolation](http://docs.scala-lang.org/overviews/core/string-interpolation.html). Chisel provides a custom string interpolator `p` which can be used as follows:
