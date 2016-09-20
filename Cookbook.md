@@ -14,7 +14,7 @@ Call asUInt on the Bundle instance
   bundle.foo := UInt("b10")
   bundle.bar := UInt("b01")
   val uint = bundle.asUInt
-  printf(p"$uint")
+  printf(p"$uint") // 9
 
   // Test
   assert(uint === UInt("b1001"))
@@ -32,7 +32,7 @@ On an instance of the Bundle, call the method fromBits with the UInt as the argu
   }
   val uint = UInt("b1100")
   val bundle = (new MyBundle).fromBits(uint)
-  printf(p"$bundle") 
+  printf(p"$bundle") // Bundle(foo -> 3, bar -> 0)
   
   // Test
   assert(bundle.foo === UInt("b11"))
@@ -48,7 +48,7 @@ then wrap the resulting Seq in Vec(...)
   // Example
   val uint = UInt("b1100") 
   val vec = Vec(uint.toBools)
-  printf(p"$vec")
+  printf(p"$vec") // Vec(0, 0, 1, 1)
   
   // Test
   assert(vec(0) === Bool(false))
@@ -65,7 +65,7 @@ Use the builtin function asUInt
   // Example
   val vec = Vec(Bool(true), Bool(false), Bool(true), Bool(true))
   val uint = vec.asUInt
-  printf(p"$uint")
+  printf(p"$uint") // 13
   
   // Test
   // (remember leftmost Bool in Vec is low order bit)
