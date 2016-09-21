@@ -2,7 +2,7 @@ Objects in Scala have a pre-existing creation function (method) called `apply`.
 When an object is used as value in an expression (which basically means that the constructor was called), this method determines the returned value.
 When dealing with hardware modules, one would expected the module output to be representative of the hardware module's functionality.
 Therefore, we would sometimes like the module output to be the value returned when using the object as a value in an expression.
-Since hardware modules are represented as Scala objects, this can be done by defining the object's \code{apply} method to return the module's output.
+Since hardware modules are represented as Scala objects, this can be done by defining the object's `apply` method to return the module's output.
 This can be referred to as creating a functional interface for module construction.
 If we apply this on the standard mux2 example, we would to return the mux2 output ports when we used mux2 in an expression.
 Implementing this requires building a constructor that takes multiplexer inputs as parameters and returns the multiplexer output:
