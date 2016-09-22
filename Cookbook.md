@@ -12,17 +12,17 @@ Call asUInt on the Bundle instance
 ```scala
   // Example
   class MyBundle extends Bundle {
-    val foo = UInt(width = 2)
-    val bar = UInt(width = 2)
+    val foo = UInt(width = 4)
+    val bar = UInt(width = 4)
   }
   val bundle = Wire(new MyBundle)
-  bundle.foo := UInt("b10")
-  bundle.bar := UInt("b01")
+  bundle.foo := UInt(0xc)
+  bundle.bar := UInt(0x3)
   val uint = bundle.asUInt
-  printf(p"$uint") // 9
+  printf(p"$uint") // 195
 
   // Test
-  assert(uint === UInt("b1001"))
+  assert(uint === UInt(0xc3))
 ```
 
 ### How do I create a Bundle from a UInt?
@@ -32,16 +32,16 @@ On an instance of the Bundle, call the method fromBits with the UInt as the argu
 ```scala
   // Example
   class MyBundle extends Bundle {
-    val foo = UInt(width = 2)
-    val bar = UInt(width = 2)
+    val foo = UInt(width = 4)
+    val bar = UInt(width = 4)
   }
-  val uint = UInt("b1100")
+  val uint = UInt(0xb4)
   val bundle = (new MyBundle).fromBits(uint)
-  printf(p"$bundle") // Bundle(foo -> 3, bar -> 0)
+  printf(p"$bundle") // Bundle(foo -> 11, bar -> 4)
   
   // Test
-  assert(bundle.foo === UInt("b11"))
-  assert(bundle.bar === UInt("b00"))
+  assert(bundle.foo === UInt(0xb))
+  assert(bundle.bar === UInt(0x4))
 ```
 
 ### How do I create a Vec of Bools from a UInt?
@@ -51,7 +51,7 @@ then wrap the resulting Seq in Vec(...)
 
 ```scala
   // Example
-  val uint = UInt("b1100") 
+  val uint = UInt(0xc) 
   val vec = Vec(uint.toBools)
   printf(p"$vec") // Vec(0, 0, 1, 1)
   
@@ -74,5 +74,5 @@ Use the builtin function asUInt
   
   // Test
   // (remember leftmost Bool in Vec is low order bit)
-  assert(UInt(13) === uint)
+  assert(UInt(0xd) === uint)
 ```
