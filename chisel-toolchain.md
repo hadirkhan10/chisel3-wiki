@@ -12,5 +12,13 @@ There are three kinds of players here
  - chisel-
 
 ### The Circuit and Its tests
+ - Device Under Test or the DUT:  written using Chisel in Scala
+ - Device Tester: an subclass of PeekPokeTester that allows setting DUT's inputs, testing its outputs and stepping the clock
+ - Device Launcher:  Most commonly done in the form of a class that extends a scalatest
 
-### Execution
+### Execution or the Narrative
+1. ChiselerX checkouts the [ucb-bar/chisel-template](ucb-bar/chisel-template) and follows the instructions, renaming it and changing it to be a new git project
+1. They decide to use the [ucb-bar/dsptools](ucb-bar/dsptools) library, which simply requires that they add a new dependency line in their ```build.sbt``` file in the root directory
+1. They create a DUT.scala and in it create a DUT Chisel Module, using constructs from the dsp library, including:
+  1. annotations
+  1. instances of black boxes
