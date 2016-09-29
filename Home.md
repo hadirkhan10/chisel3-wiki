@@ -4,3 +4,5 @@
 * [Tips and Tricks](tips-and-tricks)
 * [How to publish a version](how-to-publish)
 * [Developers Trouble Shooting Guide](trouble-shooting)
+* [Chisel Toolchain](chisel-toolchain)
+
