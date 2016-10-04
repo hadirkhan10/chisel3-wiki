@@ -35,7 +35,7 @@ where flip recursively changes the “gender” of a bundle, changing input to o
 We can now define a filter by defining a filter class extending module:
 ```scala
 class Filter extends Module {
-  val io = new FilterIO()
+  val io = IO(new FilterIO())
   ...
 }
 ```
@@ -58,7 +58,7 @@ where Vec takes a size as the first argument and a block returning a port as the
 We can now compose two filters into a filter block as follows:
 ```scala
 class Block extends Module {
-  val io = new FilterIO()
+  val io = IO(new FilterIO())
   val f1 = Module(new Filter())
   val f2 = Module(new Filter())
   f1.io.x <> io.x

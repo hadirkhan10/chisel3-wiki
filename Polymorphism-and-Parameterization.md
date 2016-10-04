@@ -71,7 +71,7 @@ We can now define `Filter` by defining a module class that also takes a link typ
 
 ```scala
 class Filter[T <: Data](gen: T) extends Module { 
-  val io = new FilterIO(gen)
+  val io = IO(new FilterIO(gen))
   ...
 }
 ```
@@ -91,14 +91,14 @@ class DataBundle extends Bundle {
 }
 
 class Fifo[T <: Data](gen: T, n: Int) extends Module {
-  val io = new Bundle {
+  val io = IO(new Bundle {
     val enqVal = Bool(INPUT)
     val enqRdy = Bool(OUTPUT)
     val deqVal = Bool(OUTPUT)
     val deqRdy = Bool(INPUT)
     val enqDat = gen.asInput
     val deqDat = gen.asOutput
-  }
+  })
   val enqPtr     = Reg(init = UInt(0, sizeof(n)))
   val deqPtr     = Reg(init = UInt(0, sizeof(n)))
   val isFull     = Reg(init = Bool(false))
@@ -150,10 +150,10 @@ The FIFO interface can be now be simplified as follows:
 
 ```scala
 class Fifo[T <: Data](data: T, n: Int) extends Module {
-  val io = new Bundle {
+  val io = IO(new Bundle {
     val enq = new DecoupledIO(data).flip
     val deq = new DecoupledIO(data)
-  }
+  })
   ...
 }
 ```

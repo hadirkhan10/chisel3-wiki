@@ -27,14 +27,14 @@ for example,previously implemented mux4 explicitly like this:
 
 ```scala
 class Mux4 extends Module {
-  val io = new Bundle {
+  val io = IO(new Bundle {
     val in0 = UInt(INPUT, 1)
     val in1 = UInt(INPUT, 1)
     val in2 = UInt(INPUT, 1)
     val in3 = UInt(INPUT, 1)
     val sel = UInt(INPUT, 2)
     val out = UInt(OUTPUT, 1)
-  }
+  })
   val m0 = Module(new Mux2())
   m0.io.sel := io.sel(0) 
   m0.io.in0 := io.in0; m0.io.in1 := io.in1
@@ -56,14 +56,14 @@ when writing the mux4 output expression:
 
 ```scala
 class Mux4 extends Module {
-  val io = new Bundle {
+  val io = IO(new Bundle {
     val in0 = UInt(INPUT, 1)
     val in1 = UInt(INPUT, 1)
     val in2 = UInt(INPUT, 1)
     val in3 = UInt(INPUT, 1)
     val sel = UInt(INPUT, 2)
     val out = UInt(OUTPUT, 1)
-  }
+  })
   io.out := Mux2(io.sel(1),
                  Mux2(io.sel(0), io.in0, io.in1),
                  Mux2(io.sel(0), io.in2, io.in3))

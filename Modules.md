@@ -13,12 +13,12 @@ As an example, consider defining your own two-input multiplexer as a
 module:
 ```scala
 class Mux2 extends Module {
-  val io = new Bundle{
+  val io = IO(new Bundle{
     val sel = UInt(INPUT, 1)
     val in0 = UInt(INPUT, 1)
     val in1 = UInt(INPUT, 1)
     val out = UInt(OUTPUT, 1)
-  }
+  })
   io.out := (io.sel & io.in1) | (~io.sel & io.in0)
 }
 ```
@@ -41,14 +41,14 @@ together three 2-input multiplexers:
 
 ```scala
 class Mux4 extends Module {
-  val io = new Bundle {
+  val io = IO(new Bundle {
     val in0 = UInt(INPUT, 1)
     val in1 = UInt(INPUT, 1)
     val in2 = UInt(INPUT, 1)
     val in3 = UInt(INPUT, 1)
     val sel = UInt(INPUT, 2)
     val out = UInt(OUTPUT, 1)
-  }
+  })
   val m0 = Module(new Mux2())
   m0.io.sel := io.sel(0) 
   m0.io.in0 := io.in0; m0.io.in1 := io.in1
