@@ -6,7 +6,7 @@ to aid in debugging and physical layout.  A user-defined module is
 defined as a *class* which:
 
  - inherits from ```Module```,
- - contains an interface stored in a port field named ```io```, and
+ - contains an interface wrapped in a Module's ```IO()``` method and stored in a port field named ```io```, and
  - wires together subcircuits in its constructor.
 
 As an example, consider defining your own two-input multiplexer as a
