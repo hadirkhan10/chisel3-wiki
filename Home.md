@@ -5,4 +5,5 @@
 * [How to publish a version](how-to-publish)
 * [Developers Trouble Shooting Guide](trouble-shooting)
 * [Chisel Toolchain](chisel-toolchain)
+* [Useful SBT commands](useful-sbt-commands)
 
