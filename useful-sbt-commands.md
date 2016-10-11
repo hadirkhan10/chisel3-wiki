@@ -6,4 +6,6 @@
 | test:compile            | compile everything in the src/main and src/test hierarchy what's nice here is that once this is run then one can use tab command completion of package and class names |
 | test                    | run all tests in src/test hierarchy |
 | test-only example.AdderSpec | run all tests in example.AdderSpec |
+| console  | run an interactive shell session, also knows as REPL |
+| help     | lists other exciting commands |
 
