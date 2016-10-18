@@ -87,5 +87,25 @@ To use the Scala `Predef.printf()`, you need to qualify it with `Predef`.
 *  in Chisel2, bulk-connects `<>` with unconnected source components do not update connections from the unconnected components.
 In Chisel3, bulk-connects strictly adhere to last connection semantics and unconnected OUTPUTs will be connected to INPUTs resulting in the assignment of random values to those inputs.
 
+## Packaging
+Chisel3 is implemented as several packages.
+The core DSL is differentiated from utility or library classes and objects, testers, and interpreters.
+The prime components of the Chisel3 front end (the DSL and library objects) are:
+* coreMacros - source locators provide Chisel line numbers for `firrtl` detected errors,
+* chiselFrontend - main DSL components,
+* chisel3 - compiler driver, interface packages, compatibility layer.
+
+Due to the wonders of `sbt`, you only need declare a dependency on the chisel3 package, and the others will be downloaded as required.
+
+The `firrtl` compiler is distributed as a separate package, and will also be downloaded automatically as required.
+If you choose to integrate the compiler into your own toolchain, you should clone the [firrtl](https://github.com/ucb-bar/firrtl) repo
+and follow the instructions for installing the `firrtl` compiler.
+
+The testers in Chisel3 are distributed as a separate package.
+If you intend to use them in your tests, you will either need to clone the [chisel-testers](https://github.com/ucb-bar/chisel-testers) repo
+or declare a dependency on the publish version of the package.
+See the `build.sbt` file in either the [chisel-template](https://github.com/ucb-bar/chisel-template) or [chisel-tutorial](https://github.com/ucb-bar/chisel-tutorial)
+repos for examples of the latter.
+
 [Prev(Multiple Clock Domains)]  (Multiple Clock Domains)    
 [Next(Acknowledgements)]  (Acknowledgements)
