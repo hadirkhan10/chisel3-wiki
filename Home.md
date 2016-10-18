@@ -6,4 +6,4 @@
 * [Developers Trouble Shooting Guide](trouble-shooting)
 * [Chisel Toolchain](chisel-toolchain)
 * [Useful SBT commands](useful-sbt-commands)
-
+* [Chisel3 vs Chisel2](Chisel3-vs-Chisel2)
