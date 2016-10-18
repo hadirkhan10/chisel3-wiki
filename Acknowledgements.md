@@ -32,4 +32,4 @@ Bachrach, J., Qumsiyeh, D., Tobenkin, M.
  **Hardware Scripting in Gel**.  
 in Field-Programmable Custom Computing Machines, 2008. FCCM '08. 16th.  
 
-[Prev(Multiple Clock Domains)]  (Multiple Clock Domains)
+[Prev(Chisel3 vs Chisel2)]  (Chisel3 vs Chisel2)
