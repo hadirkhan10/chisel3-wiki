@@ -103,7 +103,7 @@ and follow the instructions for installing the `firrtl` compiler.
 
 The testers in Chisel3 are distributed as a separate package.
 If you intend to use them in your tests, you will either need to clone the [chisel-testers](https://github.com/ucb-bar/chisel-testers) repo
-or declare a dependency on the publish version of the package.
+or declare a dependency on the published version of the package.
 See the `build.sbt` file in either the [chisel-template](https://github.com/ucb-bar/chisel-template) or [chisel-tutorial](https://github.com/ucb-bar/chisel-tutorial)
 repos for examples of the latter.
 
