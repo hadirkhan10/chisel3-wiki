@@ -95,7 +95,7 @@ The prime components of the Chisel3 front end (the DSL and library objects) are:
 * chiselFrontend - main DSL components,
 * chisel3 - compiler driver, interface packages, compatibility layer.
 
-Due to the wonders of `sbt`, you only need declare a dependency on the chisel3 package, and the others will be downloaded as required.
+Due to the wonders of `sbt`, you need only declare a dependency on the chisel3 package, and the others will be downloaded as required.
 
 The `firrtl` compiler is distributed as a separate package, and will also be downloaded automatically as required.
 If you choose to integrate the compiler into your own toolchain, you should clone the [firrtl](https://github.com/ucb-bar/firrtl) repo
@@ -106,6 +106,12 @@ If you intend to use them in your tests, you will either need to clone the [chis
 or declare a dependency on the published version of the package.
 See the `build.sbt` file in either the [chisel-template](https://github.com/ucb-bar/chisel-template) or [chisel-tutorial](https://github.com/ucb-bar/chisel-tutorial)
 repos for examples of the latter.
+
+## Simulation
+
+Chisel2 was capable of directly generating a `C++` simulation from the Chisel code, or a harness for use with a `vcs` simulation.
+Chisel3 relies on [verilator](http://www.veripool.org/wiki/verilator) to generate the `C++` simulation from the Verilog output of `firrtl`.
+See the [Chisel3 README](https://github.com/ucb-bar/chisel3) for directions on installing `verilator`.
 
 [Prev(Multiple Clock Domains)]  (Multiple Clock Domains)    
 [Next(Acknowledgements)]  (Acknowledgements)
