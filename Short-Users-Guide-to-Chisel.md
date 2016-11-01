@@ -1,4 +1,4 @@
-This is a brief guide to the Chisel hardware description language. To get started, we recommend looking at this document and the [Chisel-tutorial](https://gitub.com/ucb-bar/chisel-tutorial)
+This is a brief guide to the Chisel hardware description language. To get started, we recommend looking at this document and the [Chisel-tutorial](https://github.com/ucb-bar/chisel-tutorial)
 
   1. [Introduction] (Chisel Introduction)
   1. [Hardware Expressible in Chisel] (Hardware Expressible in Chisel)
