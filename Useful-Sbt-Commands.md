@@ -9,3 +9,5 @@
 | console  | run an interactive shell session, also knows as REPL |
 | help     | lists other exciting commands |
 
+**NOTE** To run these commands directly from the command line (as opposed to the SBT console),
+enclose the entire command (along with its arguments) in quotation marks - e.g. `sbt "test-only example.AdderSpec"`
