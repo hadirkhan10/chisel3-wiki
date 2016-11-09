@@ -29,8 +29,10 @@ Chisel defines a set of hardware operators
 | `val stall = src1busy || src2busy`          | Logical OR                        |                     
 | `val out = Mux(sel, inTrue, inFalse)`       | Two-input mux where sel is a Bool |                                               
 | **Arithmetic operations**                   | **Valid on Nums:** SInt and UInt.  |
-| `val sum = a + b`                           | Addition                           |           
-| `val diff = a - b`                          | Subtraction                        |            
+| `val sum = a + b` *or* `val sum = a +% b`   | Addition (without width expansion) |
+| `val sum = a +& b`                          | Addition (with width expansion)    |         
+| `val diff = a - b` *or* `val diff = a -% b` | Subtraction (without width expansion) |
+| `val diff = a -& b`                         | Subtraction (with width expansion) |            
 | `val prod = a * b`                          | Multiplication                     |            
 | `val div = a / b`                           | Division                           |           
 | `val mod = a % b`                           | Modulus                            |           
@@ -40,43 +42,36 @@ Chisel defines a set of hardware operators
 | `val lt = a < b`                            | Less than                          |   
 | `val lte = a <= b`                          | Less than or equal                 |              
 
-
-### BitWidth Inference
-Users are required to set bit widths of ports and registers, but otherwise,
-bit widths on wires are automatically inferred unless set manually by the user.
-The bit-width inference engine starts from the graph's input ports and 
-calculates node output bit widths from their respective input bit widths according to the following set of rules:
-
-| operation        | bit width           |
-| ---------        | ---------           |
-| ```z = x + y```        | ```w(z) = max(w(x), w(y))```   |
-| ```z = x - y```        | ```w(z) = max(w(x), w(y))```    |
-| ```z = x & y```        | ```w(z) = min(w(x), w(y))```    |
-| ```z = Mux(c, x, y)``` | ```w(z) = max(w(x), w(y))```    |
-| ```z = w * y```        | ```w(z) = w(x) + w(y)```        |
-| ```z = x << n```       | ```w(z) = w(x) + maxNum(n)``` |
-| ```z = x >> n```       | ```w(z) = w(x) - minNum(n)``` |
-| ```z = Cat(x, y)```    | ```w(z) = w(x) + w(y)```        |
-| ```z = Fill(n, x)```   | ```w(z) = w(x) * maxNum(n)``` |
->where for instance *w(z)* is the bit width of wire *z*, and the *&*
-rule applies to all bitwise logical operations.
-
-The bit width inference process continues until no bit width changes.
-Except for right shifts by known constant amounts, the bit-width
-inference rules specify output bit widths that are never smaller than
-the input bit widths, and thus, output bit widths either grow or stay
-the same.  Furthermore, the width of a register must be specified by
-the user either explicitly or from the bit width of the reset value or
-the *next* parameter.
-From these two requirements, we can show that the bit width inference
-process will converge to a fixed point.
-
 >Our choice of operator names was constrained by the Scala language.
 We have to use triple equals```===``` for equality and ```=/=```
 for inequality to allow the
 native Scala equals operator to remain usable.
 
->We are also planning to add further operators that constrain bitwidth
-to the larger of the two inputs.
+### Width Inference
+
+Chisel provides bit width inference to reduce design effort. Users are encouraged to manually specify widths of ports and registers to prevent any surprises, but otherwise unspecified widths will be inferred by the compiler. All unspecified widths will be inferred to be the width of the maximum incoming connection. Hardware operators have output widths as defined by the following set of rules:
+
+| operation        | bit width           |
+| ---------        | ---------           |
+| `z = x + y` *or* `z = x +% y`        | `w(z) = max(w(x), w(y))`   |
+| `z = x +& y`       | `w(z) = max(w(x), w(y)) + 1`   |
+| `z = x - y` *or* `z = x -% y`       | `w(z) = max(w(x), w(y))`    |
+| `z = x -& y`       | `w(z) = max(w(x), w(y)) + 1`   |
+| `z = x & y`        | `w(z) = min(w(x), w(y))`    |
+| `z = Mux(c, x, y)` | `w(z) = max(w(x), w(y))`    |
+| `z = w * y`        | `w(z) = w(x) + w(y)`        |
+| `z = x << n`       | `w(z) = w(x) + maxNum(n)` |
+| `z = x >> n`       | `w(z) = w(x) - minNum(n)` |
+| `z = Cat(x, y)`    | `w(z) = w(x) + w(y)`      |
+| `z = Fill(n, x)`   | `w(z) = w(x) * maxNum(n)` |
+>where for instance `w(z)` is the bit width of wire `z`, and the `&`
+rule applies to all bitwise logical operations.
+
+Given a path of connections that begins with an unspecified width element (most commonly a top-level input), then the compiler will throw an exception indicating a certain width was uninferrable. 
+
+A common "gotcha" comes from truncating addition and subtraction with the operators `+` and `-`. Users who want the result to maintain the full, expanded precision of the addition or subtraction should use the expanding operators `+&` and `-&`.
+
+> The default truncating operation comes from Chisel's history as a microprocessor design language.
+
 
 [Prev (Combinational Circuits)](Combinational Circuits)  [Next (Functional Abstraction)](Functional Abstraction)
