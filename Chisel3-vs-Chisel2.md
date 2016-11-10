@@ -6,22 +6,22 @@ and your RTL needs to be modified to work with Chisel3. The required
 modifications are:
 
  - Wire declaration style:
-   ```
+   ```scala
    val wire = Bits(width = 15)
    ```
    becomes (in Chisel3):
-   ```
+   ```scala
    val wire = Wire(Bits(width = 15))
    ```
 
  - Sequential memories:
-   ```
+   ```scala
    val addr = Reg(UInt())
    val mem = Mem(UInt(width=8), 1024, seqRead = true)
    val dout = when(enable) { mem(addr) }
    ```
    becomes (in Chisel3):
-   ```
+   ```scala
    val addr = UInt()
    val mem = SeqMem(1024, UInt(width=8))
    val dout = mem.read(addr, enable)
@@ -95,23 +95,31 @@ hardware objects), based on specific imports.
 This allows designs to move from less strict front end checks (largely compatible with Chisel2), to stricter checking,
 on a file by file basis, by adjusting specific import statements.
 
+```scala
     import chisel3.core.ExplicitCompileOptions.Strict
-     
+```     
+
 enables stricter connection and usage checks, while
 
+```scala
     import chisel3.core.ExplicitCompileOptions.NotStrict
+```
 
 defers these checks to the `firrtl` compiler.
 
 By default, the `Chisel` compatibility layer, invoked by:
 
+```scala
     import Chisel._
+```
     
 implicitly defines the compile options as `chisel3.core.ExplicitCompileOptions.NotStrict`
 
 whereas the Chisel3 package, invoked by:
 
+```scala
     import chisel3._
+```
     
 implicitly defines the compile options as `chisel3.core.ExplicitCompileOptions.Strict`
 
@@ -119,6 +127,7 @@ Again, these implicit compile options definitions may be overridden by explicit 
 
 Currently, the specific error checks (found in [CompileOptions.scala](https://github.com/ucb-bar/chisel3/blob/master/chiselFrontend/src/main/scala/chisel3/core/CompileOptions.scala)) are:
 
+```scala
     trait CompileOptions {
       // Should Bundle connections require a strict match of fields.
       // If true and the same fields aren't present in both source and sink, a MissingFieldException,
@@ -138,11 +147,11 @@ Currently, the specific error checks (found in [CompileOptions.scala](https://gi
       // Check that referenced Data have actually been declared.
       val checkSynthesizable: Boolean
     }
+```
 
 `chisel3.core.ExplicitCompileOptions.Strict` sets all CompileOptions fields to true and
 `chisel3.core.ExplicitCompileOptions.NotStrict` sets them all to false.
 Clients are free to define their own settings for these options.
 Examples may be found in the test [CompileOptionsSpec](https://github.com/ucb-bar/chisel3/blob/master/src/test/scala/chiselTests/CompileOptionsTest.scala)
 
-[Prev(Multiple Clock Domains)]  (Multiple Clock Domains)    
-[Next(Acknowledgements)]  (Acknowledgements)
+[Prev(Multiple Clock Domains)](Multiple Clock Domains) [Next(Acknowledgements)](Acknowledgements)
