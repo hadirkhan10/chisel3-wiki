@@ -9,21 +9,19 @@ Implementing this requires building a constructor that takes multiplexer inputs 
 
 ```scala
 object Mux2 {
-  def apply (sel: UInt, in0: UInt, in1: UInt) = {
-    val m = new Mux2()
+  def apply(sel: UInt, in0: UInt, in1: UInt) = {
+    val m = Module(new Mux2)
     m.io.in0 := in0
     m.io.in1 := in1
     m.io.sel := sel
-    m.io.out`
+    m.io.out
   }
 }
 ```
 
-As we can see in the code example, we defined the `apply` method to take the mux2 inputs as the method parameters, and return the mux2 output as
-the function's return value.
-
-by defining modules in this way, it is easier to later implement larger and more complex version of this regular modules.
-for example,previously implemented mux4 explicitly like this:
+As we can see in the code example, we defined the `apply` method to take the Mux2 inputs as the method parameters, and return the Mux2 output as the function's return value.
+By defining modules in this way, it is easier to later implement larger and more complex version of this regular module.
+For example, we previously implemented Mux4 like this:
 
 ```scala
 class Mux4 extends Module {
@@ -35,15 +33,15 @@ class Mux4 extends Module {
     val sel = UInt(INPUT, 2)
     val out = UInt(OUTPUT, 1)
   })
-  val m0 = Module(new Mux2())
+  val m0 = Module(new Mux2)
   m0.io.sel := io.sel(0) 
   m0.io.in0 := io.in0; m0.io.in1 := io.in1
 
-  val m1 = Module(new Mux2())
+  val m1 = Module(new Mux2)
   m1.io.sel := io.sel(0) 
   m1.io.in0 := io.in2; m1.io.in1 := io.in3
 
-  val m3 = Module(new Mux2())
+  val m3 = Module(new Mux2)
   m3.io.sel := io.sel(1) 
   m3.io.in0 := m0.io.out; m3.io.in1 := m1.io.out
 
