@@ -36,4 +36,4 @@ MuxCase(default,
 
 Note that the conditions/cases/selectors (eg. c1, c2) must be in parentheses.
 
-[Next (Polymorphism and Parameterization)](Polymorphism and Parameterization)
+[Prev(Functional Module Creation)](Functional Module Creation) [Next(Polymorphism and Parameterization)](Polymorphism and Parameterization)
