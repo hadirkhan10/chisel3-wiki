@@ -69,3 +69,5 @@ class Block extends Module {
 where <> bulk connects interfaces of opposite gender between sibling modules or interfaces of the same gender between parent/child modules.
 
 Bulk connections connect leaf ports of the same name to each other. If the names do not match or are missing, Chisel does not generate a connection.
+
+[Prev(Memories)](Memories) [Next(Functional Module Creation)](Functional Module Creation)
