@@ -1,4 +1,6 @@
-Welcome to the Chisel cookbook. Please note that these examples make use of [Chisel's scala-style printing](Printing in Chisel#scala-style).
+Welcome to the Chisel cookbook. This cookbook is still in early stages. If you have any requests or examples to share, please [file an issue](https://github.com/ucb-bar/chisel3/issues/new) and let us know!
+
+Please note that these examples make use of [Chisel's scala-style printing](Printing in Chisel#scala-style).
 
 * [How do I create a UInt from an instance of a Bundle?](#how-do-i-create-a-uint-from-an-instance-of-a-bundle)
 * [How do I create a Bundle from a UInt?](#how-do-i-create-a-bundle-from-a-uint)
