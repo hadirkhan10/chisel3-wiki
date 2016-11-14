@@ -9,6 +9,11 @@ There are multiple kinds of Ready/Valid interfaces that impose varying restricti
 
 ### Why do I have to wrap [`Data`](https://chisel.eecs.berkeley.edu/api/index.html#chisel3.core.Data) in `Wire(...)`?
 ### Why do I have to wrap module instantiations in `Module(...)`?
+
+TLDR: Limitations of Scala
+
+Chisel Modules are written by defining a [Scala class](http://docs.scala-lang.org/tutorials/tour/classes.html) and implementing its constructor. As elaboration runs, Chisel constructs a hardware AST from these Modules. The compiler needs hooks to run before and after the actual construction of the Module object. In Scala, superclasses are fully initialized before subclasses, so by extending Module, Chisel has the ability to run some initialization code before the user's Module is constructed. However, there is no such hook to run after the Module object is initialized. By wrapping Module instantiations in the Module object's apply method (ie. `Module(...)`), Chisel is able to perform post-initialization actions. There is a [proposed solution](https://issues.scala-lang.org/browse/SI-4330), so eventually this requirement will be lifted, but for now, wrap those Modules!
+
 ### Why Chisel?
 
 Borrowed from [Chisel Introduction](Chisel Introduction)
