@@ -1,5 +1,4 @@
-* [Why Decoupled instead of ReadyValid?](#why-decoupled-instead-of-readyvalid)
-* [Why do I have to wrap `Data` in `Wire(...)`?](#why-do-i-have-to-wrap-data-in-wire)
+* [Why DecoupledIO instead of ReadyValidIO?](#why-decoupledio-instead-of-readyvalidio)
 * [Why do I have to wrap module instantiations in `Module(...)`?](#why-do-i-have-to-wrap-module-instantiations-in-module)
 * [Why Chisel?](#why-chisel)
 
