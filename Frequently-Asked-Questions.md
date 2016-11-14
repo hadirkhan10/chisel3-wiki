@@ -3,11 +3,13 @@
 * [Why do I have to wrap module instantiations in `Module(...)`?](#why-do-i-have-to-wrap-module-instantiations-in-module)
 * [Why Chisel?](#why-chisel)
 
-### Why Decoupled instead of ReadyValid?
+### Why DecoupledIO instead of ReadyValidIO?
 
-There are multiple kinds of Ready/Valid interfaces that impose varying restrictions on the producers and consumers. Gives static type safety between these interfaces.
+There are multiple kinds of Ready/Valid interfaces that impose varying restrictions on the producers and consumers. Chisel currently provides the following:
 
-### Why do I have to wrap [`Data`](https://chisel.eecs.berkeley.edu/api/index.html#chisel3.core.Data) in `Wire(...)`?
+* [DecoupledIO](https://chisel.eecs.berkeley.edu/api/index.html#chisel3.util.DecoupledIO) - No guarantees
+* [IrrevocableIO](https://chisel.eecs.berkeley.edu/api/index.html#chisel3.util.IrrevocableIO) - Producer promises to not change the value of 'bits' after a cycle where 'valid' is high and 'ready' is low. Additionally, once 'valid' is raised it will never be lowered until after 'ready' has also been raised.
+
 ### Why do I have to wrap module instantiations in `Module(...)`?
 
 TLDR: Limitations of Scala
