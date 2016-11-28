@@ -1,3 +1,4 @@
+* [Home] (Home)
 * [Cookbook] (Cookbook)
 * [Frequently Asked Questions] (Frequently Asked Questions)
 * [Troubleshooting] (Troubleshooting)
