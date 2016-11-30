@@ -10,15 +10,15 @@ As we saw earlier, users can define their own interfaces by defining a class tha
 
 ```scala
 class SimpleLink extends Bundle {
-  val data = UInt(16, OUTPUT)
-  val valid = Bool(OUTPUT)
+  val data = Output(UInt(16.W))
+  val valid = Output(Bool())
 }
 ```
 
 We can then extend SimpleLink by adding parity bits using bundle inheritance:
 ```scala
 class PLink extends SimpleLink {
-  val parity = UInt(5, OUTPUT)
+  val parity = Output(UInt(5.W))
 }
 ```
 In general, users can organize their interfaces into hierarchies using inheritance.
@@ -26,16 +26,16 @@ In general, users can organize their interfaces into hierarchies using inheritan
 From there we can define a filter interface by nesting two PLinks into a new FilterIO bundle:
 ```scala
 class FilterIO extends Bundle {
-  val x = new PLink().flip
-  val y = new PLink()
+  val x = Flipped(new PLink)
+  val y = new PLink
 }
 ```
-where flip recursively changes the “gender” of a bundle, changing input to output and output to input.
+where flip recursively changes the direction of a bundle, changing input to output and output to input.
 
 We can now define a filter by defining a filter class extending module:
 ```scala
 class Filter extends Module {
-  val io = IO(new FilterIO())
+  val io = IO(new FilterIO)
   ...
 }
 ```
@@ -46,9 +46,9 @@ where the io field contains FilterIO.
 Beyond single elements, vectors of elements form richer hierarchical interfaces. For example, in order to create a crossbar with a vector of inputs, producing a vector of outputs, and selected by a UInt input, we utilize the Vec constructor:
 ```scala
 class CrossbarIo(n: Int) extends Bundle {
-  val in = Vec(n, new PLink().flip())
-  val sel = UInt(INPUT, sizeof(n))
-  val out = Vec(n, new PLink())
+  val in = Vec(n, Flipped(new PLink))
+  val sel = Input(UInt(sizeof(n).W)
+  val out = Vec(n, new PLink)
 }
 ```
 where Vec takes a size as the first argument and a block returning a port as the second argument.
@@ -58,9 +58,9 @@ where Vec takes a size as the first argument and a block returning a port as the
 We can now compose two filters into a filter block as follows:
 ```scala
 class Block extends Module {
-  val io = IO(new FilterIO())
-  val f1 = Module(new Filter())
-  val f2 = Module(new Filter())
+  val io = IO(new FilterIO)
+  val f1 = Module(new Filter)
+  val f2 = Module(new Filter)
   f1.io.x <> io.x
   f1.io.y <> f2.io.x
   f2.io.y <> io.y
