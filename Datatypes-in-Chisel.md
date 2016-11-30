@@ -26,8 +26,8 @@ strings passed to constructors for the types:
 -8.S   // negative decimal 4-bit lit from Scala Int.
 5.U    // unsigned decimal 3-bit lit from Scala Int.
 
-Bool(true) // Bool lits from Scala lits.
-Bool(false)
+true.B // Bool lits from Scala lits.
+false.B
 ```
 Underscores can be used as separators in long string literals to aid
 readability, but are ignored when creating the value, e.g.:
@@ -40,12 +40,12 @@ number of bits required to hold the constant, including a sign bit for
 signed types.  Bit widths can also be specified explicitly on
 literals, as shown below:
 ```scala
-UInt("ha", 8)     // hexadecimal 8-bit lit of type UInt
-UInt("o12", 6)    // octal 6-bit lit of type UInt
-UInt("b1010", 12) // binary 12-bit lit of type UInt
+"ha".asUInt(8.W)     // hexadecimal 8-bit lit of type UInt
+"o12".asUInt(6.W)    // octal 6-bit lit of type UInt
+"b1010".asUInt(12.W) // binary 12-bit lit of type UInt
 
-SInt(5, 7) // signed decimal 7-bit lit of type SInt
-UInt(5, 8) // unsigned decimal 8-bit lit of type UInt
+5.asSInt(7.W) // signed decimal 7-bit lit of type SInt
+5.asUInt(8.W) // unsigned decimal 8-bit lit of type UInt
 ```
 
 For literals of type ```UInt```, the value is
