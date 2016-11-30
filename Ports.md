@@ -1,19 +1,16 @@
 Ports are used as interfaces to hardware components.  A port is simply
-any ```Data``` object that has directions assigned to its members.
+any `Data` object that has directions assigned to its members.
 
 Chisel provides port constructors to allow a direction to be added
-(input or output) to an object at construction time.  Primitive port
-constructors take the direction as the first
-argument (where the direction is ```INPUT``` or
-```OUTPUT```) and the number of bits as the second argument (except
-booleans which are always one bit).
+(input or output) to an object at construction time. Primitive port
+constructors wrap the type of the port in `Input` or `Output`.
 
 An example port declaration is as follows:
 ```scala
 class Decoupled extends Bundle {
-  val ready = Bool(OUTPUT)
-  val data  = UInt(INPUT, 32)
-  val valid = Bool(INPUT)
+  val ready = Output(Bool())
+  val data  = Input(UInt(32.W))
+  val valid = Input(Bool())
 }
 ```
 
@@ -21,12 +18,12 @@ After defining ```Decoupled```, it becomes a new type that can be
 used as needed for module interfaces or for named collections of
 wires.
 
-The direction of an object can also be assigned at instantation time:
+The direction of an object can also be assigned at instantiation time:
 ```scala
 class ScaleIO extends Bundle {
-  val in    = new MyFloat().asInput
-  val scale = new MyFloat().asInput
-  val out   = new MyFloat().asOutput
+  val in    = (new MyFloat).asInput
+  val scale = (new MyFloat).asInput
+  val out   = (new MyFloat).asOutput
 }
 ```
 
