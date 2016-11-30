@@ -7,23 +7,23 @@ modifications are:
 
  - Wire declaration style:
    ```scala
-   val wire = Bits(width = 15)
+   val wire = UInt(width = 15)
    ```
    becomes (in Chisel3):
    ```scala
-   val wire = Wire(Bits(width = 15))
+   val wire = Wire(UInt(15.W))
    ```
 
  - Sequential memories:
    ```scala
    val addr = Reg(UInt())
-   val mem = Mem(UInt(width=8), 1024, seqRead = true)
+   val mem = Mem(UInt(8.W), 1024, seqRead = true)
    val dout = when(enable) { mem(addr) }
    ```
    becomes (in Chisel3):
    ```scala
    val addr = UInt()
-   val mem = SeqMem(1024, UInt(width=8))
+   val mem = SeqMem(1024, UInt(8.W))
    val dout = mem.read(addr, enable)
    ```
 
