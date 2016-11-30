@@ -13,21 +13,21 @@ where `inits` is a sequence of initial `Data` literals that initialize the ROM. 
 
 ``` scala
     val m = Vec(Array(1.U, 2.U, 4.U, 8.U))
-    val r = m(counter(UInt(m.length)))
+    val r = m(counter(m.length.U))
 ```
 
 We can create an *n* value sine lookup table using a ROM initialized as follows:
 
 ``` scala
-    def sinTable (amp: Double, n: Int) = {
+    def sinTable(amp: Double, n: Int) = {
       val times = 
-        Range(0, n, 1).map(i => (i*2*Pi)/(n.toDouble-1) - Pi)
+        (0 until n).map(i => (i*2*Pi)/(n.toDouble-1) - Pi)
       val inits = 
-        times.map(t => SInt(round(amp * sin(t)), width = 32))
+        times.map(t => round(amp * sin(t)).asSInt(32.W))
       Vec(inits)
     }
-    def sinWave (amp: Double, n: Int) = 
-      sinTable(amp, n)(counter(UInt(n))
+    def sinWave(amp: Double, n: Int) = 
+      sinTable(amp, n)(counter(n.U))
 ```
 
 where `amp` is used to scale the fixpoint values stored in the ROM.
@@ -54,7 +54,7 @@ register file with one write port and two combinational read ports might be
 expressed as follows:
 
 ``` scala
-    val rf = Mem(32, UInt(width = 64))
+    val rf = Mem(32, UInt(64.W))
     when (wen) { rf(waddr) := wdata }
     val dout1 = rf(waddr1)
     val dout2 = rf(waddr2)
@@ -66,7 +66,7 @@ one-write port SRAM might be described as follows:
 
 ``` scala
     val ram1r1w =
-      Mem(1024, UInt(width = 32))
+      Mem(1024, UInt(32.W))
     val reg_raddr = Reg(UInt())
     when (wen) { ram1r1w(waddr) := wdata }
     when (ren) { reg_raddr := raddr }
@@ -77,7 +77,7 @@ Single-ported SRAMs can be inferred when the read and write conditions are
 mutually exclusive in the same `when` chain:
 
 ``` scala
-    val ram1p = Mem(1024, UInt(width = 32))
+    val ram1p = Mem(1024, UInt(32.W))
     val reg_raddr = Reg(UInt())
     when (wen) { ram1p(waddr) := wdata }
     .elsewhen (ren) { reg_raddr := raddr }
@@ -92,7 +92,7 @@ undefined.
 the corresponding mask bit is set.
 
 ``` scala
-    val ram = Mem(256, UInt(width = 32))
+    val ram = Mem(256, UInt(32.W))
     when (wen) { ram.write(waddr, wdata, wmask) }
 ```
 
@@ -102,7 +102,7 @@ audio recorder could be defined as follows:
 
 ``` scala
   def audioRecorder(n: Int, button: Bool) = { 
-    val addr   = counter(UInt(n))
+    val addr   = counter(n.U)
     val ram    = Mem(n)
     ram(addr) := button
     ram(Mux(button(), 0.U, addr))
