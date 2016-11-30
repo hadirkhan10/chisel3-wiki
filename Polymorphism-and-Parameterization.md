@@ -62,8 +62,8 @@ We do so by parameterizing the `FilterIO` class and defining the constructor to 
 
 ```scala
 class FilterIO[T <: Data](gen: T) extends Bundle { 
-  val x = gen.asInput
-  val y = gen.asOutput
+  val x = Input(gen)
+  val y = Output(gen)
 }
 ```
 
@@ -86,29 +86,29 @@ A generic FIFO could be defined as follows:
 
 ```scala
 class DataBundle extends Bundle {
-  val a = UInt(width = 32)
-  val b = UInt(width = 32)
+  val a = UInt(32.W)
+  val b = UInt(32.W)
 }
 
 class Fifo[T <: Data](gen: T, n: Int) extends Module {
   val io = IO(new Bundle {
-    val enqVal = Bool(INPUT)
-    val enqRdy = Bool(OUTPUT)
-    val deqVal = Bool(OUTPUT)
-    val deqRdy = Bool(INPUT)
-    val enqDat = gen.asInput
-    val deqDat = gen.asOutput
+    val enqVal = Input(Bool())
+    val enqRdy = Output(Bool())
+    val deqVal = Output(Bool())
+    val deqRdy = Input(Bool())
+    val enqDat = Input(gen)
+    val deqDat = Output(gen)
   })
-  val enqPtr     = Reg(init = UInt(0, sizeof(n)))
-  val deqPtr     = Reg(init = UInt(0, sizeof(n)))
-  val isFull     = Reg(init = Bool(false))
+  val enqPtr     = Reg(init = 0.asUInt(sizeof(n).W))
+  val deqPtr     = Reg(init = 0.asUInt(sizeof(n).W))
+  val isFull     = Reg(init = false.B)
   val doEnq      = io.enqRdy && io.enqVal
   val doDeq      = io.deqRdy && io.deqVal
   val isEmpty    = !isFull && (enqPtr === deqPtr)
-  val deqPtrInc  = deqPtr + UInt(1)
-  val enqPtrInc  = enqPtr + UInt(1)
+  val deqPtrInc  = deqPtr + 1.U
+  val enqPtrInc  = enqPtr + 1.U
   val isFullNext = Mux(doEnq && ~doDeq && (enqPtrInc === deqPtr),
-                         Bool(true), Mux(doDeq && isFull, Bool(false),
+                         true.B, Mux(doDeq && isFull, false.B,
                          isFull))
   enqPtr := Mux(doEnq, enqPtrInc, enqPtr)
   deqPtr := Mux(doDeq, deqPtrInc, deqPtr)
@@ -133,9 +133,9 @@ It is also possible to define a generic decoupled (ready/valid) interface:
 
 ```scala
 class DecoupledIO[T <: Data](data: T) extends Bundle {
-  val ready = Bool(INPUT)
-  val valid = Bool(OUTPUT)
-  val bits  = data.clone.asOutput
+  val ready = Input(Bool())
+  val valid = Output(Bool())
+  val bits  = Output(data)
 }
 ```
 
@@ -151,7 +151,7 @@ The FIFO interface can be now be simplified as follows:
 ```scala
 class Fifo[T <: Data](data: T, n: Int) extends Module {
   val io = IO(new Bundle {
-    val enq = new DecoupledIO(data).flip
+    val enq = Flipped(new DecoupledIO(data))
     val deq = new DecoupledIO(data)
   })
   ...
