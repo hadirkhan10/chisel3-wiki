@@ -37,8 +37,9 @@ readability, but are ignored when creating the value, e.g.:
 
 By default, the Chisel compiler will size each constant to the minimum
 number of bits required to hold the constant, including a sign bit for
-signed types.  Bit widths can also be specified explicitly on
-literals, as shown below:
+signed types. Bit widths can also be specified explicitly on
+literals, as shown below. Note that (`.W` is used to cast a Scala Int
+to a Chisel width)
 ```scala
 "ha".asUInt(8.W)     // hexadecimal 8-bit lit of type UInt
 "o12".asUInt(6.W)    // octal 6-bit lit of type UInt
