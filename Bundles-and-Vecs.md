@@ -7,11 +7,11 @@ define their own bundles by defining a class as a subclass of `Bundle`
 ```scala
 class MyFloat extends Bundle {
   val sign        = Bool()
-  val exponent    = UInt(width = 8)
-  val significand = UInt(width = 23)
+  val exponent    = UInt(8.W)
+  val significand = UInt(23.W)
 }
 
-val x  = new MyFloat()
+val x  = new MyFloat
 val xs = x.sign
 ```
 
@@ -24,7 +24,7 @@ Vecs create an indexable vector of elements, and are constructed as
 follows:
 ```scala
 // Vector of 5 23-bit signed integers.
-val myVec = Wire(Vec(5, SInt(width = 23)))
+val myVec = Wire(Vec(5, SInt(23.W)))
 
 // Connect to one element of vector. 
 val reg3 = myVec(3) 
@@ -43,7 +43,7 @@ structures:
 ```scala
 class BigBundle extends Bundle {
  // Vector of 5 23-bit signed integers.
- val myVec = Vec(5, SInt(width = 23))
+ val myVec = Vec(5, SInt(23.W))
  val flag  = Bool()
  // Previously defined bundle.
  val f     = new MyFloat
