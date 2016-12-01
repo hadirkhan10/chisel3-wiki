@@ -6,6 +6,7 @@ Please note that these examples make use of [Chisel's scala-style printing](Prin
 * [How do I create a Bundle from a UInt?](#how-do-i-create-a-bundle-from-a-uint)
 * [How do I create a Vec of Bools from a UInt?](#how-do-i-create-a-vec-of-bools-from-a-uint)
 * [How do I create a UInt from a Vec of Bool?](#how-do-i-create-a-uint-from-a-vec-of-bool)
+* [How do I create a finite state machine?](#how-do-i-create-a-finite-state-machine)
 
 ### How do I create a UInt from an instance of a Bundle?
 
@@ -79,4 +80,43 @@ Use the builtin function asUInt
    * (remember leftmost Bool in Vec is low order bit)
    */
   assert(0xd.U === uint)
+```
+
+### How do I create a finite state machine?
+
+Use Chisel Enum to construct the states and switch & is to construct the FSM
+control logic
+
+```scala
+class DetectTwoOnes extends Module {
+  val io = IO(new Bundle {
+    val in = Input(Bool())
+    val out = Output(Bool())
+  })
+
+  val sNone :: sOne1 :: sTwo1s :: Nil = Enum(3)
+  val state = Reg(init = sNone)
+
+  io.out := (state === sTwo1s)
+
+  switch (state) {
+    is (sNone) {
+      when (io.in) {
+        state := sOne1
+      }
+    }
+    is (sOne1) {
+      when (io.in) {
+        state := sTwo1s
+      } .otherwise {
+        state := sNone
+      }
+    }
+    is (sTwo1s) {
+      when (!io.in) {
+        state := sNone
+      }
+    }
+  }
+}
 ```
