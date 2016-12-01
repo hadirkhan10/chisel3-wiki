@@ -51,9 +51,9 @@ Chisel also provides the ability to specify _custom_ printing for user-defined B
 ```scala
 class Message extends Bundle {
   val valid = Bool()
-  val addr = UInt(width = 32)
-  val length = UInt(width = 4)
-  val data = UInt(width = 64)
+  val addr = UInt(32.W)
+  val length = UInt(4.W)
+  val data = UInt(64.W)
   override def toPrintable: Printable = {
     val char = Mux(valid, 'v'.U, '-'.U)
     p"Message:\n" +
@@ -65,10 +65,10 @@ class Message extends Bundle {
 }
 
 val myMessage = Wire(new Message)
-myMessage.valid := Bool(true)
-myMessage.addr := UInt("h1234")
+myMessage.valid := true.B
+myMessage.addr := "h1234".U
 myMessage.length := 10.U
-myMessage.data := UInt("hdeadbeef")
+myMessage.data := "hdeadbeef".U
 
 printf(p"$myMessage")
 ```
@@ -112,7 +112,7 @@ Note that single quotes do not require escaping, but are legal to escape.
 Thus printf can be used in a way very similar to how it is used in C:
 
 ```scala
-val myUInt = UInt(32)
+val myUInt = 32.U
 printf("myUInt = %d", myUInt) // myUInt = 32
 ```
 
