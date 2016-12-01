@@ -18,18 +18,6 @@ After defining ```Decoupled```, it becomes a new type that can be
 used as needed for module interfaces or for named collections of
 wires.
 
-The direction of an object can also be assigned at instantiation time:
-```scala
-class ScaleIO extends Bundle {
-  val in    = (new MyFloat).asInput
-  val scale = (new MyFloat).asInput
-  val out   = (new MyFloat).asOutput
-}
-```
-
-The methods ```asInput``` and ```asOutput``` force all modules of
-the data object to the requested direction.
-
 By folding directions into the object declarations, Chisel is able to
 provide powerful wiring constructs described later.
 
