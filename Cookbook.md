@@ -14,17 +14,17 @@ Call asUInt on the Bundle instance
 ```scala
   // Example
   class MyBundle extends Bundle {
-    val foo = UInt(width = 4)
-    val bar = UInt(width = 4)
+    val foo = UInt(4.W)
+    val bar = UInt(4.W)
   }
   val bundle = Wire(new MyBundle)
-  bundle.foo := UInt(0xc)
-  bundle.bar := UInt(0x3)
+  bundle.foo := 0xc.U
+  bundle.bar := 0x3.U
   val uint = bundle.asUInt
   printf(p"$uint") // 195
 
   // Test
-  assert(uint === UInt(0xc3))
+  assert(uint === 0xc3.U)
 ```
 
 ### How do I create a Bundle from a UInt?
@@ -34,16 +34,16 @@ On an instance of the Bundle, call the method fromBits with the UInt as the argu
 ```scala
   // Example
   class MyBundle extends Bundle {
-    val foo = UInt(width = 4)
-    val bar = UInt(width = 4)
+    val foo = UInt(4.W)
+    val bar = UInt(4.W)
   }
-  val uint = UInt(0xb4)
+  val uint = 0xb4.U
   val bundle = (new MyBundle).fromBits(uint)
   printf(p"$bundle") // Bundle(foo -> 11, bar -> 4)
-  
+
   // Test
-  assert(bundle.foo === UInt(0xb))
-  assert(bundle.bar === UInt(0x4))
+  assert(bundle.foo === 0xb.U)
+  assert(bundle.bar === 0x4.U)
 ```
 
 ### How do I create a Vec of Bools from a UInt?
@@ -53,15 +53,15 @@ then wrap the resulting Seq in Vec(...)
 
 ```scala
   // Example
-  val uint = UInt(0xc) 
+  val uint = 0xc.U
   val vec = Vec(uint.toBools)
   printf(p"$vec") // Vec(0, 0, 1, 1)
-  
+
   // Test
-  assert(vec(0) === Bool(false))
-  assert(vec(1) === Bool(false))
-  assert(vec(2) === Bool(true))
-  assert(vec(3) === Bool(true))
+  assert(vec(0) === false.B)
+  assert(vec(1) === false.B)
+  assert(vec(2) === true.B)
+  assert(vec(3) === true.B)
 ```
 
 ### How do I create a UInt from a Vec of Bool?
@@ -70,11 +70,13 @@ Use the builtin function asUInt
 
 ```scala
   // Example
-  val vec = Vec(Bool(true), Bool(false), Bool(true), Bool(true))
+  val vec = Vec(true.B, false.B, true.B, true.B)
   val uint = vec.asUInt
   printf(p"$uint") // 13
   
-  // Test
-  // (remember leftmost Bool in Vec is low order bit)
-  assert(UInt(0xd) === uint)
+  /* Test
+   *
+   * (remember leftmost Bool in Vec is low order bit)
+   */
+  assert(0xd.U === uint)
 ```
