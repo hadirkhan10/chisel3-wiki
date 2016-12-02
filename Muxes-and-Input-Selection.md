@@ -8,7 +8,7 @@ by using the functional module creation feature presented in the previous sectio
 Mux(c1, a, Mux(c2, b, Mux(..., default)))
 ```
 
-However, this is not necessary since Chisel also provides the built-in \code{MuxCase}, which implements that exact feature.
+However, this is not necessary since Chisel also provides the built-in `MuxCase`, which implements that exact feature.
 `MuxCase` is an n-way `Mux`, which can be used as follows:
 
 ```scala
