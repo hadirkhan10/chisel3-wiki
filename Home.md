@@ -15,5 +15,5 @@ For useful design patterns, see the [Cookbook](Cookbook).
 * [Developers Trouble Shooting Guide](trouble-shooting)
 * [Chisel Toolchain](chisel-toolchain)
 * [Useful SBT commands](useful-sbt-commands)
-* [Scala-land-vs.-Chisel-land](Scala-land-vs.-Chisel-land)
+* [Scala-land vs. Chisel-land](Scala-land-vs.-Chisel-land)
 
