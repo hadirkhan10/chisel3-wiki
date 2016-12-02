@@ -68,8 +68,8 @@ The prime components of the Chisel3 front end (the DSL and library objects) are:
 
 Due to the wonders of `sbt`, you need only declare a dependency on the chisel3 package, and the others will be downloaded as required.
 
-The `firrtl` compiler is distributed as a separate package, and will also be downloaded automatically as required.
-If you choose to integrate the compiler into your own toolchain, you should clone the [firrtl](https://github.com/ucb-bar/firrtl) repo
+The `firrtl` compiler is distributed as a separate package, and release versions will also be downloaded automatically as required.
+If you choose to integrate the compiler into your own toolchain, or you're working with the development (master) branch of chisel3, you should clone the [firrtl](https://github.com/ucb-bar/firrtl) repo
 and follow the instructions for installing the `firrtl` compiler.
 
 The testers in Chisel3 are distributed as a separate package.
