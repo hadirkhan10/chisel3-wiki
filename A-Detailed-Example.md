@@ -1,8 +1,8 @@
-In this example, we will walk through the process of designing a hardware generator in Chisel. It is intended for users who have completed [A Short Users Guide to Chisel](Short Users Guide to Chisel). Using a vending machine as a motivating example, we will start with a Verilog finite state machine implementation, and end with a fully parametrizable Chisel generator.
+In this example, we will walk through the process of designing a hardware generator in Chisel. It is intended for users who have completed [A Short Users Guide to Chisel](Short Users Guide to Chisel). Using a vending machine as a motivating example, we will start with a finite state machine implemented in Verilog and end with a fully parametrizable Chisel generator.
 
 ### Vending Machine State Machine
 
-We start with a simple design for a vending machine:
+Our sample design is a simple vending machine:
 * Sodas cost 20¢
 * Nickels (5¢) and dimes (10¢) only
 * No change given
