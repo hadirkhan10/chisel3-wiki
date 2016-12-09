@@ -6,6 +6,7 @@ Please note that these examples make use of [Chisel's scala-style printing](Prin
 * [How do I create a Bundle from a UInt?](#how-do-i-create-a-bundle-from-a-uint)
 * [How do I create a Vec of Bools from a UInt?](#how-do-i-create-a-vec-of-bools-from-a-uint)
 * [How do I create a UInt from a Vec of Bool?](#how-do-i-create-a-uint-from-a-vec-of-bool)
+* [How do I create a Vec of registers?](#how-do-i-create-a-vec-of-registers)
 * [How do I create a finite state machine?](#how-do-i-create-a-finite-state-machine)
 
 ### How do I create a UInt from an instance of a Bundle?
@@ -81,11 +82,16 @@ Use the builtin function asUInt
    */
   assert(0xd.U === uint)
 ```
+### How do I create a Vec of registers?
+
+```scala
+val my_vec_of_reg = Reg(init = Vec.fill(n)(UInt(0, width=32)))
+```
 
 ### How do I create a finite state machine?
 
 Use Chisel Enum to construct the states and switch & is to construct the FSM
-control logic
+control logic.
 
 ```scala
 class DetectTwoOnes extends Module {
