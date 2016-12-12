@@ -6,7 +6,8 @@ Please note that these examples make use of [Chisel's scala-style printing](Prin
 * [How do I create a Bundle from a UInt?](#how-do-i-create-a-bundle-from-a-uint)
 * [How do I create a Vec of Bools from a UInt?](#how-do-i-create-a-vec-of-bools-from-a-uint)
 * [How do I create a UInt from a Vec of Bool?](#how-do-i-create-a-uint-from-a-vec-of-bool)
-* [How do I create a Vec of registers?](#how-do-i-create-a-vec-of-registers)
+* [How do I create a Vector of Registers?](#how-do-i-create-a-vector-of-registers)
+* [How do I create a Reg of type Vec?](#how-do-i-create-a-reg-of-type-vec)
 * [How do I create a finite state machine?](#how-do-i-create-a-finite-state-machine)
 
 ### How do I create a UInt from an instance of a Bundle?
@@ -82,10 +83,24 @@ Use the builtin function asUInt
    */
   assert(0xd.U === uint)
 ```
-### How do I create a Vec of registers?
+
+### How do I create a Vector of Registers?
+
+You create a [Reg of type Vec](#how-do-i-create-a-reg-of-type-vec). Because Vecs are a *type* rather than a *value*, we must bind the Vec to some concrete *value*.
+
+### How do I create a Reg of type Vec?
+
+For information, please see the API documentation
+(https://chisel.eecs.berkeley.edu/api/index.html#chisel3.core.Vec)
 
 ```scala
-val my_vec_of_reg = Reg(init = Vec.fill(n)(UInt(0, width=32)))
+  // Reg of Vec of 32-bit UInts
+  val regOfVec = Reg(Vec(4, UInt(32.W)))
+  regOfVec(0) := 123.U // a couple of assignments
+  regOfVec(2) := regOfVec(0)
+
+  // Simple test (cycle comes from superclass)
+  when (cycle === 2.U) { assert(regOfVec(2) === 123.U) }
 ```
 
 ### How do I create a finite state machine?
