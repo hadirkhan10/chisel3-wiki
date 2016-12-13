@@ -1,4 +1,4 @@
-This page is intended to give a brief overview of a few key Scala concepts for Chisel users. We recommend reading this before starting [A Short Users Guide to Chisel](Short Users Guide to Chisel) as this cheatsheet will help explain some non-obvious Scala features and patterns.
+This page is intended to give a brief overview of a few key Scala concepts for Chisel users.
 
 For people completely new to Scala, we recommend working through an online tutorial like [this one](https://www.tutorialspoint.com/scala/index.htm) or [this one](http://docs.scala-lang.org/tutorials/); or better yet, taking the [Functional Programming in Scala Coursera Course](https://www.coursera.org/learn/progfun1)
 
