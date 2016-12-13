@@ -2,6 +2,11 @@ This page is intended to give a brief overview of a few key Scala concepts for C
 
 For people completely new to Scala, we recommend working through an online tutorial like [this one](https://www.tutorialspoint.com/scala/index.htm) or [this one](http://docs.scala-lang.org/tutorials/); or better yet, taking the [Functional Programming in Scala Coursera Course](https://www.coursera.org/learn/progfun1)
 
+* [Classes](#classes)
+* [Singleton Objects](#singleton-objects)
+* [Companion Objects](#companion-objects)
+* [Apply Methods](#apply-methods)
+
 ### Classes
 
 ### Singleton Objects
