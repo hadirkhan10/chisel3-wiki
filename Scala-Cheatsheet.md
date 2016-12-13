@@ -13,15 +13,20 @@ A singleton object is an
 A companion object is a singleton object that is associated with a class of the same name. For example:
 
 ```scala
-class Foo(value: Int)
+class Foo(value: Int) {
+  private def func: Unit = println("This Foo has value " + value)
+}
 object Foo {
   def makeFoo(num: Int): Foo = {
     val foo = new Foo(num)
-    println("Made a Foo with value " + foo.value)
+    println("Made a Foo!")
+    foo.func
     foo
   }
 }
 ```
+
+Note that object Foo accesses a private member of class Foo. Classes share private values with their companion objects. Companion objects generally used to hold factory methods and global or static variables for a given class.
 
 ### Apply Methods
 
