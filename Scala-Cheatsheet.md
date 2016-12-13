@@ -6,7 +6,15 @@ For people completely new to Scala, we recommend working through an online tutor
 
 ### Singleton Objects
 
-A singleton object is an 
+A singleton object is a standalone instance that holds values and functions. They are declared with the `object` keyword:
+
+```scala
+object MySingleton {
+  def func(): Unit = println("A function in a singleton!")
+}
+```
+
+In the above example, the `func` can be called as `MySingleton.func()`. Methods and values from a singleton can also be imported, eg. `import MySingleton._`.
 
 ### Companion Objects
 
@@ -14,13 +22,13 @@ A companion object is a singleton object that is associated with a class of the 
 
 ```scala
 class Foo(value: Int) {
-  private def func: Unit = println("This Foo has value " + value)
+  private def func(): Unit = println("This Foo has value " + value)
 }
 object Foo {
   def makeFoo(num: Int): Foo = {
     val foo = new Foo(num)
     println("Made a Foo!")
-    foo.func
+    foo.func()
     foo
   }
 }
