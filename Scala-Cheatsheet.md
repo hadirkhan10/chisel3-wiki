@@ -9,6 +9,20 @@ For people completely new to Scala, we recommend working through an online tutor
 
 ### Classes
 
+Classes are declared in Scala via the `class` keyword. They only have 1 constructor which is the body of the class. Arguments can also be passed to the constructor as shown in the following example:
+
+```scala
+// value is a private field of the class while message is public (making it a val makes it public)
+class Foo(value: Int, val message: String) {
+  def func() = println("My value is " + value + " and my message is \"" + message + "\"")
+```
+
+Classes are instantiated with the `new` keyword:
+
+```scala
+val foo = new Foo(5, "public message")
+```
+
 ### Singleton Objects
 
 A singleton object is a standalone instance that holds values and functions. They are declared with the `object` keyword:
