@@ -9,9 +9,9 @@ Chisel defines a set of hardware operators
 | `val flagsOut = flagsIn | overflow`         | Bitwise OR                      |   
 | `val flagsOut = flagsIn ^ toggle`           | Bitwise XOR                     |  
 | **Bitwise reductions.**                     | **Valid on:** SInt and UInt. Returns Bool. |
-| `val allSet = andR(x)`                      | AND reduction                     |   
-| `val anySet = orR(x)`                       | OR reduction                      |  
-| `val parity = xorR(x)`                      | XOR reduction                     |   
+| `val allSet = x.andR`                       | AND reduction                     |   
+| `val anySet = x.orR`                        | OR reduction                      |  
+| `val parity = x.xorR`                       | XOR reduction                     |   
 | **Equality comparison.**                    | **Valid on:** SInt, UInt, and Bool. Returns Bool. |
 | `val equ = x === y`                         | Equality                          |
 | `val neq = x =/= y`                         | Inequality                        |
