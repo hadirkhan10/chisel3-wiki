@@ -56,7 +56,8 @@ for instructions on preparing your Chisel2 designs for Chisel3.
 *  `printf()` is defined in the Chisel object and produces simulation printf()'s.
 To use the Scala `Predef.printf()`, you need to qualify it with `Predef`.
 *  in Chisel2, bulk-connects `<>` with unconnected source components do not update connections from the unconnected components.
-In Chisel3, bulk-connects strictly adhere to last connection semantics and unconnected OUTPUTs will be connected to INPUTs resulting in the assignment of random values to those inputs.
+** In Chisel3, bulk-connects strictly adhere to last connection semantics and unconnected OUTPUTs will be connected to INPUTs resulting in the assignment of random values to those inputs.
+* In Chisel3, adding hardware inside `BlackBox` for simulation is no longer supported. (#289)
 
 ## Packaging
 Chisel3 is implemented as several packages.
