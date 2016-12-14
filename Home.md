@@ -14,7 +14,7 @@ For useful design patterns, see the [Cookbook](Cookbook).
 * [How to use IntelliJ to run chisel3](intellij-setup)
 * [Tips and Tricks](tips-and-tricks)
 * [How to publish a version](how-to-publish)
-* [Developers Trouble Shooting Guide](trouble-shooting)
+* [Developers' Troubleshooting Guide](troubleshooting)
 * [Chisel Toolchain](chisel-toolchain)
 * [Useful SBT commands](useful-sbt-commands)
 * [Scala-land vs. Chisel-land](Scala-land-vs.-Chisel-land)
