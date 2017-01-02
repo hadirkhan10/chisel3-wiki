@@ -75,5 +75,5 @@ the Scala ```new``` keyword to create a
 new object.  We then wire them up to one another and to the ports of
 the ```Mux4``` interface.
 
-[Prev(Ports)](Ports) [Next(State Elements)](State Elements)
+[Prev(Ports)](Ports) [Next(BlackBoxes)](BlackBoxes)
 
