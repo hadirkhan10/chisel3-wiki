@@ -9,6 +9,7 @@ This is a brief guide to the Chisel hardware description language. To get starte
   1. [Bundles and Vecs](Bundles and Vecs)
   1. [Ports](Ports)
   1. [Modules](Modules)
+  1. [Blackboxes](Blackboxes)
   1. [State Elements] (State Elements)
   1. [Memories](Memories)
   1. [Interfaces & Bulk Connections](Interfaces & Bulk Connections)
