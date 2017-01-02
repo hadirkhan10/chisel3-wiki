@@ -13,6 +13,7 @@
   1. [Bundles and Vecs](Bundles and Vecs)
   1. [Ports](Ports)
   1. [Modules](Modules)
+  1. [BlackBoxes](BlackBoxes)
   1. [State Elements] (State Elements)
   1. [Memories](Memories)
   1. [Interfaces & Bulk Connections](Interfaces & Bulk Connections)
