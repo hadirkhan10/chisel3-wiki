@@ -38,3 +38,5 @@ IBUFDS #(.DIFF_TERM("TRUE"), .IOSTANDARD("DEFAULT")) ibufds (
   .O(ibufds_O)
 );
 ```
+
+[Prev(Modules)](Modules) [Next(State Elements)](State Elements)
