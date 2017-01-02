@@ -32,4 +32,4 @@ def toggle(p: Bool) = {
 // Square wave of a given period.
 def squareWave(period: UInt) = toggle(pulse(period/2))
 ```
-[Prev(Modules)](Modules) [Next (Memories)](Memories)
+[Prev(BlackBoxes)](BlackBoxes) [Next (Memories)](Memories)
