@@ -28,7 +28,7 @@ class IdentityTransform extends Transform {
 ```
 This creates a transform that operates on low Firrtl (LowForm) and returns low Firrtl.  ```getMyAnnotations``` returns a list of annotations for your pass.  This example does nothing with those annotations.
 ### Create an Annotation Factory
-The following creates an annotation that is connected to your transform, note the ```classOf[IdentityTransform]```.  The unapply is a convenience method for extracting information from your annotation by using the Scala ```match``` operator
+The following creates an annotation that is connected to your transform, note the ```classOf[IdentityTransform]```.  The unapply is a convenience method for extracting information from your annotation by using the Scala ```match``` operator.
 ```scala
 object IdentityAnnotation {
   def apply(target: Named, value: String): Annotation = Annotation(target, classOf[IdentityTransform], value)
@@ -36,6 +36,20 @@ object IdentityAnnotation {
   def unapply(a: Annotation): Option[(Named, String)] = a match {
     case Annotation(named, t, value) if t == classOf[IdentityTransform] => Some((named, value))
     case _ => None
+  }
+}
+```
+> note ```target: Named``` identifies a firrtl circuit component.  Annotations can refer to specific elements of a Module
+> such as registers or wires, or can point to a Module in the case of some more generic transformation.
+### Create an Annotator
+An Annotator is a trait that only be applied to a Module.  It provides an abstraction layer over the underlying Chisel annotation system.  In this example, the ```identify``` annotator takes an kind of circuit component reference (i.e. ```InstanceId```) and packages it with ```value``` to be available in the firrtl pass.  The library writer could place restrictions on the type of component and value.
+> The ```value``` passed to the Annotator does not have to be a string, but it must serializable into a string
+> for the ```value``` parameter of the ```ChiselAnnotation``` being created.
+```scala
+trait IdentityAnnotator {
+  self: Module =>
+  def identify(component: InstanceId, value: String): Unit = {
+    annotate(ChiselAnnotation(component, classOf[IdentityTransform], value))
   }
 }
 ```
