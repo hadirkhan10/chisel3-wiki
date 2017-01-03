@@ -41,10 +41,12 @@ object IdentityAnnotation {
 ```
 > note ```target: Named``` identifies a firrtl circuit component.  Annotations can refer to specific elements of a Module
 > such as registers or wires, or can point to a Module in the case of some more generic transformation.
+
 ### Create an Annotator
 An Annotator is a trait that only be applied to a Module.  It provides an abstraction layer over the underlying Chisel annotation system.  In this example, the ```identify``` annotator takes an kind of circuit component reference (i.e. ```InstanceId```) and packages it with ```value``` to be available in the firrtl pass.  The library writer could place restrictions on the type of component and value.
 > The ```value``` passed to the Annotator does not have to be a string, but it must serializable into a string
 > for the ```value``` parameter of the ```ChiselAnnotation``` being created.
+
 ```scala
 trait IdentityAnnotator {
   self: Module =>
@@ -53,3 +55,20 @@ trait IdentityAnnotator {
   }
 }
 ```
+
+### Using the Annotator
+Here is a module that uses our ```IdentityAnnotator``` 
+```scala
+class ModC(widthC: Int) extends Module with IdentityAnnotator {
+  val io = IO(new Bundle {
+    val in = Input(UInt(widthC.W))
+    val out = Output(UInt(widthC.W))
+  })
+  io.out := io.in
+
+  identify(this, s"ModC($widthC)")
+
+  identify(io.out, s"ModC(ignore param)")
+}
+```
+There are several things to note here.  ModC includes the ```with IdentityAnnotator``` which adds the identity method to it.  The ```identify(this, s"ModC($widthC)")``` annotates an instance of ModC as it is created.  It value annotations includes the ```widthC``` parameter to the constructor.  In this case that could be used to distinguish transformation behavior between different instances of ModC.  The ```identify(io.out, s"ModC(ignore param)")``` annotates io.out but with a fixed string.  In contrast the previous annotation, multiple instances of ModC would have result in a single ```io.out``` annotation here.
