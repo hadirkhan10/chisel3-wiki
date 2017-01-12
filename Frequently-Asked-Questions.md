@@ -1,6 +1,7 @@
 * [Why DecoupledIO instead of ReadyValidIO?](#why-decoupledio-instead-of-readyvalidio)
 * [Why do I have to wrap module instantiations in `Module(...)`?](#why-do-i-have-to-wrap-module-instantiations-in-module)
 * [Why Chisel?](#why-chisel)
+* [I just want some verilog, What do I do?](#get-me-verilog)
 
 ### Why DecoupledIO instead of ReadyValidIO?
 
@@ -55,3 +56,44 @@ language.  We picked Scala not only because it includes the
 programming features we feel are important for building circuit
 generators, but because it was specifically developed as a base for
 domain-specific languages.
+
+### Get me verilog
+I wrote a module, I want to see the verilog, what do I do?
+Here's a simple hello world module in a file HelloWorld.scala
+```
+package intro
+import chisel3._
+class HelloWorld extends Module {
+  val io = IO(new Bundle{})
+  printf("hello world\n")
+}
+```
+Add the following
+```
+object HelloWorld extends App {
+  chisel3.Driver.execute(args, () => new HelloWorld)
+}
+```
+Now you can get some verilog, start sbt
+```
+bash> sbt
+> run-main intro.HelloWorld
+[info] Running examples.HelloWorld
+[info] [0.004] Elaborating design...
+[info] [0.100] Done elaborating.
+[success] Total time: 1 s, completed Jan 12, 2017 6:24:03 PM
+```
+or as a single command line
+```
+bash> sbt 'run-main intro.HelloWorld'
+```
+After either of the above there will be a HelloWorld.v file in the current directory.  
+You can see additional options with
+```
+bash> sbt 'run-main intro.HelloWorld --help'
+```
+This will return a comprehensive usage line with available options.
+
+
+
+
