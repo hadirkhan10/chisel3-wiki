@@ -32,7 +32,19 @@ necessary or as controlled by the options can invoke the execute methods of lowe
 
 ### Execution Pattern Code
 The execute methods of a Driver companion object (typically documented as Driver#execute) is built with a set of
-scala base classes currently housed in firrtl.  
+scala base classes currently housed in firrtl. A driver will typically look have the following basic components
+#### A Driver companion object with two execution methods
+```scala
+object Driver {
+  def execute(optionsManager: ..., ): ExecutionResult {
+    ...  
+  }
+  def execute(args: Array[String]: ..., ): ExecutionResult {
+    ...  
+  }
+}
+```
+The args based version of the execute method is amenable to command line arguments.  The optionsManager version has additional capabilities for passing along data between toolchain components so it is used when calling a Driver#execute of a lower level.  Generally for convenience, the string based method parses the args, generates an options manager from them and the calls the options manager version.
 
 > The base classes live in firrtl because, as the lowest member of the hierarchy, all higher projects depend and
 > thus have access to its members
