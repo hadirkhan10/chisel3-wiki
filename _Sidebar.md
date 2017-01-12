@@ -22,5 +22,6 @@
   1. [Polymorphism and Parameterization](Polymorphism and Parameterization)
   1. [Multiple Clock Domains](Multiple Clock Domains)
   1. [Annotations: Extending Chisel and Firrtl](Annotations Extending Chisel and Firrtl)
+  1. [Running stuff](Running Stuff)
   1. [Chisel3 vs Chisel2](Chisel3 vs Chisel2)
   1. [Acknowledgements] (Acknowledgements)
