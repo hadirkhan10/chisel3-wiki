@@ -42,7 +42,7 @@ IBUFDS #(.DIFF_TERM("TRUE"), .IOSTANDARD("DEFAULT")) ibufds (
 ### Providing Implementations for Blackboxes
 The Chisel Execution Harness see [Running Stuff](Running-Stuff) provides the following ways of delivering the code underlying the blackbox.  Consider the following blackbox that adds two real numbers together.  The numbers are represented in chisel3 as 64-bit unsigned integers.
 ```scala
-class BlackboxRealAdd extends BlackBox {
+class BlackBoxRealAdd extends BlackBox {
   val io = IO(new Bundle() {
     val in1 = Input(UInt(64.W))
     val in2 = Input(UInt(64.W))
@@ -52,7 +52,7 @@ class BlackboxRealAdd extends BlackBox {
 ```
 The implementation is described by the following verilog
 ```
-module BBFAdd(
+module BlackBoxRealAdd(
     input  [63:0] in1,
     input  [63:0] in2,
     output reg [63:0] out
@@ -62,9 +62,11 @@ module BBFAdd(
   end
 endmodule
 ```
+
+### Blackboxes with Verilog in a Resource File
 In order to deliver the verilog snippet above to the backend simulator, chisel3 provides the following tools based on the chisel/firrtl [annotation system](Annotations-Extending-Chisel-and-Firrtl).  Add the trait ```HasBlackBoxResource``` to the declaration, and then call a function in the body to say where the system can find the verilog.  The Module now looks like
 ```scala
-class BlackboxRealAdd extends BlackBox with HasBlackBoxResource {
+class BlackBoxRealAdd extends BlackBox with HasBlackBoxResource {
   val io = IO(new Bundle() {
     val in1 = Input(UInt(64.W))
     val in2 = Input(UInt(64.W))
@@ -73,11 +75,34 @@ class BlackboxRealAdd extends BlackBox with HasBlackBoxResource {
   setResource("/real_math.v")
 }
 ```
-The verilog snippet above gets put into a resource file names ```real_math.v```.  What is a resource file?  It comes from a java convention of keeping files in a project that are automatically included in library distributions.  In a typical chisel3 project [see chisel-template](https://github.com/ucb-bar/chisel-template) this would be a directory in the source hierarchy
+The verilog snippet above gets put into a resource file names ```real_math.v```.  What is a resource file? It comes from a java convention of keeping files in a project that are automatically included in library distributions. In a typical chisel3 project, see [chisel-template](https://github.com/ucb-bar/chisel-template), this would be a directory in the source hierarchy
 ```
 src/main/resources/real_math.v
 ```
 
-
+### Blackboxes with In-line Verilog 
+It is also possible to place this verilog directly in the scala source.  Instead of ```HasBlackBoxResource``` use ```HasBlackBoxInline``` and instead of ```setResource``` use ```setInline```.  The code will look like this.
+```
+class BlackBoxRealAdd extends BlackBox with HasBlackBoxResource {
+  val io = IO(new Bundle() {
+    val in1 = Input(UInt(64.W))
+    val in2 = Input(UInt(64.W))
+    val out = Output(UInt(64.W))
+  })
+  setInline("BlackBoxRealAdd.v",
+    s"""
+      |module BlackBoxRealAdd(
+      |    input  [15:0] in1,
+      |    input  [15:0] in2,
+      |    output [15:0] out
+      |);
+      |always @* begin
+      |  out <= $realtobits($bitstoreal(in1) + $bitstoreal(in2));
+      |end
+      |endmodule
+    """.stripMargin)
+}
+```
+This technique will copy the inline verilog into the target directory under the name ```BlackBoxRealAdd.v```
 
 [Prev(Modules)](Modules) [Next(State Elements)](State Elements)
