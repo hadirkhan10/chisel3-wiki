@@ -105,4 +105,12 @@ class BlackBoxRealAdd extends BlackBox with HasBlackBoxResource {
 ```
 This technique will copy the inline verilog into the target directory under the name ```BlackBoxRealAdd.v```
 
+### Under the Hood
+This mechanism of delivering verilog content to the testing backends is implemented via chisel/firrtl annotations.  The two methods, inline and resource, are two kinds of annotations that are created via the ```setInline``` and ```setResource``` methods calls.  Those annotations are passed through to the chisel-testers which in turn passes them on to firrtl.  The default firrtl verilog compilers have a pass that detect the annotations and move the files or inline test into the build directory.  For each unique file added, the transform adds a line to a file black_box_verilog_files.f, this file is added to the command line constructed for verilator or vcs to inform them where to look.
+The [dsptools project](/ucb-bar/dsptools) is a good example of using this feature to build a real number simulation tester based on black boxes.
+
+### The interpreter
+The [firrtl interpreter](/ucb-bar/firrtl-interpreter) uses a separate system that allows users to construct scala implementations of the black boxes.  The scala implementation code built into a BlackBoxFactory which is passed down to the interpreter by the execution harness.  The interpreter is a scala simulation tester.  Once again the dsptools project uses this mechanism and is a good place to look at it.  
+> It is planned that the BlackBoxFactory will be replaced by integration with the annotation based blackbox methods stuff soon.
+
 [Prev(Modules)](Modules) [Next(State Elements)](State Elements)
