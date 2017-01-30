@@ -15,12 +15,12 @@ Because Scala is based on Java and thus runs in a [JVM](https://www.google.com/s
 ### Execution Pattern Project Hierarchy 
 The hierarchy currently looks like
 
-| Level        | Project/Tool |
-| ---------        | --------- |
+| Level        | Project/Tool | Options |
+| ---------        | --------- | ------- |
 | highest | chisel-testers |
 | - | firrtl-interpreter, firrtl-repl |
-| - | chisel3 |
-| lowest | firrtl |
+| - | chisel3 | See: [ChiselExecutionOptions](/chisel3/blob/master/src/main/scala/chisel3/ChiselExecutionOptions.scala)
+| lowest | firrtl | See: [CommonOptions, FirrtlOptions](/firrtl/blob/master/src/main/scala/firrtl/ExecutionOptionsManager.scala)
 
 where higher levels depend on and, typically, call the layers below.  For example when running a test, the tester is 
 invoked, which then invokes chisel3 to generate the circuit, which invokes firrtl to compile the circuit into 
