@@ -18,7 +18,7 @@ The hierarchy currently looks like
 | Level        | Project/Tool | Options |
 | ---------        | --------- | ------- |
 | highest | chisel-testers | See: [TesterOptions](/ucb-bar/chisel-testers/blob/master/src/main/scala/chisel3/iotesters/TesterOptions.scala) |
-| - | firrtl-interpreter, firrtl-repl | See: [Interpreter Options](/ucb-bar/firrtl-interpreter/blob/master/src/main/scala/firrtl_interpreter/Driver.scala |
+| - | firrtl-interpreter, firrtl-repl | See: [Interpreter Options](/ucb-bar/firrtl-interpreter/blob/master/src/main/scala/firrtl_interpreter/Driver.scala) |
 | - | chisel3 | See: [ChiselExecutionOptions](/ucb-bar/chisel3/blob/master/src/main/scala/chisel3/ChiselExecutionOptions.scala) |
 | lowest | firrtl | See: [CommonOptions, FirrtlOptions](/ucb-bar/firrtl/blob/master/src/main/scala/firrtl/ExecutionOptionsManager.scala) |
 
