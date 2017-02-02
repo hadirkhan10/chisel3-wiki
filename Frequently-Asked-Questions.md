@@ -74,7 +74,7 @@ object HelloWorld extends App {
   chisel3.Driver.execute(args, () => new HelloWorld)
 }
 ```
-Now you can get some verilog, start sbt
+#### Now you can get some verilog, start sbt
 ```
 bash> sbt
 > run-main intro.HelloWorld
@@ -88,12 +88,17 @@ or as a single command line
 bash> sbt 'run-main intro.HelloWorld'
 ```
 After either of the above there will be a HelloWorld.v file in the current directory.  
-You can see additional options with
+
+#### You can see additional options with
 ```
 bash> sbt 'run-main intro.HelloWorld --help'
 ```
 This will return a comprehensive usage line with available options.
 
+#### For example to place the output in a directory name buildstuff use
+```
+bash> sbt 'run-main intro.HelloWorld --target-dir buildstuff --top-name HelloWorld'
+```
 
 
 
