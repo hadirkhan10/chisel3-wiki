@@ -84,11 +84,13 @@ Use the builtin function asUInt
   assert(0xd.U === uint)
 ```
 
-### How do I create a Vector of Registers?
+### Vectors and Registers
+
+## How do I create a Vector of Registers?
 
 You create a [Reg of type Vec](#how-do-i-create-a-reg-of-type-vec). Because Vecs are a *type* rather than a *value*, we must bind the Vec to some concrete *value*.
 
-### How do I create a Reg of type Vec?
+## How do I create a Reg of type Vec?
 
 For information, please see the API documentation
 (https://chisel.eecs.berkeley.edu/api/index.html#chisel3.core.Vec)
