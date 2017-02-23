@@ -1,7 +1,8 @@
 * [Why DecoupledIO instead of ReadyValidIO?](#why-decoupledio-instead-of-readyvalidio)
 * [Why do I have to wrap module instantiations in `Module(...)`?](#why-do-i-have-to-wrap-module-instantiations-in-module)
 * [Why Chisel?](#why-chisel)
-* [I just want some verilog, What do I do?](#get-me-verilog)
+* [I just want some Verilog; what do I do?](#get-me-verilog)
+* [I just want some FIRRTL; what do I do?](#get-me-firrtl)
 
 ### Why DecoupledIO instead of ReadyValidIO?
 
