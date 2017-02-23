@@ -106,6 +106,8 @@ bash> sbt 'run-main intro.HelloWorld --target-dir buildstuff --top-name HelloWor
 If for some reason you don't want the Verilog (e.g. maybe you want to run some custom transformations before exporting to Verilog), then use something along these lines (replace Multiplier with your module):
 
 ```
+package intro
+
 import chisel3._
 import java.io.File
 
@@ -113,4 +115,10 @@ object Main extends App {
   val f = new File("Multiplier.fir")
   chisel3.Driver.dumpFirrtl(chisel3.Driver.elaborate(() => new Multiplier), Option(f))
 }
+```
+
+Run it with:
+
+```
+sbt 'run-main intro.Main'
 ```
