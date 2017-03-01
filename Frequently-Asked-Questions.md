@@ -1,8 +1,13 @@
+* [How do I ...?] (#how-do-i-do-x-like-y-in-verilog-in-chisel)
 * [Why DecoupledIO instead of ReadyValidIO?](#why-decoupledio-instead-of-readyvalidio)
 * [Why do I have to wrap module instantiations in `Module(...)`?](#why-do-i-have-to-wrap-module-instantiations-in-module)
 * [Why Chisel?](#why-chisel)
 * [I just want some Verilog; what do I do?](#get-me-verilog)
 * [I just want some FIRRTL; what do I do?](#get-me-firrtl)
+
+### How do I do X (like Y in Verilog) in Chisel?
+
+See the [cookbook](Cookbook).
 
 ### Why DecoupledIO instead of ReadyValidIO?
 
