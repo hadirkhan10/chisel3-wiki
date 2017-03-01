@@ -9,6 +9,7 @@ Please note that these examples make use of [Chisel's scala-style printing](Prin
 * [How do I create a Vector of Registers?](#how-do-i-create-a-vector-of-registers)
 * [How do I create a Reg of type Vec?](#how-do-i-create-a-reg-of-type-vec)
 * [How do I create a finite state machine?](#how-do-i-create-a-finite-state-machine)
+* [How do I do a reverse concatenation like in Verilog?](#how-do-i-do-a-reverse-concatenation-like-in-verilog)
 
 ### How do I create a UInt from an instance of a Bundle?
 
@@ -150,3 +151,32 @@ class DetectTwoOnes extends Module {
   }
 }
 ```
+
+### How do I do a reverse concatenation like in Verilog?
+
+```verilog
+wire [1:0] a;
+wire [3:0] b;
+wire [2:0] c;
+wire [8:0] z = [...];
+assign {a,b,c} = z;
+```
+
+The easiest way to accomplish the above in Chisel would be:
+
+```scala
+class MyBundle extends Bundle {
+  val a = UInt(2.W)
+  val b = UInt(4.W)
+  val c = UInt(3.W)
+}
+
+val z = Wire(UInt(width=9))
+// z := ...
+val unpacked = (new MyBundle).fromBits(z)
+unpacked.a
+unpacked.b
+unpacked.c
+```
+
+If you **really** need to do this for a once-time case (think thrice! likely you can better structure the code using bundles), then rocket-chip has a [Split utility](https://github.com/ucb-bar/rocket-chip/blob/master/src/main/scala/util/Misc.scala#L118) which can accomplish this.
