@@ -54,6 +54,7 @@ val width:Int = 32
 val addr = Wire(UInt(width.W))
 val dataIn = Wire(UInt(width.W))
 val dataOut = Wire(UInt(width.W))
+val enable = Wire(Bool())
 
 // assign data...
 
