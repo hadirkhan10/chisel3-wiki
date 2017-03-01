@@ -175,7 +175,7 @@ class MyBundle extends Bundle {
 The easiest way to accomplish this in Chisel would be:
 
 ```scala
-val z = Wire(UInt(width=9))
+val z = Wire(UInt(9.W))
 // z := ...
 val unpacked = (new MyBundle).fromBits(z)
 unpacked.a
