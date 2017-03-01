@@ -9,7 +9,7 @@ Please note that these examples make use of [Chisel's scala-style printing](Prin
 * [How do I create a Vector of Registers?](#how-do-i-create-a-vector-of-registers)
 * [How do I create a Reg of type Vec?](#how-do-i-create-a-reg-of-type-vec)
 * [How do I create a finite state machine?](#how-do-i-create-a-finite-state-machine)
-* [How do I do a reverse concatenation like in Verilog?](#how-do-i-unpack-a-value-reverse-concatenation-like-in-verilog)
+* [How do I unpack a value ("reverse concatenation") like in Verilog?](#how-do-i-unpack-a-value-reverse-concatenation-like-in-verilog)
 
 ### How do I create a UInt from an instance of a Bundle?
 
