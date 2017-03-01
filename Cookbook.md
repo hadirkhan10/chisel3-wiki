@@ -9,7 +9,7 @@ Please note that these examples make use of [Chisel's scala-style printing](Prin
 * [How do I create a Vector of Registers?](#how-do-i-create-a-vector-of-registers)
 * [How do I create a Reg of type Vec?](#how-do-i-create-a-reg-of-type-vec)
 * [How do I create a finite state machine?](#how-do-i-create-a-finite-state-machine)
-* [How do I do a reverse concatenation like in Verilog?](#how-do-i-do-a-reverse-concatenation-like-in-verilog)
+* [How do I do a reverse concatenation like in Verilog?](#how-do-i-unpack-a-value-reverse-concatenation-like-in-verilog)
 
 ### How do I create a UInt from an instance of a Bundle?
 
@@ -152,7 +152,7 @@ class DetectTwoOnes extends Module {
 }
 ```
 
-### How do I do a reverse concatenation like in Verilog?
+### How do I unpack a value ("reverse concatenation") like in Verilog?
 
 ```verilog
 wire [1:0] a;
@@ -162,7 +162,7 @@ wire [8:0] z = [...];
 assign {a,b,c} = z;
 ```
 
-The easiest way to accomplish the above in Chisel would be:
+Unpacking often corresponds to reinterpreting an unstructured data type as a structured data type. Frequently, this structured type is used prolifically in the design, and has been declared as in the following example:
 
 ```scala
 class MyBundle extends Bundle {
@@ -170,7 +170,11 @@ class MyBundle extends Bundle {
   val b = UInt(4.W)
   val c = UInt(3.W)
 }
+```
 
+The easiest way to accomplish this in Chisel would be:
+
+```scala
 val z = Wire(UInt(width=9))
 // z := ...
 val unpacked = (new MyBundle).fromBits(z)
