@@ -1,4 +1,4 @@
-* [How do I ...?] (#how-do-i-do-x-like-y-in-verilog-in-chisel)
+* [How do I ...?](#how-do-i-do-x-like-y-in-verilog-in-chisel)
 * [Why DecoupledIO instead of ReadyValidIO?](#why-decoupledio-instead-of-readyvalidio)
 * [Why do I have to wrap module instantiations in `Module(...)`?](#why-do-i-have-to-wrap-module-instantiations-in-module)
 * [Why Chisel?](#why-chisel)
