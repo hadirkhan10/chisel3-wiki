@@ -19,6 +19,7 @@
   - Code that needs to create a super-type of several types into `cloneSupertype` See. #446
     - This should be the only thing that changes externally visible API, in that the checks are now more consistent.
     - oneHotMux now checks against inconsistent input types.
+    - Mux now checks that each branch is of equivalent type.
   - Simplify Vec construction using above.
   - Move `cloneTypeWidth` from `Data` to `Bits`. It used to silently drop the `width` parameter when called on any non-Bits, this makes uses of it explicit and always correct, minus the Bool case.
   - Eventually want to get rid of cloneTypeWidth. The only stragglers are `Bits.pad` (which can instead create a new UInt/etc from scratch) and Reg (which clears widths behind the scenes for you). Not sure how to address the Reg case.
