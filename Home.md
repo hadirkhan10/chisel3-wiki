@@ -11,8 +11,8 @@ The ScalaDoc for Chisel3 is available at the [API tab on the Chisel web site.](h
 For useful design patterns, see the [Cookbook](Cookbook).
 
 #### Other interesting pages:
-* [Frequently Asked Questions](Frequently Asked Questions)
-* [Printing in Chisel](Printing in Chisel)
+* [Frequently Asked Questions](Frequently-Asked-Questions)
+* [Printing in Chisel](Printing-in-Chisel)
 * [How to use IntelliJ to run chisel3](intellij-setup)
 * [Tips and Tricks](tips-and-tricks)
 * [How to publish a version](how-to-publish)
