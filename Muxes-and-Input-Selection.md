@@ -38,4 +38,16 @@ MuxCase(default,
 
 Note that the conditions/cases/selectors (eg. c1, c2) must be in parentheses.
 
-[Prev(Functional Module Creation)](Functional Module Creation) [Next(Polymorphism and Parameterization)](Polymorphism and Parameterization)
+### oneHotMux
+Another ```Mux``` utility is ```SeqUtils.oneHotMux``` that takes a sequence of selectors and values and returns the value associated with the one selector that is set. If zero or multiple selectors are set the behavior is undefined.  For example:
+```scala
+  val hotValue = SeqUtils.oneHotMux(Seq(
+    io.selector(0) -> 2,
+    io.selector(1) -> 4,
+    io.selector(2) -> 8,
+    io.selector(4) -> 11,
+  ))
+```
+```oneHotMux``` whenever possible generates *Firrtl* that is readily optimizable as low depth and/or tree.  This optimization is not possible when the values are of type ```FixedPoint``` or an aggregate type that contains ```FixedPoint```s and results instead as a simple ```Mux``` tree.  This behavior could be sub-optimal.  As ```FixedPoint``` is still *experimental* this behavior may change in the future.
+
+[Prev(Functional Module Creation)](Functional-Module-Creation) [Next(Polymorphism and Parameterization)](Polymorphism-and-Parameterization)
