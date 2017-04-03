@@ -155,4 +155,4 @@ Currently, the specific error checks (found in [CompileOptions.scala](https://gi
 Clients are free to define their own settings for these options.
 Examples may be found in the test [CompileOptionsSpec](https://github.com/ucb-bar/chisel3/blob/master/src/test/scala/chiselTests/CompileOptionsTest.scala)
 
-[Prev(Multiple Clock Domains)](Multiple Clock Domains) [Next(Acknowledgements)](Acknowledgements)
+[Prev(Multiple Clock Domains)](Multiple-Clock-Domains) [Next(Acknowledgements)](Acknowledgements)
