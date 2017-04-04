@@ -74,4 +74,4 @@ A common "gotcha" comes from truncating addition and subtraction with the operat
 > The default truncating operation comes from Chisel's history as a microprocessor design language.
 
 
-[Prev (Combinational Circuits)](Combinational Circuits)  [Next (Functional Abstraction)](Functional Abstraction)
+[Prev (Combinational Circuits)](Combinational-Circuits)  [Next (Functional Abstraction)](Functional-Abstraction)
