@@ -113,4 +113,4 @@ The [dsptools project](/ucb-bar/dsptools) is a good example of using this featur
 The [firrtl interpreter](/ucb-bar/firrtl-interpreter) uses a separate system that allows users to construct scala implementations of the black boxes.  The scala implementation code built into a BlackBoxFactory which is passed down to the interpreter by the execution harness.  The interpreter is a scala simulation tester.  Once again the dsptools project uses this mechanism and is a good place to look at it.  
 > It is planned that the BlackBoxFactory will be replaced by integration with the annotation based blackbox methods stuff soon.
 
-[Prev(Modules)](Modules) [Next(State Elements)](State Elements)
+[Prev(Modules)](Modules) [Next(State Elements)](State-Elements)
