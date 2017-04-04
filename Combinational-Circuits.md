@@ -59,9 +59,9 @@ myNode := 10.U
 myNode := 0.U
 ```
 
-
 ```scala
 val myNode = Wire(UInt(8.W))
 myNode := 0.U
 ```
-[Prev (Datatypes in Chisel)](Datatypes in Chisel) [Next (Builtin Operators)](Builtin Operators)
+
+[[Prev (Datatypes in Chisel)|Datatypes-in-Chisel]] [[Next (Builtin Operators)|Builtin-Operators]]
