@@ -11,8 +11,18 @@ class MyFloat extends Bundle {
   val significand = UInt(23.W)
 }
 
-val x  = new MyFloat
+val x  = Wire(new MyFloat)
 val xs = x.sign
+```
+
+> Currently, there is no way to create a bundle literal like ```8.U``` for ```UInt```s. Therefore, in order to create literals for bundles, we must declare a [[wire|Combinational-Circuits#wires]] of that bundle type, and then assign values to it. We are working on a way to declare bundle literals without requiring the creation of a Wire node and assigning to it.
+
+```scala
+// Floating point constant.
+val floatConst = Wire(new MyFloat)
+floatConst.sign := true.B
+floatConst.exponent := 10.U
+floatConst.significand := 128.U
 ```
 
 A Scala convention is to capitalize the name of new classes and we
@@ -56,4 +66,4 @@ datatypes will.  A Scala `apply` constructor can be defined so
 that a user datatype also does not require `new`, as described in
 [Function Constructor](Function Constructor)
 
-[Prev (Functional Abstraction)](Functional Abstraction) [Next (Ports)](Ports)
+[Prev (Functional Abstraction)](Functional Abstraction) [[Next (Ports)|Ports]]
