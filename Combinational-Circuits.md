@@ -38,4 +38,30 @@ Chisel wire, `sel`, holding the output of the first bitwise-OR
 operator so that the output can be used multiple times in the second
 expression.
 
+### Wires
+
+Chisel also supports wires as hardware nodes to which one can assign values or connect other nodes.
+
+```scala
+val myNode = Wire(UInt(8.W))
+when (isReady) {
+  myNode := 255.U
+} .elsewhen {
+  myNode := 0.U
+}
+```
+
+Note that the last connection to a Wire takes effect. For example, the following two Chisel circuits are equivalent:
+
+```scala
+val myNode = Wire(UInt(8.W))
+myNode := 10.U
+myNode := 0.U
+```
+
+
+```scala
+val myNode = Wire(UInt(8.W))
+myNode := 0.U
+```
 [Prev (Datatypes in Chisel)](Datatypes in Chisel) [Next (Builtin Operators)](Builtin Operators)
