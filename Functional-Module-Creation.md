@@ -73,4 +73,4 @@ class Mux4 extends Module {
 
 This allows to write more intuitively readable hardware connection descriptions, which are similar to software expression evaluation.
 
-[Prev(Interfaces \& Bulk Connections)](Interfaces-\&-Bulk Connections) [Next (Muxes and Input Selection)](Muxes-and-Input Selection)
+[Prev(Interfaces \& Bulk Connections)](Interfaces-\&-Bulk-Connections) [Next (Muxes and Input Selection)](Muxes-and-Input-Selection)
