@@ -66,4 +66,4 @@ datatypes will.  A Scala `apply` constructor can be defined so
 that a user datatype also does not require `new`, as described in
 [Function Constructor](Function Constructor)
 
-[Prev (Functional Abstraction)](Functional Abstraction) [[Next (Ports)|Ports]]
+[Prev (Functional Abstraction)](Functional-Abstraction) [[Next (Ports)|Ports]]
