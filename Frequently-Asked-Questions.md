@@ -1,11 +1,12 @@
-* [How do I ...?](#how-do-i-do-x-like-y-in-verilog-in-chisel)
+* [How do I ...?](#how-do-i-do-this-like-that-in-verilog-in-chisel)
 * [Why DecoupledIO instead of ReadyValidIO?](#why-decoupledio-instead-of-readyvalidio)
 * [Why do I have to wrap module instantiations in `Module(...)`?](#why-do-i-have-to-wrap-module-instantiations-in-module)
 * [Why Chisel?](#why-chisel)
+* [Does Chisel support X and Z logic values](#does-chisel-support-x-and-z-logic-values)
 * [I just want some Verilog; what do I do?](#get-me-verilog)
 * [I just want some FIRRTL; what do I do?](#get-me-firrtl)
 
-### How do I do X (like Y in Verilog) in Chisel?
+### How do I do this (like that in Verilog) in Chisel?
 
 See the [cookbook](Cookbook).
 
@@ -62,6 +63,10 @@ language.  We picked Scala not only because it includes the
 programming features we feel are important for building circuit
 generators, but because it was specifically developed as a base for
 domain-specific languages.
+
+### Does Chisel support X and Z logic values
+
+Chisel does not support Verlog logic values ```x``` *unknown* and ```z``` *high-impedance*.  There are a number of reasons to want to avoid these values.  See:[The Dangers of Living With An X](http://infocenter.arm.com/help/topic/com.arm.doc.arp0009a/Verilog_X_Bugs.pdf) and [Malicious LUT: A stealthy FPGA Trojan injected and triggered by the design flow](http://ieeexplore.ieee.org/document/7827620/).  Chisel has it's own eco-system of unit and functional testers that limit the need for ```x``` and ```z```.  Design and testing is simplified without these concepts or operators in Chisel.  The circuits created chisel do not preclude developers from using ```x``` and ```z``` in downstream toolchains as they see fit.
 
 ### Get me verilog
 I wrote a module, I want to see the verilog, what do I do?
