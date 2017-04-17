@@ -25,7 +25,7 @@ Chisel Modules are written by defining a [Scala class](http://docs.scala-lang.or
 
 ### Why Chisel?
 
-Borrowed from [Chisel Introduction](Chisel Introduction)
+Borrowed from [Chisel Introduction](Chisel-Introduction)
 
 >We were motivated to develop a new hardware language by years of
 struggle with existing hardware description languages in our research
@@ -85,7 +85,7 @@ object HelloWorld extends App {
   chisel3.Driver.execute(args, () => new HelloWorld)
 }
 ```
-#### Now you can get some verilog, start sbt
+Now you can get some verilog, start sbt
 ```
 bash> sbt
 > run-main intro.HelloWorld
@@ -100,13 +100,13 @@ bash> sbt 'run-main intro.HelloWorld'
 ```
 After either of the above there will be a HelloWorld.v file in the current directory.  
 
-#### You can see additional options with
+You can see additional options with
 ```
 bash> sbt 'run-main intro.HelloWorld --help'
 ```
 This will return a comprehensive usage line with available options.
 
-#### For example to place the output in a directory name buildstuff use
+For example to place the output in a directory name buildstuff use
 ```
 bash> sbt 'run-main intro.HelloWorld --target-dir buildstuff --top-name HelloWorld'
 ```
