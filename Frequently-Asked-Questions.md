@@ -66,7 +66,7 @@ domain-specific languages.
 
 ### Does Chisel support X and Z logic values
 
-Chisel does not support Verlog logic values ```x``` *unknown* and ```z``` *high-impedance*.  There are a number of reasons to want to avoid these values.  See:[The Dangers of Living With An X](http://infocenter.arm.com/help/topic/com.arm.doc.arp0009a/Verilog_X_Bugs.pdf) and [Malicious LUT: A stealthy FPGA Trojan injected and triggered by the design flow](http://ieeexplore.ieee.org/document/7827620/).  Chisel has it's own eco-system of unit and functional testers that limit the need for ```x``` and ```z```.  Design and testing is simplified without these concepts or operators in Chisel.  The circuits created chisel do not preclude developers from using ```x``` and ```z``` in downstream toolchains as they see fit.
+Chisel does not directly support Verlog logic values ```x``` *unknown* and ```z``` *high-impedance*.  There are a number of reasons to want to avoid these values.  See:[The Dangers of Living With An X](http://infocenter.arm.com/help/topic/com.arm.doc.arp0009a/Verilog_X_Bugs.pdf) and [Malicious LUT: A stealthy FPGA Trojan injected and triggered by the design flow](http://ieeexplore.ieee.org/document/7827620/).  Chisel has it's own eco-system of unit and functional testers that limit the need for ```x``` and ```z``` and their omission simplify language implementation, design, and testing.  The circuits created chisel do not preclude developers from using ```x``` and ```z``` in downstream toolchains as they see fit.
 
 ### Get me verilog
 I wrote a module, I want to see the verilog, what do I do?
