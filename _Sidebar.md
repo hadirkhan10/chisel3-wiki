@@ -16,7 +16,7 @@
   1. [BlackBoxes](BlackBoxes)
   1. [State Elements](State-Elements)
   1. [Memories](Memories)
-  1. [Interfaces & Bulk Connections](Interfaces-Bulk-Connections)
+  1. [Interfaces & Bulk Connections](Interfaces-\&-Bulk-Connections)
   1. [Functional Module Creation](Functional-Module-Creation)
   1. [Muxes and Input Selection](Muxes-and-Input-Selection)
   1. [Polymorphism and Parameterization](Polymorphism-and-Parameterization)
