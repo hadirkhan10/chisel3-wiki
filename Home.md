@@ -1,6 +1,6 @@
 # **Welcome to the Chisel 3 wiki!**
 
-If you are completely new to Chisel, check out [A Short Users Guide to Chisel](Short Users Guide to Chisel).
+If you are completely new to Chisel, check out [A Short Users Guide to Chisel](Short-Users-Guide-to-Chisel).
 
 Chisel is constantly being improved.  See the latest [Release Notes](release-notes-17-04-23).
 
