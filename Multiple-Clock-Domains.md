@@ -9,7 +9,7 @@ class MultiClockModule extends Module {
     val stuff = Input(Bool())
   })
 
-  // This register is clocked against io.clock.
+  // This register is clocked against the module clock.
   val regClock = RegNext(stuff)
 
   withClock (io.clockB) {
@@ -19,7 +19,7 @@ class MultiClockModule extends Module {
     val regClockB = RegNext(stuff)
   }
 
-  // This register is also clocked against io.clock.
+  // This register is also clocked against the module clock.
   val regClock2 = RegNext(stuff)
 }
 ```
