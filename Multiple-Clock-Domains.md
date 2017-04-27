@@ -1,6 +1,6 @@
 Chisel 3 supports multiple clock domains as follows.
 
-Note that in order to cross clock domains safely, you will appropriate synchronization logic.
+Note that in order to cross clock domains safely, you will need appropriate synchronization logic.
 
 ```scala
 class MultiClockModule extends Module {
