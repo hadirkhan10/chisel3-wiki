@@ -12,7 +12,7 @@
 
 See the [cookbook](Cookbook).
 
-### What is the difference between release and master branches
+### What is the difference between release and master branches?
 
 We have two main branches for each main Chisel project:
 
