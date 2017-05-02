@@ -20,4 +20,5 @@ For useful design patterns, see the [Cookbook](Cookbook).
 * [Chisel Toolchain](chisel-toolchain)
 * [Useful SBT commands](useful-sbt-commands)
 * [Scala-land vs. Chisel-land](Scala-land-vs.-Chisel-land)
+* [CS250 a Chisel+Scala Primer](CS250-Chisel+Scala-Primer)
 
