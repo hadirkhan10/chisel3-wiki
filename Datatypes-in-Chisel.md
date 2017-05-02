@@ -68,5 +68,5 @@ requires an additional import.
 field to allow Chisel to automatically produce optimized fixed-point
 arithmetic circuits.
 
-[Prev (Hardware Expressible in Chisel)](Hardware Expressible in Chisel)  [Next (Combinational Circuits)](Combinational Circuits)
+[Prev (Hardware Expressible in Chisel)](Hardware-Expressible-in-Chisel)  [Next (Combinational Circuits)](Combinational-Circuits)
 

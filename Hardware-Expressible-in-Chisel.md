@@ -7,4 +7,4 @@ current Chisel language as this is in any case poorly supported by
 industry flows, and difficult to use reliably outside of controlled
 hard macros.
 
-[Prev (Chisel Introduction)](Chisel Introduction)  [Next (Datatypes in Chisel)](Datatypes in Chisel)
+[Prev (Chisel Introduction)](Chisel-Introduction)  [Next (Datatypes in Chisel)](Datatypes-in-Chisel)

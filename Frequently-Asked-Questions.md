@@ -1,6 +1,49 @@
+* [How do I ...?](#how-do-i-do-this-like-that-in-verilog-in-chisel)
+* [What is the difference between release and master branches?](#What-is-the-difference-between-release-and-master-branches
+)
 * [Why DecoupledIO instead of ReadyValidIO?](#why-decoupledio-instead-of-readyvalidio)
 * [Why do I have to wrap module instantiations in `Module(...)`?](#why-do-i-have-to-wrap-module-instantiations-in-module)
 * [Why Chisel?](#why-chisel)
+* [Does Chisel support X and Z logic values](#does-chisel-support-x-and-z-logic-values)
+* [I just want some Verilog; what do I do?](#get-me-verilog)
+* [I just want some FIRRTL; what do I do?](#get-me-firrtl)
+
+### How do I do this (like that in Verilog) in Chisel?
+
+See the [cookbook](Cookbook).
+
+### What is the difference between release and master branches
+
+We have two main branches for each main Chisel project:
+
+- `master`
+- `release`
+
+`master` is the main development branch and it is updated frequently (often several times a day).
+Although we endeavor to keep the `master` branches in sync, they may drift out of sync for a day or two.
+We do not publish the `master` branches.
+If you wish to use them, you need to clone the github repos and use `sbt publish-local` to make them available on your local machine.
+
+The `release` branches are updated less often (currently bi-weekly) and we try to guarantee they are in sync.
+We publish these to Sonatype/Maven on a bi-weekly basis.
+
+In general, you can not mix `release` and `master` branches and assume they will work.
+
+The default branches for the user-facing repos (chisel-template and chisel-tutorial) are the `release` branches - these should always *just work* for new users as they use the `release` branches of chisel projects.
+
+If you want to use something more current than the `release` branch, you should `git checkout master` for all the chisel repos you intend to use, then `sbt publish-local` them in this order:
+
+- firrtl
+- firrtl-interpreter
+- chisel3
+- chisel-testers
+
+Then, if you're working with the user-facing repos:
+
+- chisel-tutorial
+- chisel-template
+
+Since this is a substantial amount of work (with no guarantee of success), unless you are actively involved in Chisel development, we encourage you to stick with the `release` branches and their respective dependencies.
 
 ### Why DecoupledIO instead of ReadyValidIO?
 
@@ -17,7 +60,7 @@ Chisel Modules are written by defining a [Scala class](http://docs.scala-lang.or
 
 ### Why Chisel?
 
-Borrowed from [Chisel Introduction](Chisel Introduction)
+Borrowed from [Chisel Introduction](Chisel-Introduction)
 
 >We were motivated to develop a new hardware language by years of
 struggle with existing hardware description languages in our research
@@ -55,3 +98,72 @@ language.  We picked Scala not only because it includes the
 programming features we feel are important for building circuit
 generators, but because it was specifically developed as a base for
 domain-specific languages.
+
+### Does Chisel support X and Z logic values
+
+Chisel does not directly support Verilog logic values ```x``` *unknown* and ```z``` *high-impedance*.  There are a number of reasons to want to avoid these values.  See:[The Dangers of Living With An X](http://infocenter.arm.com/help/topic/com.arm.doc.arp0009a/Verilog_X_Bugs.pdf) and [Malicious LUT: A stealthy FPGA Trojan injected and triggered by the design flow](http://ieeexplore.ieee.org/document/7827620/).  Chisel has it's own eco-system of unit and functional testers that limit the need for ```x``` and ```z``` and their omission simplify language implementation, design, and testing.  The circuits created by chisel do not preclude developers from using ```x``` and ```z``` in downstream toolchains as they see fit.
+
+### Get me verilog
+I wrote a module, I want to see the verilog, what do I do?
+Here's a simple hello world module in a file HelloWorld.scala
+```
+package intro
+import chisel3._
+class HelloWorld extends Module {
+  val io = IO(new Bundle{})
+  printf("hello world\n")
+}
+```
+Add the following
+```
+object HelloWorld extends App {
+  chisel3.Driver.execute(args, () => new HelloWorld)
+}
+```
+Now you can get some verilog, start sbt
+```
+bash> sbt
+> run-main intro.HelloWorld
+[info] Running examples.HelloWorld
+[info] [0.004] Elaborating design...
+[info] [0.100] Done elaborating.
+[success] Total time: 1 s, completed Jan 12, 2017 6:24:03 PM
+```
+or as a single command line
+```
+bash> sbt 'run-main intro.HelloWorld'
+```
+After either of the above there will be a HelloWorld.v file in the current directory.  
+
+You can see additional options with
+```
+bash> sbt 'run-main intro.HelloWorld --help'
+```
+This will return a comprehensive usage line with available options.
+
+For example to place the output in a directory name buildstuff use
+```
+bash> sbt 'run-main intro.HelloWorld --target-dir buildstuff --top-name HelloWorld'
+```
+
+### Get me FIRRTL
+
+If for some reason you don't want the Verilog (e.g. maybe you want to run some custom transformations before exporting to Verilog), then use something along these lines (replace Multiplier with your module):
+
+```
+package intro
+
+import chisel3._
+import java.io.File
+
+object Main extends App {
+  val f = new File("Multiplier.fir")
+  chisel3.Driver.dumpFirrtl(chisel3.Driver.elaborate(() => new Multiplier), Option(f))
+}
+```
+
+Run it with:
+
+```
+sbt 'run-main intro.Main'
+```

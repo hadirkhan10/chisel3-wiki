@@ -9,6 +9,7 @@ Please note that these examples make use of [Chisel's scala-style printing](Prin
 * [How do I create a Vector of Registers?](#how-do-i-create-a-vector-of-registers)
 * [How do I create a Reg of type Vec?](#how-do-i-create-a-reg-of-type-vec)
 * [How do I create a finite state machine?](#how-do-i-create-a-finite-state-machine)
+* [How do I unpack a value ("reverse concatenation") like in Verilog?](#how-do-i-unpack-a-value-reverse-concatenation-like-in-verilog)
 
 ### How do I create a UInt from an instance of a Bundle?
 
@@ -84,11 +85,13 @@ Use the builtin function asUInt
   assert(0xd.U === uint)
 ```
 
-### How do I create a Vector of Registers?
+### Vectors and Registers
+
+## How do I create a Vector of Registers?
 
 You create a [Reg of type Vec](#how-do-i-create-a-reg-of-type-vec). Because Vecs are a *type* rather than a *value*, we must bind the Vec to some concrete *value*.
 
-### How do I create a Reg of type Vec?
+## How do I create a Reg of type Vec?
 
 For information, please see the API documentation
 (https://chisel.eecs.berkeley.edu/api/index.html#chisel3.core.Vec)
@@ -148,3 +151,36 @@ class DetectTwoOnes extends Module {
   }
 }
 ```
+
+### How do I unpack a value ("reverse concatenation") like in Verilog?
+
+```verilog
+wire [1:0] a;
+wire [3:0] b;
+wire [2:0] c;
+wire [8:0] z = [...];
+assign {a,b,c} = z;
+```
+
+Unpacking often corresponds to reinterpreting an unstructured data type as a structured data type. Frequently, this structured type is used prolifically in the design, and has been declared as in the following example:
+
+```scala
+class MyBundle extends Bundle {
+  val a = UInt(2.W)
+  val b = UInt(4.W)
+  val c = UInt(3.W)
+}
+```
+
+The easiest way to accomplish this in Chisel would be:
+
+```scala
+val z = Wire(UInt(9.W))
+// z := ...
+val unpacked = (new MyBundle).fromBits(z)
+unpacked.a
+unpacked.b
+unpacked.c
+```
+
+If you **really** need to do this for a once-time case (think thrice! likely you can better structure the code using bundles), then rocket-chip has a [Split utility](https://github.com/ucb-bar/rocket-chip/blob/master/src/main/scala/util/Misc.scala#L118) which can accomplish this.

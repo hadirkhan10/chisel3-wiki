@@ -34,84 +34,52 @@ where `amp` is used to scale the fixpoint values stored in the ROM.
 
 ## Mem
 
-Memories are given special treatment in Chisel since hardware
-implementations of memory have many variations, e.g., FPGA memories
-are instantiated quite differently from ASIC memories.  Chisel defines
-a memory abstraction that can map to either simple Verilog behavioral
-descriptions, or to instances of memory modules that are available
-from external memory generators provided by foundry or IP vendors.  
+Memories are given special treatment in Chisel since hardware implementations of memory have many variations, e.g., FPGA memories are instantiated quite differently from ASIC memories.  Chisel defines a memory abstraction that can map to either simple Verilog behavioral descriptions, or to instances of memory modules that are available from external memory generators provided by foundry or IP vendors.
 
-Chisel supports random-access memories via the `Mem` construct.
-Writes to Mems are positive-edge-triggered and reads are either
-combinational or positive-edge-triggered.
-*Current FPGA technology
-does not support combinational (asynchronous) reads (anymore). The read address
-needs to be registered.*
+Chisel supports random-access memories via the `Mem` construct. Writes to `Mem`s are **combinational/asynchronous-read, sequential/synchronous-write**. These `Mem`s will likely be synthesized to register banks.
 
+Chisel also has a construct called `SyncReadMem` for **sequential/synchronous-read, sequential/synchronous-write** memories. Most SRAMs in modern technologies (FPGA, ASIC) tend to no longer support combinational (asynchronous) reads, and `SyncReadMem`s will likely be synthesized to technology SRAMs (as opposed to register banks).
 
-Ports into Mems are created by applying a `UInt` index.  A 32-entry
-register file with one write port and two combinational read ports might be
-expressed as follows:
+Ports into Mems are created by applying a `UInt` index.  A 1024-entry register file with one write port and one sequential/synchronous read port might be expressed as follows:
 
-``` scala
-    val rf = Mem(32, UInt(64.W))
-    when (wen) { rf(waddr) := wdata }
-    val dout1 = rf(waddr1)
-    val dout2 = rf(waddr2)
+```scala
+val width:Int = 32
+val addr = Wire(UInt(width.W))
+val dataIn = Wire(UInt(width.W))
+val dataOut = Wire(UInt(width.W))
+val enable = Wire(Bool())
+
+// assign data...
+
+// Create a synchronous-read, synchronous-write memory (like in FPGAs).
+val mem = SyncReadMem(1024, UInt(width.W))
+// Create one write port and one read port.
+mem.write(addr, dataIn)
+dataOut := mem.read(addr, enable)
 ```
+Creating an asynchronous-read version of the above simply involves replacing `SyncReadMem` with just `Mem`.
 
-If the optional parameter `seqRead` is set, Chisel will attempt to infer
-sequential read ports when the read address is a `Reg`.  A one-read port,
-one-write port SRAM might be described as follows:
-
-``` scala
-    val ram1r1w =
-      Mem(1024, UInt(32.W))
-    val reg_raddr = Reg(UInt())
-    when (wen) { ram1r1w(waddr) := wdata }
-    when (ren) { reg_raddr := raddr }
-    val rdata = ram1r1w(reg_raddr)
-```
+Chisel can also infer other features such as single ports and masks directly with Mem.
 
 Single-ported SRAMs can be inferred when the read and write conditions are
 mutually exclusive in the same `when` chain:
 
 ``` scala
-    val ram1p = Mem(1024, UInt(32.W))
-    val reg_raddr = Reg(UInt())
-    when (wen) { ram1p(waddr) := wdata }
-    .elsewhen (ren) { reg_raddr := raddr }
-    val rdata = ram1p(reg_raddr)
+val mem = SyncReadMem(2048, UInt(32.W))
+when (write) { mem.write(addr, dataIn) }
+.otherwise { dataOut := mem.read(addr, read) }
 ```
 
 If the same `Mem` address is both written and sequentially read on the same clock
 edge, or if a sequential read enable is cleared, then the read data is
 undefined.
 
-`Mem` also supports write masks for subword writes.  A given bit is written if
+`Mem` and `SyncReadMem` also support write masks for subword writes.  A given bit is written if
 the corresponding mask bit is set.
 
 ``` scala
-    val ram = Mem(256, UInt(32.W))
-    when (wen) { ram.write(waddr, wdata, wmask) }
+val ram = Mem(256, UInt(32.W))
+when (wen) { ram.write(waddr, wdata, wmask) }
 ```
 
-<!---
-For example, an
-audio recorder could be defined as follows:
-
-``` scala
-  def audioRecorder(n: Int, button: Bool) = { 
-    val addr   = counter(n.U)
-    val ram    = Mem(n)
-    ram(addr) := button
-    ram(Mux(button(), 0.U, addr))
-  } 
-```
-
-\noindent
-where a counter is used as an address generator into a memory.  
-The device records while \verb+button+ is \verb+true+, or plays back when \verb+false+.
---->
-
-[Prev(State Elements)](State Elements) [Next(Interfaces \& Bulk Connections)](Interfaces \& Bulk Connections)
+[Prev(State Elements)](State-Elements) [Next(Interfaces \& Bulk Connections)](Interfaces-\&-Bulk-Connections)
