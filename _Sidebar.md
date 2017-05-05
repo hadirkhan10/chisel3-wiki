@@ -26,6 +26,6 @@
   1. [Acknowledgements](Acknowledgements)
   
  **Release Notes**
-   * [03/23/17](release-notes-17-03-23.md)
-   * [04/12/17](release-notes-17-04-12.md)
-   * [05/03/17](release-notes-17-05-03.md)
+   * [03/23/17](release-notes-17-03-23)
+   * [04/12/17](release-notes-17-04-12)
+   * [05/03/17](release-notes-17-05-03)
