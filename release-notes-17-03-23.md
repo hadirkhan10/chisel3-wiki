@@ -1,4 +1,4 @@
-## Release Notes 04/23/17
+## Release Notes 03/23/17
 
 ### Chisel3
 - The register creation API has been changed to offer clearer functional choices. [Chisel PR #553](/ucb-bar/chisel3/pull/553)
