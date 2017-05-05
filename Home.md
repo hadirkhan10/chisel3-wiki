@@ -2,7 +2,7 @@
 
 If you are completely new to Chisel, check out [A Short Users Guide to Chisel](Short-Users-Guide-to-Chisel).
 
-Chisel is constantly being improved.  See the latest [Release Notes](release-notes-17-04-23).
+Chisel is constantly being improved.  See the latest [Release Notes](release-notes-17-05-03).
 
 For migrating from Chisel 2 to Chisel 3, check out [Chisel3 vs Chisel2](Chisel3-vs-Chisel2).
 
@@ -20,4 +20,5 @@ For useful design patterns, see the [Cookbook](Cookbook).
 * [Chisel Toolchain](chisel-toolchain)
 * [Useful SBT commands](useful-sbt-commands)
 * [Scala-land vs. Chisel-land](Scala-land-vs.-Chisel-land)
+* [CS250 a Chisel+Scala Primer](CS250-Chisel+Scala-Primer)
 

@@ -16,7 +16,7 @@
   1. [BlackBoxes](BlackBoxes)
   1. [State Elements](State-Elements)
   1. [Memories](Memories)
-  1. [Interfaces & Bulk Connections](Interfaces-\&-Bulk-Connections)
+  1. [Interfaces & Bulk Connections](Interfaces-Bulk-Connections)
   1. [Functional Module Creation](Functional-Module-Creation)
   1. [Muxes and Input Selection](Muxes-and-Input-Selection)
   1. [Polymorphism and Parameterization](Polymorphism-and-Parameterization)
@@ -24,3 +24,8 @@
   1. [Annotations: Extending Chisel and Firrtl](Annotations-Extending-Chisel-and-Firrtl)
   1. [Chisel3 vs Chisel2](Chisel3-vs-Chisel2)
   1. [Acknowledgements](Acknowledgements)
+  
+ **Release Notes**
+   * [03/23/17](release-notes-17-03-23.md)
+   * [04/12/17](release-notes-17-04-12.md)
+   * [05/03/17](release-notes-17-05-03.md)

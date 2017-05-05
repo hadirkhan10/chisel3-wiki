@@ -12,7 +12,7 @@ This is a brief guide to the Chisel hardware description language. To get starte
   1. [Blackboxes](Blackboxes)
   1. [State Elements](State-Elements)
   1. [Memories](Memories)
-  1. [Interfaces \& Bulk Connections](Interfaces-\&-Bulk-Connections)
+  1. [Interfaces \& Bulk Connections](Interfaces-Bulk-Connections)
   1. [Functional Module Creation](Functional-Module-Creation)
   1. [Muxes and Input Selection](Muxes-and-Input-Selection)
   1. [Polymorphism and Parameterization](Polymorphism-and-Parameterization)

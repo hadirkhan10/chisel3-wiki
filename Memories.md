@@ -82,4 +82,4 @@ val ram = Mem(256, UInt(32.W))
 when (wen) { ram.write(waddr, wdata, wmask) }
 ```
 
-[Prev(State Elements)](State-Elements) [Next(Interfaces \& Bulk Connections)](Interfaces-\&-Bulk-Connections)
+[Prev(State Elements)](State-Elements) [Next(Interfaces \& Bulk Connections)](Interfaces-Bulk-Connections)
