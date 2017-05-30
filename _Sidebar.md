@@ -31,3 +31,4 @@
    * [05/03/17](release-notes-17-05-03)
    * [05/16/17](release-notes-17-05-16)
    * [05/25/17](release-notes-17-05-25)
+   * [05/30/17](release-notes-17-05-30)
