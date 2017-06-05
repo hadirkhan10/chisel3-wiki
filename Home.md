@@ -19,6 +19,7 @@ For useful design patterns, see the [Cookbook](Cookbook).
 * [Developers' Troubleshooting Guide](troubleshooting)
 * [Chisel Toolchain](chisel-toolchain)
 * [Useful SBT commands](useful-sbt-commands)
+* [Scala Things You Should Know](Scala-Things-You-Should-Know)
 * [Scala-land vs. Chisel-land](Scala-land-vs.-Chisel-land)
 * [CS250 a Chisel+Scala Primer](CS250-Chisel+Scala-Primer)
 
