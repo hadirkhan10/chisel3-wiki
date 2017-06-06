@@ -58,7 +58,7 @@ Let's use our example above to create a class.  Scala instances are created via 
 val x = new WrapCounter(4)
 ```
 Now often in scala code one sees, instances being created without the keyword new, for example ```val y = WrapCounter(6)```
-This occurs often enough to merit special attention
+This occurs often enough to merit special attention.  I it described below under [Companion Objects](#Companion-Objects)
 
 ### Companion Objects
 A companion object is similar to a class but can only occur once.  First let's assume we have the definition of some class X
