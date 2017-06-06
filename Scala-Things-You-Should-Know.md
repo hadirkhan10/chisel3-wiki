@@ -53,12 +53,39 @@ What is here:
   * it should be noted that classes that print something every time an instance is created is darned annoying and should avoided
 
 ### Creating an instance of a class
-Let's use our example above to create a class
+Let's use our example above to create a class.  Scala instances are created via the built-in magic keyword **new**
 ```
 val x = new WrapCounter(4)
 ```
-The variable x is now a reference to a Wrap. x is fixed and will always point to WrapCounter.  We can now use x.
+Now often in scala code one sees, instances being created without the keyword new, for example ```val y = WrapCounter(6)```
+This occurs often enough to merit special attention
+
+### Companion Objects
+A companion object is similar to a class but can only occur once.  First let's assume we have the definition of some class X
+```scala
+class X(x: Int, y: Int) { val z = x + y }
 ```
-println(s"x.max is ${x.max}")
-x.inc()
+We define an example companion object for X.
+```scala
+object X {
+  val const = 77
+  def apply(i: Int): X = { new X(i, const)  }
+  def apply(i: Int, j: Int): X = { new X(i, j) }
+  def show(x: X): Unit = { println(s"x contains value z = ${x.z}") }
+}
+```
+Our companion object X does 3 things
+1. It defines a constant, companion object are the canonical way to define constants related to a class
+  * ```val const = 77``` 
+1. It defines two **apply** methods.  In this case the **apply** methods are known as factory methods in that they return instances of the **class X**
+  * ```def apply(i: Int): X = { new X(i, const)  }``` creates an instance of X using only one argument, it uses it's constant const to provide the other missing argument
+  * ```def apply(i: Int, j: Int): X = { new X(i, j) }``` defines a basic factory that requires the same arguments as the constructor for **class X**
+  * These factory methods can be called naively like this ```val x1 = X.apply(4)``` or ```val x2 = X.apply(33)``` which eliminates the need to use the new keyword
+  * But the real magic is that the compiler assumes the apply method any time it sees parentheses applied to an instance or object.  By way of example 
+    *  ```val x1 = X(4)``` is equivalent to ```val x1 = X.apply(4)```
+    * ```val x2 = X(33)``` is equivalent to ```val x2 = X.apply(33)```
+  * Factory methods, usually provided via companion objects, allows alternative ways to express instance creations, they can provide additional tests for constructor parameters, conversions, and eliminate the need to use the keyword new
+
+> We will not here that there is another way of creating a default factory method for a class via the case modifier in class definition ```case class X(...) { ... }``` which implicitly creates a factory method that does not require new and does a number of useful functions.  There are restrictions on case classes, but they are a commonly used scala idiom.
+### Syntactic Sugar
 
