@@ -31,6 +31,7 @@ What is here:
 * ```val max: Long =``` the class contains a member variable **max**, declared as ```Long``` and initialized as the class is created
 * ```(1 << counterBits) - 1``` computes the maximum value that can be contained in **counterBits** bits.  Since **max** was created with _val_ it cannot be changed.
 * a variable **counter** is created and initialized to **0L**, the **L** says that 0 is a long value and from this **counter** is inferred to be Long.
+* **max** and **counter** are commonly called _member variables__ of the class
 * a class method **inc** is defined which takes no arguments and returns a **Long** value
 * the body of the method **inc** is a code block that:
   * ```counter = counter + 1``` increments **counter**
