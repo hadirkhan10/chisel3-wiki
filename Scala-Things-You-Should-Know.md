@@ -87,5 +87,45 @@ Our companion object X does 3 things
   * Factory methods, usually provided via companion objects, allows alternative ways to express instance creations, they can provide additional tests for constructor parameters, conversions, and eliminate the need to use the keyword new
 
 > We will not here that there is another way of creating a default factory method for a class via the case modifier in class definition ```case class X(...) { ... }``` which implicitly creates a factory method that does not require new and does a number of useful functions.  There are restrictions on case classes, but they are a commonly used scala idiom.
+
+### Code Blocks
+Code blocks are delimited by braces.  A block can contain zero or more lines of scala code. The last line of scala code becomes the return value (which may be ignored) of the code block.  A code block with no lines would return and special null-like object called Unit. Code blocks are used throughout scala, they are the bodies of class definitions, they form function and method definitions, they are the clauses of if statements, they are the bodies of for and many other scala operators.
+
+### Parameterized Code Blocks
+Code blocks can take parameters.  In the case of class and method definitions these parameters look fairly like most conventional programming languages.  In the example below ```c``` and ```s``` are parameters of the code block.
+```scala
+def add1(c: Int): Int = {
+  c + 1
+}
+class RepeatString(s: String) {
+  val repeatedString = s + s
+}
+```
+**IMPORTANT**: There is another way in which code blocks may be parameterized, it is visible all over the place in a scala program and I found it to be one of the scala constructs that took me a while to get used to.  Here are some examples
+```scala
+val intList = List(1, 2, 3)
+val stringList = intList.map { i =>
+  i.toString
+}
+```
+The code block is begin passed to a method map of the class List.  The map method requires that it's code block have a single parameter.  The code block is called for each member of list, the code block returns that parameter converted to a String. Scala is almost excessively accepting of variations of this syntax.  You might see this written in many different ways. Assuming intList is defined as above, all the following will return a list of string versions of the original integer list
+```scala
+intList map ( s => s.toString )
+intList.map( s => s.toString )
+intList.map { s: Int => s.toString }
+intList.map { (s: Int) => s.toString }
+```
+Even more exotically one can create a variable which points to a code block
+```scala
+val intToString = { c: Int =>
+  c + 1
+}
+intList.map(intToString)
+// or even more exotically periods and parens can be dropped entirely. 
+intList map intToString
+```  
+The goal again here is simply to help you recognize the different notational types when you encounter them.  As you use Scala these will seem more comfortable and familiar.  Authors tend to gravitate to particular styles and there are also individual syntactical situations in which one notation will seem more natural. One liners tend to use the more concise forms, complex blocks usually have a more narrative appearance.
+
+### Scala Match and Matching
 ### Syntactic Sugar
 
