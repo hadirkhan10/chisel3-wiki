@@ -121,11 +121,36 @@ val intToString = { c: Int =>
   c + 1
 }
 intList.map(intToString)
-// or even more exotically periods and parens can be dropped entirely. 
+// or even still more exotically periods and parens can be dropped entirely. 
 intList map intToString
 ```  
 The goal again here is simply to help you recognize the different notational types when you encounter them.  As you use Scala these will seem more comfortable and familiar.  Authors tend to gravitate to particular styles and there are also individual syntactical situations in which one notation will seem more natural. One liners tend to use the more concise forms, complex blocks usually have a more narrative appearance.
 
 ### Scala Match and Matching
+The scala *matching* concept is used throughout chisel and needs to be part of any chisel programmers basic understanding. Scala provides the match operator which supports:
+- Simple testing for alternatives, something like a *C* switch statement
+- More complex testing of ad-hoc combinations of values
+- Taking actions based on the type of a variable when it's type is unknown or underspecified, for example when
+  - variable is taken from a heterogeneous list ```val mixedList = List(1, "string", false)```
+  - or variable is known to be a member of a super-class but not which specific sub-class it is.
+- Extraction of sub strings of a string that are specified with a *regular expression*
+
+#### Simple match statement
+```scala
+// y is an integer variable defined somewhere else in the code
+val x = y match {
+  case 0 => "zero"
+  case 1 => "one"
+  case 2 => "two"
+  case - => "many"
+}
+println("y is " + x)
+```
+The match operator checks possible values and for each case returns a string.  A couple of things to note:
+- A match is searched in the order of the case statements, once a case statement has been matched, no other
+checks against other case statements are made.
+- The use of underscore as a wildcard, to handle any value not found.  
+### Regular Expression (Regex) Support
+### The underscore (_) one of the wildest of programmings wildcards
 ### Syntactic Sugar
 
