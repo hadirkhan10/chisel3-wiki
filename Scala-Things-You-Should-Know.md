@@ -149,7 +149,52 @@ println("y is " + x)
 The match operator checks possible values and for each case returns a string.  A couple of things to note:
 - A match is searched in the order of the case statements, once a case statement has been matched, no other
 checks against other case statements are made.
-- The use of underscore as a wildcard, to handle any value not found.  
+- The use of underscore as a wildcard, to handle any value not found. 
+
+#### Testing adhoc combinations with match
+Here's a simple example of a truth table implemented with a match statement and tuple of values
+```scala
+def animalType(biggerThanBreadBox: Boolean, meanAsCanBe: Boolean): String = {
+  (biggerThanBreadBox, meanAsCanBe) match {
+    case (true, true) => "wolverine"
+    case (true, false) => "elephant"
+    case (false, true) => "shrew"
+    case (false, false) => "puppy"
+  }
+}
+```
+In this example a tuple is created from the method parameters ```(biggerThanBreadBox, meanAsCanBe)``` is created and tested with the match statement.  A case is listed for all the possible combinations. 
+The call ```animalType(true, false)``` would return the string "elephant"
+
+#### Processing a heterogenous list with match
+```scala
+val mixedList = List(1, "string", false, 1.57)
+val stringList = mixedList.map { 
+  case i: Int => i.toString
+  case s: String => s
+  case b: Boolean => 
+    if(b) {
+      "T"
+    } else {
+      "F"
+    }
+  case _ =>
+    "unsupported type"
+}
+```
+```stringList``` will be a list of strings ```List("1", "string", "F", "unsupported type")```
+What's going on?  We have created a list that contains three different types of elements.  We are going to map this string into another string.  The ```map``` method on string implicitly *match*es each element against the cases.  Other things to note:
+- Each code block that follows a the ```=>``` operator continues until it reaches either the ending brace of the match or the next case statement.
+- The map statement is sometimes written out more explicitly as follows, See: [Parameterized Code Blocks](Scala-Things-You-Should-Know#Parameterized-Code-Blocks)
+```scala
+val stringList = mixedList.map { element => 
+  element match {
+    case i: Int => i.toString
+    ...
+  }
+}
+```
+
 ### Regular Expression (Regex) Support
 ### The underscore (_) one of the wildest of programmings wildcards
 ### Syntactic Sugar
