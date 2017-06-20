@@ -225,10 +225,15 @@ class System(val components: List[Component]) {
     }
   }
 }
-
 ```
+We can begin to see the power of the match capability.  ```def displayComponents(): Unit = {``` declares the displayComponents method that returns nothing.  ```components.foreach {``` uses the foreach method to iterate over each element in the list of components. The code block of the foreach matches on a number of possibilities.
+
+```case Monitor("BrandX", size, _) =>``` This matches a component whose type is Monitor and whose first parameter has the value. Now here is the cool part, the size symbol takes *diagonal* (the second parameter of the Monitor class) to a local variable size.  The size variable is only defined until the next case statement or to the end of the block.
+
 ### Case Classes
 ### Regular Expression (Regex) Support
 ### The underscore (_) one of the wildest of programmings wildcards
+### Named parameters
+### String interpolation
 ### Syntactic Sugar
 
