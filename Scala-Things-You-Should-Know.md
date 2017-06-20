@@ -250,6 +250,16 @@ Because we declared components to be a ```List[Component]``` the compiler guaran
       // do some error handling here
 ```
 ### Case Classes
+Chisel often uses case classes, a declaration looks something like ```case class Drill(variableSpeed: Boolean, amps: Int, rpm: Int)```.  The case class provides a bunch of useful features, the ones most commonly taken advantage of are:
+- Allows external access to the class parameters.  These are not accessible by default a class declared with ```class X(y: Int)``` would not allow the programmer to reference ```x.y``` when x is an instance of X created via ```val x = new X(88)```
+- Eliminates the need to use new when instantiating the class, i.e. one can write ```val d = Drill(true, 10, 3000)```
+- Automatically creates an unapply method that supplies access to all of the class Parameters.  This allows a programmer to us match on the class as we discussed in [Scala Match and Matching](Scala-Things-You-Should-Know#Scala-Match-and-Matching). So assuming a match is being done on an instance of Drill, once can write.
+```scala
+  someVarThatMightHaveADrill match {
+    case Drill(hasVarSpeed, amps, rpm) =>
+       // here we have access to local variables hasVarSpeed, amps, and rpm, that come from Drill.
+```
+
 ### Regular Expression (Regex) Support
 ### The Underscore (_) Scala's Wildcard
 ### Named parameters
