@@ -257,7 +257,8 @@ Chisel often uses case classes, a declaration looks something like ```case class
 ```scala
   someVarThatMightHaveADrill match {
     case Drill(hasVarSpeed, amps, rpm) =>
-       // here we have access to local variables hasVarSpeed, amps, and rpm, that come from Drill.
+       // here we have access to local variables hasVarSpeed, amps, and rpm, that come
+       // someVarThatMightHaveADrill's parameters.
 ```
 
 ### Regular Expression (Regex) Support
