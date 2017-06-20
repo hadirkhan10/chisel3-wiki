@@ -218,21 +218,40 @@ class System(val components: List[Component]) {
         println(s"monitor $name of diagonal size $size scan rate $scan")
       case Keyboard(name, keys) =>
         println(s"keyboard $name with $keys keys")
-      case Mouse(_) =>
+      case _: Mouse =>
         println("There is a mouse")
       case x: Component =>
         println(s"unknown component ${x.name}")
     }
   }
 }
-```
+The next case statement ```case Monitor(name, size, scan) =>``` will *match* any Monitor instance (except for any with BrandX because the prior case statement caught all those).  In this case when the component is a Monitor we grab the the parameters of the Monitor class as name, size and scan, and we use those directly to print out this type of monitor.
+
+
 We can begin to see the power of the match capability.  ```def displayComponents(): Unit = {``` declares the displayComponents method that returns nothing.  ```components.foreach {``` uses the foreach method to iterate over each element in the list of components. The code block of the foreach matches on a number of possibilities.
 
-```case Monitor("BrandX", size, _) =>``` This matches a component whose type is Monitor and whose first parameter has the value. Now here is the cool part, the size symbol takes *diagonal* (the second parameter of the Monitor class) to a local variable size.  The size variable is only defined until the next case statement or to the end of the block.
+```case Monitor("BrandX", size, _) =>``` This matches a component whose type is Monitor and whose first parameter has the value. Now here is the cool part, the size symbol takes *diagonal* (the second parameter of the Monitor class) to a local variable size.  The size variable is only defined until the next case statement or to the end of the block.  Note also the use of underscore, the Monitor class has third parameter which must be dealt with, so we use the underscore to stand in for the third parameter but to indicate we do not need to use it's value.  This case statement then has a small code block
+```scala
+        // brandx is square, lists horizontal size, all are 60Hz
+        val diag = size * 1.414
+        println(s"monitor BrandX of diagonal size $diag scan rate is 60")
+```
+that does a little math on the size variable and prints out information on the monitor.
 
+Next we match on Keyboard class instances using ```case Keyboard(name, keys) =>``` as before using match's ability to instantiate local variables with values from the class constructor parameters.  
+
+The next case statement ```case _: Mouse =>``` uses a different match idiom.  The underscore says we have match here but we don't need to reference what was matched, but we do insist that the match be on a instance of class Mouse. See [Underscore the Scala Wildcard](Scala-Things-You-Should-Know#Underscore-the-Scala-Wildcard)
+
+The final case statement ```case x: Component =>``` illustrates matching an instance of Component and assigning that instance to a local variable x.  Since x is a Component the only thing know about it, is that it will have a method name. So we use that method, wrapped in braces because it contains more complex scala code, to print this.
+
+Because we declared components to be a ```List[Component]``` the compiler guarantees we don't have any other classes instances in there.  Otherwise a thorough developer should add an additional match to avoid errors.  That code would look like
+```scala
+    case _ =>
+      // do some error handling here
+```
 ### Case Classes
 ### Regular Expression (Regex) Support
-### The underscore (_) one of the wildest of programmings wildcards
+### The Underscore (_) Scala's Wildcard
 ### Named parameters
 ### String interpolation
 ### Syntactic Sugar
