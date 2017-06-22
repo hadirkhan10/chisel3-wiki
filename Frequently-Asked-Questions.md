@@ -105,7 +105,7 @@ Chisel does not directly support Verilog logic values ```x``` *unknown* and ```z
 ### Get me verilog
 I wrote a module, I want to see the verilog, what do I do?
 Here's a simple hello world module in a file HelloWorld.scala
-```
+```scala
 package intro
 import chisel3._
 class HelloWorld extends Module {
@@ -114,7 +114,7 @@ class HelloWorld extends Module {
 }
 ```
 Add the following
-```
+```scala
 object HelloWorld extends App {
   chisel3.Driver.execute(args, () => new HelloWorld)
 }
@@ -149,7 +149,7 @@ bash> sbt 'run-main intro.HelloWorld --target-dir buildstuff --top-name HelloWor
 
 If for some reason you don't want the Verilog (e.g. maybe you want to run some custom transformations before exporting to Verilog), then use something along these lines (replace Multiplier with your module):
 
-```
+```scala
 package intro
 
 import chisel3._

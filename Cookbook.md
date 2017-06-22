@@ -106,7 +106,7 @@ For information, please see the API documentation
   //   Note that Seq.fill constructs 4 32-bit UInt literals with the value 0
   //   Vec(...) then constructs a Wire of these literals
   //   The Reg is then initialized to the value of the Wire (which gives it the same type)
-  val initRegOfVec = Reg(init = Vec(Seq.fill(4)(0.asUInt(32.W))))
+  val initRegOfVec = Reg(init = Vec(Seq.fill(4)(0.U(32.W))))
 
   // Simple test (cycle comes from superclass)
   when (cycle === 2.U) { assert(regOfVec(2) === 123.U) }
@@ -177,10 +177,10 @@ The easiest way to accomplish this in Chisel would be:
 ```scala
 val z = Wire(UInt(9.W))
 // z := ...
-val unpacked = (new MyBundle).fromBits(z)
+val unpacked = z.asTypeOf(new MyBundle)
 unpacked.a
 unpacked.b
 unpacked.c
 ```
 
-If you **really** need to do this for a once-time case (think thrice! likely you can better structure the code using bundles), then rocket-chip has a [Split utility](https://github.com/ucb-bar/rocket-chip/blob/master/src/main/scala/util/Misc.scala#L118) which can accomplish this.
+If you **really** need to do this for a one-off case (Think thrice! It is likely you can better structure the code using bundles), then rocket-chip has a [Split utility](https://github.com/ucb-bar/rocket-chip/blob/master/src/main/scala/util/Misc.scala#L118) which can accomplish this.

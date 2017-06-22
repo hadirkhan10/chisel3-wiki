@@ -3,6 +3,9 @@ The simplest form of state element supported by Chisel is a positive edge-trigge
 val reg = RegNext(in)
 ```
 This circuit has an output that is a copy of the input signal in delayed by one clock cycle. Note that we do not have to specify the type of Reg as it will be automatically inferred from its input when instantiated in this way. In the current version of Chisel, clock and reset are global signals that are implicitly included where needed.
+
+Note that registers which do not specify an initial value will not change value upon toggling the reset signal.
+
 Using registers, we can quickly define a number of useful circuit constructs. For example, a rising-edge detector that takes a boolean signal in and outputs true when the current value is true and the previous value is false is given by:
 ```scala
 def risingedge(x: Bool) = x && !RegNext(x)
