@@ -250,7 +250,11 @@ Because we declared components to be a ```List[Component]``` the compiler guaran
       // do some error handling here
 ```
 ### Case Classes
-Chisel often uses case classes, a declaration looks something like ```case class Drill(variableSpeed: Boolean, amps: Int, rpm: Int)```.  The case class provides a bunch of useful features, the ones most commonly taken advantage of are:
+Chisel often uses case classes, a declaration looks something like 
+```scala
+case class Drill(variableSpeed: Boolean, amps: Int, rpm: Int)
+```
+The case class provides a bunch of useful features, the ones most commonly taken advantage of are:
 - Allows external access to the class parameters.  These are not accessible by default a class declared with ```class X(y: Int)``` would not allow the programmer to reference ```x.y``` when x is an instance of X created via ```val x = new X(88)```
 - Eliminates the need to use new when instantiating the class, i.e. one can write ```val d = Drill(true, 10, 3000)```
 - Automatically creates an unapply method that supplies access to all of the class Parameters.  This allows a programmer to us match on the class as we discussed in [Scala Match and Matching](Scala-Things-You-Should-Know#scala-match-and-matching). So assuming a match is being done on an instance of Drill, once can write.
@@ -261,9 +265,40 @@ Chisel often uses case classes, a declaration looks something like ```case class
        // someVarThatMightHaveADrill's parameters.
 ```
 
-### Regular Expression (Regex) Support
 ### The Underscore (_) Scala's Wildcard
 ### Named parameters
+When a method is defined in scala, for example
+```scala
+def myMethod(count: Int, wrap: Boolean, wrapValue: Int = 24): Unit = { ... }
+```
+When calling the method, you will often see the parameter names along with the passed in values
+```scala
+myMethod(count = 10, wrap = false, wrapValue = 23)
+```
+For frequently called methods, the parameter ordering may be obvious but for less common methods and, in particular, boolean arguments, including the names with calls can make your code a lot more readable.  Using named parameters can allow you to re-arrange arguments, and in combination with parameters that have a default value, can make it so the caller only has to pass (by name) the specific arguments that do not use the default value.  Parameters to class definitions also used this named argument scheme (they are actually just the parameters to the constructor method for the class).
+
 ### String interpolation
+There are lot of ways of building strings with dynamic content.  The simplest is simply to use the add operator.
+```
+println("my dog " + dogsName + " went to the " + destination)
+```
+But there are a lot of more alternative (possibly more elegant ways) to do the same thing.  The first is the **s** string interpolator.  When a string begins with **s"** any occurrences of a dollar sign followed by a scala variable, or a dollar sign followed by a code block, will have that replaced by the string value of the variable or block.  For our previous example we could make this 
+```
+println(s"my dog $dogsName went to the $destination")
+```
+As an example of using a code block, let's assume we have a list ```val list = List("dog", "cat", "fox")``` and we'd like to print this out with each animal capitalized. 
+```
+println(s"Animal list ${list.map(s => s.capitalize).mkString(" -- ")}")
+```
+would produce the line 
+    Animal list Dog -- Cat -- Fox
+We used the ${...} to execute some scala code on that list.  map converts the list to a new list in which each word has been capitalized, then that new list is changed into a string by taking each element and joining it to the others with the string " -- " between each element.
+
+Another less commonly used interpolator is the **f** which allows printf style formatting specifiers to be included at each interpolation point.
+```
+println(f"$lineNumber%6d ${x.name}%40s ${x.age}%3d")
+```
+Can be used to make some columns that line up nicely.  Scala does have printf too if you really need it.  But be a little careful with that Chisel provides it's own version of printf specifically for debug printing inside an executing simulation.
+
 ### Syntactic Sugar
 
