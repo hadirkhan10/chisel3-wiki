@@ -142,7 +142,7 @@ val x = y match {
   case 0 => "zero"
   case 1 => "one"
   case 2 => "two"
-  case - => "many"
+  case _ => "many"
 }
 println("y is " + x)
 ```
@@ -225,6 +225,7 @@ class System(val components: List[Component]) {
     }
   }
 }
+```
 The next case statement ```case Monitor(name, size, scan) =>``` will *match* any Monitor instance (except for any with BrandX because the prior case statement caught all those).  In this case when the component is a Monitor we grab the the parameters of the Monitor class as name, size and scan, and we use those directly to print out this type of monitor.
 
 
