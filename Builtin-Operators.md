@@ -50,10 +50,12 @@ native Scala equals operator to remain usable.
 ### Width Inference
 
 Chisel provides bit width inference to reduce design effort. Users are encouraged to manually specify widths of ports and registers to prevent any surprises, but otherwise unspecified widths will be inferred by the Firrtl compiler.
+
 For all circuit components declared with unspecified widths, the FIRRTL compiler will infer the minimum possible width that maintains the legality of all its incoming connections. Implicit here is that inference is done in a right to left fashion in the sense of an assignment statement in chisel, i.e. from the left hand side from the right hand side. If a component has no incoming connections, and the width is unspecified, then an error is thrown to indicate that the width could not be inferred.
-For module input ports with unspecified widths, the inferred width is the minimum possible width that maintains the legality of all incoming connec- tions to all instantiations of the module.
+
+For module input ports with unspecified widths, the inferred width is the minimum possible width that maintains the legality of all incoming connections to all instantiations of the module.
 The width of a ground-typed multiplexor expression is the maximum of its two corresponding input widths. For multiplexing aggregate-typed expressions, the resulting widths of each leaf subelement is the maximum of its corresponding two input leaf subelement widths.
-The width of a conditionally valid expression is the width of its input expression.  For the full formal description see the [Firrtl Spec](https://github.com/freechipsproject/firrtl/blob/master/spec/spec.pdf)
+The width of a conditionally valid expression is the width of its input expression.  For the full formal description see the [Firrtl Spec](https://github.com/freechipsproject/firrtl/blob/master/spec/spec.pdf).
 
 Hardware operators have output widths as defined by the following set of rules:
 
