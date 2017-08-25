@@ -74,12 +74,22 @@ If the same `Mem` address is both written and sequentially read on the same cloc
 edge, or if a sequential read enable is cleared, then the read data is
 undefined.
 
-`Mem` and `SyncReadMem` also support write masks for subword writes.  A given bit is written if
-the corresponding mask bit is set.
+### Masks
 
-``` scala
-val ram = Mem(256, UInt(32.W))
-when (wen) { ram.write(waddr, wdata, wmask) }
+Chisel memories also support write masks for subword writes. Chisel will infer masks if the data type of the memory is a vector. To infer a mask, specify the `mask` argument of the `write` function which creates write ports. A given masked length is written if the corresponding mask bit is set. For example, in the example below, if the 0th bit of mask is true, it will write the lower 8 bits of the corresponding address.
+
+```scala
+val dataOut = Wire(Vec(4, UInt(8.W))
+val dataIn = Wire(Vec(4, UInt(8.W))
+val mask = Wire(Vec(4, Bool()))
+
+// ... assign values ...
+
+// Create a 32-bit wide memory that is byte-masked.
+val mem = SyncReadMem(1024, Vec(4, UInt(8.W))
+// Create one masked write port and one read port.
+mem.write(writeAddr, dataIn, mask)
+dataOut := mem.read(readAddr, enable).asUInt
 ```
 
 [Prev(State Elements)](State-Elements) [Next(Interfaces \& Bulk Connections)](Interfaces-Bulk-Connections)
