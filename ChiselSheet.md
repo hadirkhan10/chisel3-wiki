@@ -1,3 +1,13 @@
+## Small table
+
+| Scala (Compile-time) | Chisel (Hardware/Run-time) |
+|----------------------|----------------------------|
+| Int/BigInt           | UInt, SInt                 |
+| Boolean              | Bool                       |
+| Seq/Array/Vector     | Vec                        |
+
+## Big table
+
 Notation/explanations
 
 * Compile-time construct (Scala). Does not appear directly in generated hardware. Used during the process of constructing hardware (e.g. parameters).
