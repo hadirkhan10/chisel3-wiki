@@ -10,8 +10,6 @@ The ScalaDoc for Chisel3 is available at the [API tab on the Chisel web site.](h
 
 For useful design patterns, see the [Cookbook](Cookbook).
 
-For cool new features on the leading and bleeding edge, see [Experimental Features](Experimental-Features).
-
 #### Other interesting pages:
 * [Frequently Asked Questions](Frequently-Asked-Questions)
 * [Printing in Chisel](Printing-in-Chisel)
@@ -21,6 +19,7 @@ For cool new features on the leading and bleeding edge, see [Experimental Featur
 * [Developers' Troubleshooting Guide](troubleshooting)
 * [Chisel Toolchain](chisel-toolchain)
 * [Useful SBT commands](useful-sbt-commands)
+* [Chisel Cheatsheet for Hardware Engineers](ChiselSheet)
 * [Scala Things You Should Know](Scala-Things-You-Should-Know)
 * [Scala-land vs. Chisel-land](Scala-land-vs.-Chisel-land)
 * [CS250 a Chisel+Scala Primer](CS250-Chisel+Scala-Primer)
