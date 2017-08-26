@@ -89,7 +89,7 @@ val mask = Wire(Vec(4, Bool()))
 val mem = SyncReadMem(1024, Vec(4, UInt(8.W))
 // Create one masked write port and one read port.
 mem.write(writeAddr, dataIn, mask)
-dataOut := mem.read(readAddr, enable).asUInt
+dataOut := mem.read(readAddr, enable)
 ```
 
 [Prev(State Elements)](State-Elements) [Next(Interfaces \& Bulk Connections)](Interfaces-Bulk-Connections)
