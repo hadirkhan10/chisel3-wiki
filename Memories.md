@@ -79,14 +79,17 @@ undefined.
 Chisel memories also support write masks for subword writes. Chisel will infer masks if the data type of the memory is a vector. To infer a mask, specify the `mask` argument of the `write` function which creates write ports. A given masked length is written if the corresponding mask bit is set. For example, in the example below, if the 0th bit of mask is true, it will write the lower 8 bits of the corresponding address.
 
 ```scala
-val dataOut = Wire(Vec(4, UInt(8.W))
-val dataIn = Wire(Vec(4, UInt(8.W))
+val dataOut = Wire(Vec(4, UInt(8.W)))
+val dataIn = Wire(Vec(4, UInt(8.W)))
 val mask = Wire(Vec(4, Bool()))
+val enable = Wire(Bool())
+val readAddr = Wire(UInt(10.W))
+val writeAddr = Wire(UInt(10.W))
 
 // ... assign values ...
 
 // Create a 32-bit wide memory that is byte-masked.
-val mem = SyncReadMem(1024, Vec(4, UInt(8.W))
+val mem = SyncReadMem(1024, Vec(4, UInt(8.W)))
 // Create one masked write port and one read port.
 mem.write(writeAddr, dataIn, mask)
 dataOut := mem.read(readAddr, enable)
