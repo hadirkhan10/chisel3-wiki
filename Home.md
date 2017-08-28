@@ -2,7 +2,7 @@
 
 If you are completely new to Chisel, check out [A Short Users Guide to Chisel](Short-Users-Guide-to-Chisel).
 
-Chisel is constantly being improved.  See the latest [Release Notes](release-notes-17-05-03).
+Chisel is constantly being improved.  See the latest [Release Notes](release-notes-17-08-16).
 
 For migrating from Chisel 2 to Chisel 3, check out [Chisel3 vs Chisel2](Chisel3-vs-Chisel2).
 
