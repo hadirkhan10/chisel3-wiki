@@ -12,17 +12,19 @@ It's tempting when one has created some Chisel literal to try and use the value 
  subsequent Scala code, perhaps as a parameter or iteration control.  Although in
   some cases this is possible, typically it just leads to confusion and unpredictable behavior.  Don't do this.
 ```scala
-for(i < 0 until 10) {
-  val enable := (i %2 == 0).B
-  if(enable.litValue()) {
+for (i < 0 until 10) {
+  val enable := (i % 2 == 0).B
+  if (enable.litValue()) {
     ...
   }
 ```
 
 ### Keep a clear distinction between types and values
+(Note we are working on clarifying this distinction and some of the "bad practice" examples below will not work in future versions of Chisel)
+
 Many of the Chisel constructs require generators, that is, functions or values that are used specify widths and other information. For example: The first argument to the Register constructor is used as the type of the register. It is legal to specify this with a UInt with a specified value as below.
 ```scala
-  val accumulator = Reg(UInt(42.W))
+  val accumulator = Reg(42.U)
 ```
 This does create an accumulator with sufficient width to accommodate the number 42, but it does not initialize the register to that value.  Better to use
 ```scala
