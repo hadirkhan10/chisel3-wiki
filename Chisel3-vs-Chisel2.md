@@ -29,6 +29,23 @@ modifications are:
 
    Notice the address register is now internal to the SeqMem(), but the data
    will still return on the subsequent cycle.
+   
+   Generating Veriolg with
+   ```scala
+   object Hello {
+     def main(args: Array[String]): Unit = {
+       chiselMain(Array("--backend", "v"), () => Module(new Hello()))
+     }
+   }
+   ```
+   becomes (in Chisel3):
+   ```scala
+   object Hello {
+     def main(args: Array[String]): Unit = {
+       chisel3.Driver.execute(Array[String](), () => new Hello())
+     }
+   }
+   ```
 
 Please refer to the [Chisel3 compatibility section](https://github.com/ucb-bar/chisel#chisel3)
 for instructions on preparing your Chisel2 designs for Chisel3.
