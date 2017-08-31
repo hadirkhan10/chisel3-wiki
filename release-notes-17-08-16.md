@@ -30,3 +30,4 @@
 ### Interpreter
 
 - ReadWrite memory was not processing input signals correctly setValue for ReadWriteMemory did not have proper match list fieldDependencies for ReadWriteMemory had wrong label for wmask and was missing wdata Added test for read write memory [Firrtl-interpreter PR (#88)]:(https://github.com/freechipsproject/firrtl-interpreter/pull/88)
+
