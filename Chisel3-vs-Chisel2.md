@@ -30,7 +30,7 @@ modifications are:
    Notice the address register is now internal to the SeqMem(), but the data
    will still return on the subsequent cycle.
    
-   Generating Veriolg with
+ - Generating Verilog with
    ```scala
    object Hello {
      def main(args: Array[String]): Unit = {
@@ -51,8 +51,8 @@ Please refer to the [Chisel3 compatibility section](https://github.com/ucb-bar/c
 for instructions on preparing your Chisel2 designs for Chisel3.
 
 ## Deprecated Usage
-*  Vec(Reg) should be replaced with Reg(Vec),
-*  type-only vals (no associated data) must be wrapped in a Wire() if they will be the destination of a wiring operation (":=" or " < >"),
+*  `Vec(Reg)` should be replaced with `Reg(Vec)`,
+*  type-only vals (no associated data) must be wrapped in a `Wire()` if they will be the destination of a wiring operation (":=" or " < >"),
 *  masked bit patterns ('b??') should be created using BitPat(), not UInt() or Bits(),
 *  the `clone` method required for parameterized Bundles has been renamed `cloneType`,
 *  the con and alt inputs to a Mux must be type-compatible - both signed or both unsigned,
@@ -75,6 +75,9 @@ To use the Scala `Predef.printf()`, you need to qualify it with `Predef`.
 *  in Chisel2, bulk-connects `<>` with unconnected source components do not update connections from the unconnected components.
 ** In Chisel3, bulk-connects strictly adhere to last connection semantics and unconnected OUTPUTs will be connected to INPUTs resulting in the assignment of random values to those inputs.
 * In Chisel3, adding hardware inside `BlackBox` for simulation is no longer supported. (#289)
+
+## Further changes
+*  The clock signal was renamed from `clk` to `clock` in Chisel3.
 
 ## Packaging
 Chisel3 is implemented as several packages.
