@@ -89,6 +89,7 @@ Use the builtin function asUInt
 
 ## How do I create a Vector of Registers?
 
+**Rule!  Use Reg of Vec not Vec of Reg!** 
 You create a [Reg of type Vec](#how-do-i-create-a-reg-of-type-vec). Because Vecs are a *type* (like `UInt`, `Bool`) rather than a *value*, we must bind the Vec to some concrete *value*.
 
 ## How do I create a Reg of type Vec?
