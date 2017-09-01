@@ -23,11 +23,11 @@ modifications are:
    becomes (in Chisel3):
    ```scala
    val addr = UInt()
-   val mem = SeqMem(1024, UInt(8.W))
+   val mem = SyncReadMem(1024, UInt(8.W))
    val dout = mem.read(addr, enable)
    ```
 
-   Notice the address register is now internal to the SeqMem(), but the data
+   Notice the address register is now internal to the SyncReadMem(), but the data
    will still return on the subsequent cycle.
    
  - Generating Verilog with
