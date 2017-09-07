@@ -1,4 +1,6 @@
 # Developer Documentation
 
-* [Embedding Chisel as an sbt subproject](sbt-subproject.md)
-* [Test Coverage](Test-Coverage.md)
+Tips and tricks for Chisel developers.
+
+* [Embedding Chisel as an sbt subproject](sbt-subproject)
+* [Test Coverage](Test-Coverage)
