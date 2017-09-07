@@ -12,6 +12,8 @@ For useful design patterns, see the [Cookbook](Cookbook).
 
 For cool new features on the leading and bleeding edge, see [Experimental Features](Experimental-Features).
 
+If you're developing a Chisel library, see [Developers](Developers).
+
 #### Other interesting pages:
 * [Frequently Asked Questions](Frequently-Asked-Questions)
 * [Printing in Chisel](Printing-in-Chisel)

@@ -25,8 +25,8 @@
   1. [Chisel3 vs Chisel2](Chisel3-vs-Chisel2)
   1. [Acknowledgements](Acknowledgements)
 * [Developers](Developers)
-  1. [sbt subproject](Developers/sbt-subproject)
-  1. [Test Coverage](Developers/Test-Coverage)
+  1. [sbt subproject](sbt-subproject)
+  1. [Test Coverage](Test-Coverage)
   
  **Release Notes**
    * [03/23/17](release-notes-17-03-23)
