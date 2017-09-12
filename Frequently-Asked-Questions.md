@@ -3,7 +3,7 @@
 * [Why DecoupledIO instead of ReadyValidIO?](#why-decoupledio-instead-of-readyvalidio)
 * [Why do I have to wrap module instantiations in `Module(...)`?](#why-do-i-have-to-wrap-module-instantiations-in-module)
 * [Why Chisel?](#why-chisel)
-* [Does Chisel support X and Z logic values](#does-chisel-support-x-and-z-logic-values)
+* [Does Chisel support X and Z logic values?](#does-chisel-support-x-and-z-logic-values)
 * [I just want some Verilog; what do I do?](#get-me-verilog)
 * [I just want some FIRRTL; what do I do?](#get-me-firrtl)
 
@@ -163,6 +163,8 @@ chisel3.Driver.execute(Array[String](), () => new HelloWorld)
 Total FIRRTL Compile Time: 838.8 ms
 res3: chisel3.ChiselExecutionResult = [...]
 ```
+
+As before, there should be a HelloWorld.v file in the current directory.
 
 ### Get me FIRRTL
 
