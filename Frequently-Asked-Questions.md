@@ -102,9 +102,11 @@ domain-specific languages.
 
 Chisel does not directly support Verilog logic values ```x``` *unknown* and ```z``` *high-impedance*.  There are a number of reasons to want to avoid these values.  See:[The Dangers of Living With An X](http://infocenter.arm.com/help/topic/com.arm.doc.arp0009a/Verilog_X_Bugs.pdf) and [Malicious LUT: A stealthy FPGA Trojan injected and triggered by the design flow](http://ieeexplore.ieee.org/document/7827620/).  Chisel has it's own eco-system of unit and functional testers that limit the need for ```x``` and ```z``` and their omission simplify language implementation, design, and testing.  The circuits created by chisel do not preclude developers from using ```x``` and ```z``` in downstream toolchains as they see fit.
 
-### Get me verilog
-I wrote a module, I want to see the verilog, what do I do?
-Here's a simple hello world module in a file HelloWorld.scala
+### Get me Verilog
+I wrote a module and I want to see the Verilog; what do I do?
+
+Here's a simple hello world module in a file HelloWorld.scala.
+
 ```scala
 package intro
 import chisel3._
@@ -143,6 +145,23 @@ This will return a comprehensive usage line with available options.
 For example to place the output in a directory name buildstuff use
 ```
 bash> sbt 'run-main intro.HelloWorld --target-dir buildstuff --top-name HelloWorld'
+```
+
+Alternatively, you can also use the sbt console to invoke the Verilog driver:
+
+```
+$ sbt
+> console
+[info] Starting scala interpreter...
+[info] 
+Welcome to Scala 2.11.8 (OpenJDK 64-Bit Server VM, Java 1.8.0_121).
+Type in expressions for evaluation. Or try :help.
+scala> chisel3.Driver.execute(Array[String](), () => new HelloWorld)
+chisel3.Driver.execute(Array[String](), () => new HelloWorld)
+[info] [0.014] Elaborating design...
+[info] [0.306] Done elaborating.
+Total FIRRTL Compile Time: 838.8 ms
+res3: chisel3.ChiselExecutionResult = [...]
 ```
 
 ### Get me FIRRTL
