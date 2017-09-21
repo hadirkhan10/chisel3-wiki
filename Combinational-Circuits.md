@@ -46,7 +46,18 @@ Chisel also supports wires as hardware nodes to which one can assign values or c
 val myNode = Wire(UInt(8.W))
 when (isReady) {
   myNode := 255.U
-} .elsewhen {
+} .otherwise {
+  myNode := 0.U
+}
+```
+
+```scala
+val myNode = Wire(UInt(8.W))
+when (input > 128.U) {
+  myNode := 255.U
+} .elsewhen (input > 64.U) {
+  myNode := 1.U
+} .otherwise {
   myNode := 0.U
 }
 ```
