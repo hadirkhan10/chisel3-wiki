@@ -1,8 +1,9 @@
 ### Debugging using the Interpreter REPL
 
 This page describes a simple debugging technique using the Firrtl-Interpreter REPL.
-It's scala based circuit simulator that consumes a low Firrtl file and provides a simple command line
-interface for poking and peeking values, single and multi-stepping the program.
+It's a Scala based circuit simulator that consumes a low Firrtl file and provides a simple command line
+interface for poking and peeking values, single and multi-stepping the program and otherwise controlling and
+monitoring the circuit's execution.
 
 ### Getting Started
 
@@ -21,7 +22,7 @@ testOnly gcd.GCDTester -- -z "calculate proper greatest common"
 ```
 >This runs the first test, with both the interpreter and verilator backends.
 >The *-- -z "string"* limits it to the first test in the suite.
->By the way, you are now one of the few people in the universe who knows how to run a specific scala test from the sbt command line.
+>By the way, you are now one of the few people in the universe who knows how to run a specific scalatest from the sbt command line.
 
 You should see something like this:
 ``` 
@@ -78,7 +79,7 @@ class GCD extends Module {
 }
 ```
 Using your favorite code editor, let's break it as follows.
-Currently the declarations of the ```x``` and ```y``` are using Chisels width inference to determine their number of bits.
+Currently the declarations of the ```x``` and ```y``` are using Chisel's width inference to determine their number of bits.
 Change them to a fixed size:
 ```scala
   val x  = Reg(UInt(4.W))

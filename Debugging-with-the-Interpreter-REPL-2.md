@@ -1,6 +1,7 @@
 ### Debugging using the Interpreter REPL Page 2
+## Using the REPL to debug a problem Module
 
-If you are here you have completed [Debugging with the Interpreter-REPL Page 1](Debugging-with-the-Interpreter-REPL-1)
+If you are here you have completed [Debugging with the Interpreter-REPL Page 1](Debugging-with-the-Interpreter-REPL-1).
 You should hopefully be looking at the Repl's prompt of ```>>```
 
 ### What can you do?
@@ -35,7 +36,8 @@ ordered-exec [true|false|toggle]                 set evaluator execute circuit i
 help                                             show available commands
 quit                                             exit the interpreter
 ```
-
+That's a decent number of choices.
+We will walk you through the more common ones, and you should be able to figure out the rest with a little practice.
 ### Show me the circuit I'm working on
 
 Type: show lofirrtl 
