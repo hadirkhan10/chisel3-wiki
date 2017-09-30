@@ -185,4 +185,4 @@ unpacked.b
 unpacked.c
 ```
 
-If you **really** need to do this for a one-off case (Think thrice! It is likely you can better structure the code using bundles), then rocket-chip has a [Split utility](https://github.com/ucb-bar/rocket-chip/blob/master/src/main/scala/util/Misc.scala#L118) which can accomplish this.
+If you **really** need to do this for a one-off case (Think thrice! It is likely you can better structure the code using bundles), then rocket-chip has a [Split utility](https://github.com/freechipsproject/rocket-chip/blob/723af5e6b69e07b5f94c46269a208a8d65e9d73b/src/main/scala/util/Misc.scala#L140) which can accomplish this.
