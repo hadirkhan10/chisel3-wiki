@@ -7,7 +7,7 @@
   - cloneType is now marked (through comments only) as an internal API.
   - chiselCloneType is deprecated (and changed to cloneTypeFull internally, analogous to cloneTypeWidth).
   - chiselTypeOf(data) introduced as the external API to get a chisel type from a hardware object
-  - ####Intended usage:
+  - #### Intended usage:
        Cloning is an implementation detail, and chisel types and hardware objects both should act as immutable types,
        with operations like Input(...), Reg(...), etc returning a copy and leaving the original unchanged.
        Hence, the clone operations are all deprecated.
