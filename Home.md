@@ -16,6 +16,7 @@ If you're developing a Chisel library, see [Developers](Developers).
 
 #### Other interesting pages:
 * [Frequently Asked Questions](Frequently-Asked-Questions)
+* [Experimental : Interval Types](Interval-Type-in-Chisel-Experimental)
 * [Printing in Chisel](Printing-in-Chisel)
 * [How to use IntelliJ to run chisel3](intellij-setup)
 * [Tips and Tricks](tips-and-tricks)
