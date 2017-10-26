@@ -24,4 +24,17 @@ class MultiClockModule extends Module {
 }
 ```
 
+You can also instantiate modules in another clock domain:
+
+```scala
+class MultiClockModule extends Module {
+  val io = IO(new Bundle {
+    val clockB = Input(Clock())
+    val stuff = Input(Bool())
+  })
+  val clockB_child = withReset(io.clockB)( Module(new ChildModule) )
+  clockB_child.io.in := io.stuff
+}
+```
+
 [Prev(Polymorphism and Parameterization)](Polymorphism-and-Parameterization) [Next(Chisel3 vs Chisel2)](Chisel3-vs-Chisel2)
