@@ -32,7 +32,7 @@ class MultiClockModule extends Module {
     val clockB = Input(Clock())
     val stuff = Input(Bool())
   })
-  val clockB_child = withReset(io.clockB)( Module(new ChildModule) )
+  val clockB_child = withClock(io.clockB)( Module(new ChildModule) )
   clockB_child.io.in := io.stuff
 }
 ```
