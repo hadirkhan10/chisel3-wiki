@@ -23,6 +23,7 @@
   1. [Multiple Clock Domains](Multiple-Clock-Domains)
   1. [Annotations: Extending Chisel and Firrtl](Annotations-Extending-Chisel-and-Firrtl)
   1. [Chisel3 vs Chisel2](Chisel3-vs-Chisel2)
+  1. [Unconnected Wires](Unconnected-Wires)
   1. [Acknowledgements](Acknowledgements)
 * [Developers](Developers)
   1. [sbt subproject](sbt-subproject)
