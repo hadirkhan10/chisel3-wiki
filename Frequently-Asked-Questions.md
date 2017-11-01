@@ -7,7 +7,7 @@
 * [I just want some Verilog; what do I do?](#get-me-verilog)
 * [I just want some FIRRTL; what do I do?](#get-me-firrtl)
 * [Why doesn't Chisel tell me which wires aren't connected?](#Why-doesn't-Chisel-tell-me-which-wires-aren't-connected?)
-* [What does `Reference ... is not fully initialized.` mean?](#Find-unconnected-wires)
+* [What does `Reference ... is not fully initialized.` mean?](#find-unconnected-wires)
 
 ### How do I do this (like that in Verilog) in Chisel?
 
