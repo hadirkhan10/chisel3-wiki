@@ -193,11 +193,11 @@ sbt 'run-main intro.Main'
 ### Why doesn't Chisel tell me which wires aren't connected?
 
 As of commit [c313e13](https://github.com/freechipsproject/chisel3/commit/c313e137d4e562ef20195312501840ceab8cbc6a) it can!
-Please visit the wiki page [Unconnected Wires](Unconnected-Wires.md) for details.
+Please visit the wiki page [Unconnected Wires](Unconnected-Wires) for details.
 
 ### Find unconnected wires
 
 In Chisel2 compatibility mode (`NotStrict` compile options), chisel generates firrtl code that disables firrtl's initialized wire checks.
 In pure chisel3 (`Strict` compile options), the generated firrtl code does not contain these disablers (`is invalid`).
 Output wires that are not driven (not connected) are reported by firrtl as `not fully initialized`.
-Please visit the wiki page [Unconnected Wires](Unconnected-Wires.md) for details on solving the problem.
+Please visit the wiki page [Unconnected Wires](Unconnected-Wires) for details on solving the problem.
