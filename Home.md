@@ -28,6 +28,7 @@ If you're developing a Chisel library, see [Developers](Developers).
 * [Scala Things You Should Know](Scala-Things-You-Should-Know)
 * [Scala-land vs. Chisel-land](Scala-land-vs.-Chisel-land)
 * [CS250 a Chisel+Scala Primer](CS250-Chisel+Scala-Primer)
+* [Unconnected Wires](Unconnected-Wires)
 * Debugging with the Interpreter
   * [Debugging with the Interpreter-REPL](Debugging-with-the-Interpreter-REPL-1)
   * [Using the REPL to debug a problem Module](Debugging-with-the-Interpreter-REPL-2)
