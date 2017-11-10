@@ -2,7 +2,7 @@ The simplest form of state element supported by Chisel is a positive edge-trigge
 ```scala
 val reg = RegNext(in)
 ```
-This circuit has an output that is a copy of the input signal in delayed by one clock cycle. Note that we do not have to specify the type of Reg as it will be automatically inferred from its input when instantiated in this way. In the current version of Chisel, clock and reset are global signals that are implicitly included where needed.
+This circuit has an output that is a copy of the input signal `in` delayed by one clock cycle. Note that we do not have to specify the type of Reg as it will be automatically inferred from its input when instantiated in this way. In the current version of Chisel, clock and reset are global signals that are implicitly included where needed.
 
 Note that registers which do not specify an initial value will not change value upon toggling the reset signal.
 
