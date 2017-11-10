@@ -10,7 +10,7 @@ Using registers, we can quickly define a number of useful circuit constructs. Fo
 ```scala
 def risingedge(x: Bool) = x && !RegNext(x)
 ```
-Counters are an important sequential circuit. To construct an up-counter that counts up to a maxi- mum value, max, then wraps around back to zero (i.e., modulo max+1), we write:
+Counters are an important sequential circuit. To construct an up-counter that counts up to a maximum value, max, then wraps around back to zero (i.e., modulo max+1), we write:
 ```scala
 def counter(max: UInt) = {
   val x = Reg(init = 0.asUInt(max.getWidth))
