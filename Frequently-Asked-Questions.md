@@ -23,7 +23,7 @@ We have two main branches for each main Chisel project:
 `master` is the main development branch and it is updated frequently (often several times a day).
 Although we endeavour to keep the `master` branches in sync, they may drift out of sync for a day or two.
 We do not publish the `master` branches.
-If you wish to use them, you need to clone the GitHub repositories and use `sbt publish-local` to make them available on your local machine.
+If you wish to use them, you need to clone the GitHub repositories and use `sbt publishLocal` to make them available on your local machine.
 
 The `release` branches are updated less often (currently bi-weekly) and we try to guarantee they are in sync.
 We publish these to Sonatype/Maven on a bi-weekly basis.
@@ -32,7 +32,7 @@ In general, you can not mix `release` and `master` branches and assume they will
 
 The default branches for the user-facing repositories (chisel-template and chisel-tutorial) are the `release` branches - these should always *just work* for new users as they use the `release` branches of chisel projects.
 
-If you want to use something more current than the `release` branch, you should `git checkout master` for all the chisel repos you intend to use, then `sbt publish-local` them in this order:
+If you want to use something more current than the `release` branch, you should `git checkout master` for all the chisel repos you intend to use, then `sbt publishLocal` them in this order:
 
 - firrtl
 - firrtl-interpreter
