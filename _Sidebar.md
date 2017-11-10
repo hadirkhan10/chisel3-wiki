@@ -43,3 +43,4 @@
    * [09/27/17](release-notes-17-09-27)
    * [10/06/17](release-notes-17-10-06)
    * [10/27/17](release-notes-17-10-27)
+   * [11/09/17](release-notes-17-11-09)
