@@ -40,7 +40,7 @@ IBUFDS #(.DIFF_TERM("TRUE"), .IOSTANDARD("DEFAULT")) ibufds (
 ```
 
 ### Providing Implementations for Blackboxes
-The Chisel Execution Harness see [Running Stuff](Running-Stuff) provides the following ways of delivering the code underlying the blackbox.  Consider the following blackbox that adds two real numbers together.  The numbers are represented in chisel3 as 64-bit unsigned integers.
+The Chisel Execution Harness (see [Running Stuff](Running-Stuff)) provides the following ways of delivering the code underlying the blackbox.  Consider the following blackbox that adds two real numbers together.  The numbers are represented in chisel3 as 64-bit unsigned integers.
 ```scala
 class BlackBoxRealAdd extends BlackBox {
   val io = IO(new Bundle() {
