@@ -1,7 +1,7 @@
 _This section is advanced and can be skipped at first reading._
 
 Scala is a strongly typed language and uses parameterized types to specify generic functions and classes.
-In this section, we show how Chisel users can de-fine their own reusable functions and classes using parameterized classes.
+In this section, we show how Chisel users can define their own reusable functions and classes using parameterized classes.
 
 # Parameterized Functions
 
