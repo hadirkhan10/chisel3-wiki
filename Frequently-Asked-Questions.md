@@ -190,6 +190,24 @@ Run it with:
 sbt 'run-main intro.Main'
 ```
 
+Alternatively, you can also use the sbt console to invoke the FIRRTL driver directly (replace HelloWorld with your module name):
+
+```
+$ sbt
+> console
+[info] Starting scala interpreter...
+[info] 
+Welcome to Scala 2.11.11 (OpenJDK 64-Bit Server VM, Java 1.8.0_151).
+Type in expressions for evaluation. Or try :help.
+scala> chisel3.Driver.dumpFirrtl(chisel3.Driver.elaborate(() => new HelloWorld), Option(new java.io.File("output.fir")))
+chisel3.Driver.dumpFirrtl(chisel3.Driver.elaborate(() => new HelloWorld), Option(new java.io.File("output.fir")))
+[info] [0.000] Elaborating design...
+[info] [0.001] Done elaborating.
+res3: java.io.File = output.fir
+```
+
+
+
 ### Why doesn't Chisel tell me which wires aren't connected?
 
 As of commit [c313e13](https://github.com/freechipsproject/chisel3/commit/c313e137d4e562ef20195312501840ceab8cbc6a) it can!
