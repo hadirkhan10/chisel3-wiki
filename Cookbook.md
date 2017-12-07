@@ -10,6 +10,7 @@ Please note that these examples make use of [Chisel's scala-style printing](Prin
 * [How do I create a Reg of type Vec?](#how-do-i-create-a-reg-of-type-vec)
 * [How do I create a finite state machine?](#how-do-i-create-a-finite-state-machine)
 * [How do I unpack a value ("reverse concatenation") like in Verilog?](#how-do-i-unpack-a-value-reverse-concatenation-like-in-verilog)
+* [How do I do subword assignment (assign to some bits in a UInt)?](#how-do-i-do-subword-assignment-assign-to-some-bits-in-a-uint)
 
 ### How do I create a UInt from an instance of a Bundle?
 
@@ -186,3 +187,34 @@ unpacked.c
 ```
 
 If you **really** need to do this for a one-off case (Think thrice! It is likely you can better structure the code using bundles), then rocket-chip has a [Split utility](https://github.com/freechipsproject/rocket-chip/blob/723af5e6b69e07b5f94c46269a208a8d65e9d73b/src/main/scala/util/Misc.scala#L140) which can accomplish this.
+
+### How do I do subword assignment (assign to some bits in a UInt)?
+
+Example:
+```scala
+class TestModule extends Module {
+  val io = IO(new Bundle {
+    val in = Input(UInt(10.W))
+    val bit = Input(Bool())
+    val out = Output(UInt(10.W))
+  })
+  io.out(0) := io.bit
+}
+```
+
+Chisel3 does not support subword assignment. We find that this type of thing can usually be better expressed with aggregate/structured types: Bundles and Vecs.
+
+If you must express it this way, you can blast your UInt to a Vec of Bools and back:
+
+```scala
+class TestModule extends Module {
+  val io = IO(new Bundle {
+    val in = Input(UInt(10.W))
+    val bit = Input(Bool())
+    val out = Output(UInt(10.W))
+  })
+  val bools = VecInit(io.in.toBools)
+  bools(0) := io.bit
+  io.out := bools.asUInt
+}
+```
