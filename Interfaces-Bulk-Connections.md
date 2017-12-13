@@ -70,4 +70,6 @@ where <> bulk connects interfaces of opposite gender between sibling modules or 
 
 Bulk connections connect leaf ports of the same name to each other. If the names do not match or are missing, Chisel does not generate a connection.
 
+Caution: bulk connections should only be used with **directioned elements** (like IOs), and is not magical (e.g. [chisel3#603](https://github.com/freechipsproject/chisel3/issues/603).
+
 [Prev(Memories)](Memories) [Next(Functional Module Creation)](Functional-Module-Creation)
