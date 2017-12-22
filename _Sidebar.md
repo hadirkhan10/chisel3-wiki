@@ -30,17 +30,5 @@
   1. [Test Coverage](Test-Coverage)
   
  **Release Notes**
-   * [03/23/17](release-notes-17-03-23)
-   * [04/12/17](release-notes-17-04-12)
-   * [05/03/17](release-notes-17-05-03)
-   * [05/16/17](release-notes-17-05-16)
-   * [05/25/17](release-notes-17-05-25)
-   * [05/30/17](release-notes-17-05-30)
-   * [06/22/17](release-notes-17-06-22)
-   * [07/19/17](release-notes-17-07-19)
-   * [08/16/17](release-notes-17-08-16)
-   * [09/14/17](release-notes-17-09-14)
-   * [09/27/17](release-notes-17-09-27)
-   * [10/06/17](release-notes-17-10-06)
-   * [10/27/17](release-notes-17-10-27)
-   * [11/09/17](release-notes-17-11-09)
+ 
+ With the 3.0.0 release of Chisel3 on 11/24/17, release notes have been moved to the [GitHub repository](https://github.com/freechipsproject/chisel3/releases).
