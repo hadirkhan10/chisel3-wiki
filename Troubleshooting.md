@@ -24,7 +24,7 @@ The single argument, multi-function object/constructors from chisel2 have been r
 It was felt these were too prone to error and made it difficult to diagnose error conditions in chisel3 code.
 
 In chisel3, the single argument to the `UInt`/`SInt` object/constructor specifies the *width* and must be a `Width` type.
-Although the are no automatic conversions from `Int` to `Width`, an `Int` may be converted to a `Width` by applying the `W` method to an `Int`.
+Although there are no automatic conversions from `Int` to `Width`, an `Int` may be converted to a `Width` by applying the `W` method to an `Int`.
 In chisel3, the above code becomes:
 ```scala
 class TestBlock extends Module {
