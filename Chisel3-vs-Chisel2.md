@@ -14,6 +14,15 @@ modifications are:
    val wire = Wire(UInt(15.W))
    ```
 
+ - I/O declaration style:
+   ```scala
+   val done = Bool(OUTPUT)
+   ```
+   becomes (in Chisel3):
+   ```scala
+   val wire = Output(Bool())
+   ```
+
  - Sequential memories:
    ```scala
    val addr = Reg(UInt())
@@ -46,6 +55,11 @@ modifications are:
      }
    }
    ```
+
+ - Package changes:
+   - Chisel.log2Ceil -> chisel3.util.log2Ceil
+   - BitPat
+   - Decoupled is also in chisel3.util
 
 Please refer to the [Chisel3 compatibility section](https://github.com/ucb-bar/chisel#chisel3)
 for instructions on preparing your Chisel2 designs for Chisel3.
