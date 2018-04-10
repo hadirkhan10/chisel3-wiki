@@ -5,14 +5,14 @@ Chisel provides facilities for creating both read only and read/write memories.
 Users can define read only memories with a `Vec`:
 
 ``` scala
-    Vec(inits: Seq[T])
-    Vec(elt0: T, elts: T*)
+    VecInit(inits: Seq[T])
+    VecInit(elt0: T, elts: T*)
 ```
 
 where `inits` is a sequence of initial `Data` literals that initialize the ROM. For example,  users cancreate a small ROM initialized to 1, 2, 4, 8 and loop through all values using a counter as an address generator as follows:
 
 ``` scala
-    val m = Vec(Array(1.U, 2.U, 4.U, 8.U))
+    val m = VecInit(Array(1.U, 2.U, 4.U, 8.U))
     val r = m(counter(m.length.U))
 ```
 
@@ -24,7 +24,7 @@ We can create an *n* value sine lookup table using a ROM initialized as follows:
         (0 until n).map(i => (i*2*Pi)/(n.toDouble-1) - Pi)
       val inits = 
         times.map(t => round(amp * sin(t)).asSInt(32.W))
-      Vec(inits)
+      VecInit(inits)
     }
     def sinWave(amp: Double, n: Int) = 
       sinTable(amp, n)(counter(n.U))
