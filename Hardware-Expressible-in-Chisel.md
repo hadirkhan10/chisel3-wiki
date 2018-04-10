@@ -1,4 +1,4 @@
-While Chisel supports binary logic, Chisel can support analog and tri-state wires with the appropriate `BlackBox`ing.
+While Chisel focuses on binary logic, Chisel can support analog and tri-state wires with the appropriate `BlackBox`ing.
 
 We focus on binary logic designs as they constitute the vast majority of designs in practice. Tri-state logic are poorly supported standard industry flows and require special/controlled hard macros in order to be done.
 
