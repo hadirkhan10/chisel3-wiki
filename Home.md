@@ -14,6 +14,8 @@ For cool new features on the leading and bleeding edge, see [Experimental Featur
 
 If you're developing a Chisel library, see [Developers](Developers).
 
+Interested in the Future of Chisel, see [Governance](Governance).
+
 #### Other interesting pages:
 * [Frequently Asked Questions](Frequently-Asked-Questions)
 * [Experimental : Interval Types](Interval-Type-in-Chisel-Experimental)
