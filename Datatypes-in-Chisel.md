@@ -26,6 +26,9 @@ strings passed to constructors for the types:
 -8.S   // negative decimal 4-bit lit from Scala Int.
 5.U    // unsigned decimal 3-bit lit from Scala Int.
 
+8.U(4.W) // 4-bit unsigned decimal, value 8.
+-152.S(32.W) // 32-bit signed decimal, value -152.
+
 true.B // Bool lits from Scala lits.
 false.B
 ```
@@ -67,6 +70,30 @@ requires an additional import.
 >The SInt and UInt types will also later support an optional exponent
 field to allow Chisel to automatically produce optimized fixed-point
 arithmetic circuits.
+
+## Casting
+
+We can also cast types in Chisel:
+
+```scala
+val sint = 3.S(4.W)             // 4-bit SInt
+
+val uint = sint.asUInt          // cast SInt to UInt
+uint.asSInt                     // cast UInt to SInt
+
+val uint = sint.asUInt(8.W)     // cast SInt to UInt (explicit width)
+uint.asSInt(8.W)                // cast UInt to SInt (explicit width)
+```
+
+We can also perform casts on clocks, though you should be careful about this, since clocking (especially in ASIC) requires special attention:
+
+```scala
+val bool: Bool = false.B        // always-low wire
+val clock = bool.asClock        // always-low clock
+
+clock.asUInt                    // convert clock to UInt (width 1)
+clock.asUInt.toBool             // convert clock to Bool 
+```
 
 [Prev (Hardware Expressible in Chisel)](Hardware-Expressible-in-Chisel)  [Next (Combinational Circuits)](Combinational-Circuits)
 
