@@ -1,5 +1,4 @@
-`Bundle` and `Vec` are classes that allow the user to expand
-the set of Chisel datatypes with aggregates of other types.
+`Bundle` and `Vec` are classes that allow the user to expand the set of Chisel datatypes with aggregates of other types.
 
 Bundles group together several named fields of potentially different
 types into a coherent unit, much like a `struct` in C. Users
@@ -64,6 +63,42 @@ Note that the builtin Chisel primitive and aggregate classes do not
 require the `new` when creating an instance, whereas new user
 datatypes will.  A Scala `apply` constructor can be defined so
 that a user datatype also does not require `new`, as described in
-[Function Constructor](Functional-Module-Creation)
+[Function Constructor](Functional-Module-Creation).
+
+### A note on `cloneType`
+
+Since Chisel is built on top of Scala and the JVM, it needs to know how to construct copies of bundles for various purposes (creating wires, IOs, etc). If you have a parametrized bundle and Chisel can't automatically figure out how to clone your bundle, you will need to create a custom `cloneType` method in your bundle. Most of the time, this is as simple as `override def cloneType = (new YourBundleHere(...)).asInstanceOf[this.type]`.
+
+Note that in the vast majority of cases, **this is not required** as Chisel can figure out how to clone most bundles automatically.
+
+Here is an example of a parametrized bundle (`ExampleBundle`) that features a custom `cloneType`.
+```scala
+class ExampleBundle(a: Int, b: Int) extends Bundle {
+    val foo = UInt(a.W)
+    val bar = UInt(b.W)
+    override def cloneType = (new ExampleBundle(a, b)).asInstanceOf[this.type]
+}
+
+class ExampleBundleModule(btype: ExampleBundle) extends Module {
+    val io = IO(new Bundle {
+        val out = Output(UInt(32.W))
+        val b = Input(chiselTypeOf(btype))
+    })
+    io.out := io.b.foo + io.b.bar
+}
+
+class Top extends Module {
+    val io = IO(new Bundle {
+        val out = Output(UInt(32.W))
+        val in = Input(UInt(17.W))
+    })
+    val x = Wire(new ExampleBundle(31, 17))
+    x := DontCare
+    val m = Module(new ExampleBundleModule(x))
+    m.io.b.foo := io.in
+    m.io.b.bar := io.in
+    io.out := m.io.out
+}
+```
 
 [Prev (Functional Abstraction)](Functional-Abstraction) [[Next (Ports)|Ports]]
