@@ -9,7 +9,9 @@ types ```SInt``` and ```UInt``` respectively. Signed fixed-point
 numbers, including integers, are represented using two's-complement
 format.  Boolean values are represented as type ```Bool```.  Note
 that these types are distinct from Scala's builtin types such as
-```Int``` or ```Boolean```.  Additionally, Chisel defines `Bundles` for making
+```Int``` or ```Boolean```.
+
+Additionally, Chisel defines `Bundles` for making
 collections of values with named fields (similar to ```structs``` in
 other languages), and ```Vecs``` for indexable collections of
 values.
