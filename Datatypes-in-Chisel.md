@@ -12,7 +12,9 @@ that these types are distinct from Scala's builtin types such as
 ```Int``` or ```Boolean```.  Additionally, Chisel defines `Bundles` for making
 collections of values with named fields (similar to ```structs``` in
 other languages), and ```Vecs``` for indexable collections of
-values.  Bundles and Vecs will be covered later.
+values.
+
+Bundles and Vecs will be covered later.
 
 Constant or literal values are expressed using Scala integers or
 strings passed to constructors for the types:
