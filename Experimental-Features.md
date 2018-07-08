@@ -1,5 +1,8 @@
 Chisel has a number of new features that are worth checking out.  This page is an informal list of these features and projects.
 
+### Interval Type
+See [Experimental - Interval Types](Experimental---Interval-Type)
+
 ### FixedPoint
 FixedPoint numbers are basic *Data* type along side of UInt, SInt, etc.  Most common math and logic operations
 are supported. Chisel allows both the width and binary point to be inferred by the Firrtl compiler which can simplify 
