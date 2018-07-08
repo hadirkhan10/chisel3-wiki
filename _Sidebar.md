@@ -22,9 +22,11 @@
   1. [Polymorphism and Parameterization](Polymorphism-and-Parameterization)
   1. [Multiple Clock Domains](Multiple-Clock-Domains)
   1. [Annotations: Extending Chisel and Firrtl](Annotations-Extending-Chisel-and-Firrtl)
-  1. [Chisel3 vs Chisel2](Chisel3-vs-Chisel2)
   1. [Unconnected Wires](Unconnected-Wires)
   1. [Acknowledgements](Acknowledgements)
+* Appendix
+  1. [Chisel3 vs Chisel2](Chisel3-vs-Chisel2)
+  1. [Experimental Features](Experimental-Features)
 * [Developers](Developers)
   1. [sbt subproject](sbt-subproject)
   1. [Test Coverage](Test-Coverage)
