@@ -24,7 +24,7 @@ Interested in the Future of Chisel, see [Governance](Governance).
 * [How to publish a version](how-to-publish)
 * [Developers' Troubleshooting Guide](troubleshooting)
 * [Chisel Toolchain](chisel-toolchain)
-* [Useful SBT commands](useful-sbt-commands)
+* [Useful SBT commands](Useful-SBT-Commands)
 * [Chisel Cheatsheet for Hardware Engineers](ChiselSheet)
 * [Scala Things You Should Know](Scala-Things-You-Should-Know)
 * [Scala-land vs. Chisel-land](Scala-land-vs.-Chisel-land)
