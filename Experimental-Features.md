@@ -15,3 +15,44 @@ new ways of defining Modules
 - ImplicitModule extends UserModule: has clock, reset, and io, essentially current Chisel Module.
 - RawModule: will be the user-facing version of UserDefinedModule
 - Module: type-aliases to ImplicitModule, the user-facing version of ImplicitModule.
+
+### Bundle Literals
+
+Chisel 3.2 introduces an experimental mechanism for Bundle literals in #820, but this feature is largely incomplete and not ready for user code yet. The following is provided as documentation for library writers who want to take a stab at using this mechanism for their library's bundles.
+
+```scala
+class MyBundle extends Bundle {
+  val a = UInt(8.W)
+  val b = Bool()
+
+  // Bundle literal constructor code, which will be auto-generated using macro annotations in
+  // the future.
+  import chisel3.core.BundleLitBinding
+  import chisel3.internal.firrtl.{ULit, Width}
+
+  // Full bundle literal constructor
+  def Lit(aVal: UInt, bVal: Bool): MyBundle = {
+    val clone = cloneType
+    clone.selfBind(BundleLitBinding(Map(
+      clone.a -> litArgOfBits(aVal),
+      clone.b -> litArgOfBits(bVal)
+    )))
+    clone
+  }
+
+  // Partial bundle literal constructor
+  def Lit(aVal: UInt): MyBundle = {
+    val clone = cloneType
+    clone.selfBind(BundleLitBinding(Map(
+      clone.a -> litArgOfBits(aVal)
+    )))
+    clone
+  }
+}
+```
+
+Example usage:
+
+```scala
+val outsideBundleLit = (new MyBundle).Lit(42.U, true.B)
+```
