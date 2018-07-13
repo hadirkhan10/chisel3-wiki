@@ -18,14 +18,13 @@ Interested in the Future of Chisel, see [Governance](Governance).
 
 #### Other interesting pages:
 * [Frequently Asked Questions](Frequently-Asked-Questions)
-* [Experimental : Interval Types](Interval-Type-in-Chisel-Experimental)
 * [Printing in Chisel](Printing-in-Chisel)
 * [How to use IntelliJ to run chisel3](intellij-setup)
 * [Tips and Tricks](tips-and-tricks)
 * [How to publish a version](how-to-publish)
 * [Developers' Troubleshooting Guide](troubleshooting)
 * [Chisel Toolchain](chisel-toolchain)
-* [Useful SBT commands](useful-sbt-commands)
+* [Useful SBT commands](Useful-SBT-Commands)
 * [Chisel Cheatsheet for Hardware Engineers](ChiselSheet)
 * [Scala Things You Should Know](Scala-Things-You-Should-Know)
 * [Scala-land vs. Chisel-land](Scala-land-vs.-Chisel-land)
