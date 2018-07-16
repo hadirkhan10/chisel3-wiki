@@ -256,7 +256,8 @@ endmodule
 
 ### How do I create an optional I/O?
 
-Example:
+The following example is a module which includes the optional port `out2` only if the given parameter is `true`.
+
 ```scala
 class ModuleWithOptionalIOs(flag: Boolean) extends Module {
   val io = IO(new Bundle {
