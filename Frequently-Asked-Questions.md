@@ -9,6 +9,7 @@
 * [Why doesn't Chisel tell me which wires aren't connected?](#why-doesnt-chisel-tell-me-which-wires-arent-connected)
 * [What does `Reference ... is not fully initialized.` mean?](#how-do-i-find-unconnected-wires)
 * [How can I dynamically set/parametrize the name of a module?](#how-can-i-dynamically-setparametrize-the-name-of-a-module)
+* [How do I create an optional I/O?](##how-do-i-create-an-optional-io)
 
 ### How do I do this (like that in Verilog) in Chisel?
 
@@ -207,8 +208,6 @@ chisel3.Driver.dumpFirrtl(chisel3.Driver.elaborate(() => new HelloWorld), Option
 res3: java.io.File = output.fir
 ```
 
-
-
 ### Why doesn't Chisel tell me which wires aren't connected?
 
 As of commit [c313e13](https://github.com/freechipsproject/chisel3/commit/c313e137d4e562ef20195312501840ceab8cbc6a) it can!
@@ -253,4 +252,22 @@ module SodiumMonochloride(
   );
   assign drink_I = 32'h0;
 endmodule
+```
+
+### How do I create an optional I/O?
+
+Example:
+```scala
+class ModuleWithOptionalIOs(flag: Boolean) extends Module {
+  val io = IO(new Bundle {
+    val in = Input(UInt(12.W))
+    val out = Output(UInt(12.W))
+    val out2 = if (flag) Some(Output(UInt(12.W))) else None
+  })
+  
+  io.out := io.in
+  if (flag) {
+    io.out2.get := io.in
+  }
+}
 ```
