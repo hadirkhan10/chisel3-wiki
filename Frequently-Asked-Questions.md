@@ -9,7 +9,7 @@
 * [Why doesn't Chisel tell me which wires aren't connected?](#why-doesnt-chisel-tell-me-which-wires-arent-connected)
 * [What does `Reference ... is not fully initialized.` mean?](#how-do-i-find-unconnected-wires)
 * [How can I dynamically set/parametrize the name of a module?](#how-can-i-dynamically-setparametrize-the-name-of-a-module)
-* [How do I create an optional I/O?](##how-do-i-create-an-optional-io)
+* [How do I create an optional I/O?](#how-do-i-create-an-optional-io)
 
 ### How do I do this (like that in Verilog) in Chisel?
 
