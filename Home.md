@@ -30,6 +30,7 @@ Interested in the Future of Chisel, see [Governance](Governance).
 * [Scala-land vs. Chisel-land](Scala-land-vs.-Chisel-land)
 * [CS250 a Chisel+Scala Primer](CS250-Chisel+Scala-Primer)
 * [Unconnected Wires](Unconnected-Wires)
+* [Chisel Memories](Chisel-Memories)
 * [Chisel Developer Stuff](Chisel-Developer-Stuff)
 * Debugging with the Interpreter
   * [Debugging with the Interpreter-REPL](Debugging-with-the-Interpreter-REPL-1)
