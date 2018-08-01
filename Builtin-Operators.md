@@ -5,7 +5,7 @@ Chisel defines a set of hardware operators
 | ---------        | ---------           |
 | **Bitwise operators**                       | **Valid on:** SInt, UInt, Bool    |
 | `val invertedX = ~x`                        | Bitwise NOT |
-| `val hiBits = x & UInt("h_ffff_0000")`      | Bitwise AND                     |     
+| `val hiBits = x & "h_ffff_0000".U`          | Bitwise AND                     |     
 | `val flagsOut = flagsIn | overflow`         | Bitwise OR                      |   
 | `val flagsOut = flagsIn ^ toggle`           | Bitwise XOR                     |  
 | **Bitwise reductions.**                     | **Valid on:** SInt and UInt. Returns Bool. |
