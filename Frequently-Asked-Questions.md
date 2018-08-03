@@ -136,19 +136,19 @@ bash> sbt
 ```
 or as a single command line
 ```
-bash> sbt 'run-main intro.HelloWorld'
+bash> sbt 'runMain intro.HelloWorld'
 ```
 After either of the above there will be a HelloWorld.v file in the current directory.  
 
 You can see additional options with
 ```
-bash> sbt 'run-main intro.HelloWorld --help'
+bash> sbt 'runMain intro.HelloWorld --help'
 ```
 This will return a comprehensive usage line with available options.
 
 For example to place the output in a directory name buildstuff use
 ```
-bash> sbt 'run-main intro.HelloWorld --target-dir buildstuff --top-name HelloWorld'
+bash> sbt 'runMain intro.HelloWorld --target-dir buildstuff --top-name HelloWorld'
 ```
 
 Alternatively, you can also use the sbt console to invoke the Verilog driver:
@@ -189,7 +189,7 @@ object Main extends App {
 Run it with:
 
 ```
-sbt 'run-main intro.Main'
+sbt 'runMain intro.Main'
 ```
 
 Alternatively, you can also use the sbt console to invoke the FIRRTL driver directly (replace HelloWorld with your module name):
