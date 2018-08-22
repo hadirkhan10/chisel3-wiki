@@ -86,9 +86,9 @@ class MyModule extends Module {
 We can also programmatically create the types in a MixedVec:
 
 ```scala
-class MyModule extends Module {
+class MyModule(x: Int, y: Int) extends Module {
   val io = IO(new Bundle {
-    val vec = Input(MixedVec((8 to 16) map { i => UInt(i.W) }))
+    val vec = Input(MixedVec((x to y) map { i => UInt(i.W) }))
     // ...
   }
   // ...rest of the module goes here...
