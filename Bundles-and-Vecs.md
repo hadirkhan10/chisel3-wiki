@@ -65,6 +65,23 @@ datatypes will.  A Scala `apply` constructor can be defined so
 that a user datatype also does not require `new`, as described in
 [Function Constructor](Functional-Module-Creation).
 
+### MixedVec
+
+(Chisel 3.2+)
+
+All elements of a `Vec` must be of the same time. If we want to create a Vec where the elements have different types, we can use a MixedVec:
+```
+class MyModule extends Module {
+  val io = IO(new Bundle {
+    val x = Input(UInt(3.W))
+    val y = Input(UInt(10.W))
+    val vec = Output(MixedVec(UInt(3.W), UInt(10.W)))
+  }
+  io.vec(0) := io.x
+  io.vec(1) := io.y
+}
+```
+
 ### A note on `cloneType`
 
 Since Chisel is built on top of Scala and the JVM, it needs to know how to construct copies of bundles for various purposes (creating wires, IOs, etc). If you have a parametrized bundle and Chisel can't automatically figure out how to clone your bundle, you will need to create a custom `cloneType` method in your bundle. Most of the time, this is as simple as `override def cloneType = (new YourBundleHere(...)).asInstanceOf[this.type]`.
