@@ -70,7 +70,8 @@ that a user datatype also does not require `new`, as described in
 (Chisel 3.2+)
 
 All elements of a `Vec` must be of the same time. If we want to create a Vec where the elements have different types, we can use a MixedVec:
-```
+
+```scala
 class MyModule extends Module {
   val io = IO(new Bundle {
     val x = Input(UInt(3.W))
@@ -79,6 +80,18 @@ class MyModule extends Module {
   }
   io.vec(0) := io.x
   io.vec(1) := io.y
+}
+```
+
+We can also programmatically create the types in a MixedVec:
+
+```scala
+class MyModule extends Module {
+  val io = IO(new Bundle {
+    val vec = Input(MixedVec((8 to 16) map { i => UInt(i.W) }))
+    // ...
+  }
+  // ...rest of the module goes here...
 }
 ```
 
