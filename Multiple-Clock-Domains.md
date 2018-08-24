@@ -1,4 +1,4 @@
-Chisel 3 supports multiple clock domains as follows.  
+Chisel 3 supports multiple clock domains as follows.
 
 Note that in order to cross clock domains safely, you will need appropriate synchronization logic (such as an asynchronous FIFO).
 
@@ -11,18 +11,18 @@ class MultiClockModule extends Module {
   })
 
   // This register is clocked against the module clock.
-  val regClock = RegNext(stuff)
+  val regClock = RegNext(io.stuff)
 
   withClockAndReset (io.clockB, io.resetB) {
     // In this withClock scope, all synchronous elements are clocked against io.clockB.
-    // Reset for flops in this domain is using explicitly provided reset io.resetB
+    // Reset for flops in this domain is using the explicitly provided reset io.resetB.
 
     // This register is clocked against io.clockB.
-    val regClockB = RegNext(stuff)
+    val regClockB = RegNext(io.stuff)
   }
 
   // This register is also clocked against the module clock.
-  val regClock2 = RegNext(stuff)
+  val regClock2 = RegNext(io.stuff)
 }
 ```
 
@@ -35,7 +35,7 @@ class MultiClockModule extends Module {
     val resetB = Input(Bool())
     val stuff = Input(Bool())
   })
-  val clockB_child = withClockAndReset(io.clockB, io.resetB)( Module(new ChildModule) )
+  val clockB_child = withClockAndReset(io.clockB, io.resetB) { Module(new ChildModule) }
   clockB_child.io.in := io.stuff
 }
 ```
@@ -50,26 +50,26 @@ class MultiClockModule extends Module {
   })
 
   // This register is clocked against the module clock.
-  val regClock = RegNext(stuff)
+  val regClock = RegNext(io.stuff)
 
   withClock (io.clockB) {
     // In this withClock scope, all synchronous elements are clocked against io.clockB.
 
-    // This register is clocked against io.clockB, but uses implict reset from parent module
-    val regClockB = RegNext(stuff)
+    // This register is clocked against io.clockB, but uses implict reset from the parent context.
+    val regClockB = RegNext(io.stuff)
   }
 
   // This register is also clocked against the module clock.
-  val regClock2 = RegNext(stuff)
+  val regClock2 = RegNext(io.stuff)
 }
 
-// Instantiate module in another clock domain with implicit reset
+// Instantiate module in another clock domain with implicit reset.
 class MultiClockModule extends Module {
   val io = IO(new Bundle {
     val clockB = Input(Clock())
     val stuff = Input(Bool())
   })
-  val clockB_child = withClock(io.clockB)( Module(new ChildModule) )
+  val clockB_child = withClock(io.clockB) { Module(new ChildModule) }
   clockB_child.io.in := io.stuff
 }
 
