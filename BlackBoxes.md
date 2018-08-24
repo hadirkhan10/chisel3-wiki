@@ -83,7 +83,7 @@ src/main/resources/real_math.v
 ### Blackboxes with In-line Verilog 
 It is also possible to place this verilog directly in the scala source.  Instead of ```HasBlackBoxResource``` use ```HasBlackBoxInline``` and instead of ```setResource``` use ```setInline```.  The code will look like this.
 ```
-class BlackBoxRealAdd extends BlackBox with HasBlackBoxResource {
+class BlackBoxRealAdd extends BlackBox with HasBlackBoxInline {
   val io = IO(new Bundle() {
     val in1 = Input(UInt(64.W))
     val in2 = Input(UInt(64.W))
