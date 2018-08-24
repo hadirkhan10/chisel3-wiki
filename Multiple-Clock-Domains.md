@@ -6,13 +6,14 @@ Note that in order to cross clock domains safely, you will need appropriate sync
 class MultiClockModule extends Module {
   val io = IO(new Bundle {
     val clockB = Input(Clock())
+    val resetB = Input(Bool())
     val stuff = Input(Bool())
   })
 
   // This register is clocked against the module clock.
   val regClock = RegNext(stuff)
 
-  withClock (io.clockB) {
+  withClockAndReset (io.clockB, io.resetB) {
     // In this withClock scope, all synchronous elements are clocked against io.clockB.
 
     // This register is clocked against io.clockB.
@@ -30,11 +31,14 @@ You can also instantiate modules in another clock domain:
 class MultiClockModule extends Module {
   val io = IO(new Bundle {
     val clockB = Input(Clock())
+    val resetB = Input(Bool())
     val stuff = Input(Bool())
   })
-  val clockB_child = withClock(io.clockB)( Module(new ChildModule) )
+  val clockB_child = withClockAndReset(io.clockB, io.resetB)( Module(new ChildModule) )
   clockB_child.io.in := io.stuff
 }
 ```
+
+If logic on the new domain does not need a synchronous reset, you can use withClock(clock) instead of withClockAndReset.
 
 [Prev(Polymorphism and Parameterization)](Polymorphism-and-Parameterization) [Next(Chisel3 vs Chisel2)](Chisel3-vs-Chisel2)
