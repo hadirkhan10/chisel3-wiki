@@ -39,6 +39,6 @@ class MultiClockModule extends Module {
 }
 ```
 
-If logic on the new domain does not need a synchronous reset, you can use withClock(clock) instead of withClockAndReset.
+If you only want to connect your clock to a new clock domain and use the regular implicit reset signal, you can use withClock(clock) instead of withClockAndReset.
 
 [Prev(Polymorphism and Parameterization)](Polymorphism-and-Parameterization) [Next(Chisel3 vs Chisel2)](Chisel3-vs-Chisel2)
