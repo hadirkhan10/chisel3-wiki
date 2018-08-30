@@ -14,7 +14,7 @@ Assuming you have a memory in a Module
 ```
 At the top of your file just add the import 
 ```scala
-import chisel3.util.loadMemoryFromFile
+import chisel3.util.experimental.loadMemoryFromFile
 ```
 Now just add the memory annotation using
 ```scala
@@ -23,7 +23,7 @@ Now just add the memory annotation using
 The default is to use `$readmemh` (which assumes all numbers in the file are in ascii hex),
 bu to use ascii binary there is an optional third argument. You will need to add an additional import.
 ```scala
-import chisel3.util.MemoryLoadFileType
+import chisel3.util.experimental.MemoryLoadFileType
 ```
 ```scala
   loadMemoryFromFile(memory, "/workspace/workdir/mem1.txt", MemoryLoadFileType.Binary)
