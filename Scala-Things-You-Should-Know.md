@@ -264,6 +264,8 @@ The case class provides a bunch of useful features, the ones most commonly taken
     case Drill(hasVarSpeed, amps, rpm) =>
        // here we have access to local variables hasVarSpeed, amps, and rpm, that come
        // someVarThatMightHaveADrill's parameters.
+         ???
+  }
 ```
 
 ### The Underscore (_) Scala's Wildcard

@@ -51,7 +51,7 @@ abstract class ExplicitInvalidateModule extends Module()(chisel3.core.ExplicitCo
 ```
 or on a per-Module basis:
 ```scala
-class MyModule extends Module
+class MyModule extends Module {
   override val compileOptions = chisel3.core.ExplicitCompileOptions.NotStrict.copy(explicitInvalidate = true)
   ...
 }
@@ -63,7 +63,7 @@ abstract class ImplicitInvalidateModule extends Module()(chisel3.core.ExplicitCo
 ```
 or on a per-Module basis:
 ```scala
-class MyModule extends Module
+class MyModule extends Module {
   override val compileOptions = chisel3.core.ExplicitCompileOptions.Strict.copy(explicitInvalidate = false)
   ...
 }

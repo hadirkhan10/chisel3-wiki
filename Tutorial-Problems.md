@@ -17,7 +17,7 @@ class Mux2Tests(c: Mux2, b: Option[TesterBackend] = None) extends PeekPokeTester
       poke(c.io.in0, i0)
       step(1)
       expect(c.io.out, (if (s == 1) i1 else i0))
-    }
+    }}
   }
 }
 ```

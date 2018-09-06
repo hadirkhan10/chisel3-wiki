@@ -197,7 +197,7 @@ a.printMe()    // output bob ID: 10
 ```scala
 if(n < len) {
   //do something}
-else if(n == len) {
+} else if(n == len) {
   //do something
 } else {
   //do something

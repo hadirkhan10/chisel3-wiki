@@ -13,7 +13,7 @@ class TestBlock extends Module {
 }
 ```
 *produces*
-```scala
+```bash
 type mismatch;
 [error]  found   : Int(3)
 [error]  required: chisel3.internal.firrtl.Width

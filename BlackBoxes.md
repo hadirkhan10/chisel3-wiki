@@ -17,6 +17,7 @@ For example, consider instantiating a Xilinx differential clock buffer (IBUFDS) 
 
 ```scala
 import chisel3._
+import chisel3.util._
 import chisel3.experimental._ // To enable experimental features
 
 class IBUFDS extends BlackBox(Map("DIFF_TERM" -> "TRUE",

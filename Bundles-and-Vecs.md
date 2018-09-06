@@ -77,7 +77,7 @@ class MyModule extends Module {
     val x = Input(UInt(3.W))
     val y = Input(UInt(10.W))
     val vec = Output(MixedVec(UInt(3.W), UInt(10.W)))
-  }
+  })
   io.vec(0) := io.x
   io.vec(1) := io.y
 }
@@ -90,7 +90,7 @@ class MyModule(x: Int, y: Int) extends Module {
   val io = IO(new Bundle {
     val vec = Input(MixedVec((x to y) map { i => UInt(i.W) }))
     // ...
-  }
+  })
   // ...rest of the module goes here...
 }
 ```

@@ -38,10 +38,10 @@ scala base classes currently housed in firrtl. A driver will typically look have
 ```scala
 object Driver {
   def execute(optionsManager: ..., ): ExecutionResult {
-    ...  
+    ???  
   }
   def execute(args: Array[String]: ..., ): ExecutionResult {
-    ...  
+    ???  
   }
 }
 ```
@@ -53,6 +53,8 @@ The optionManager is a container class that can hold one more configuration clas
 def execute(
       optionsManager: ExecutionOptionsManager with HasChiselExecutionOptions with HasFirrtlOptions,
       dut: () => Module): ChiselExecutionResult = {
+          ???
+      }
 ```  
 
 #### Has*ComposableOptions*

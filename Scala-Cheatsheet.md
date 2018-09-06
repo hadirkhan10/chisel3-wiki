@@ -15,6 +15,7 @@ Classes are declared in Scala via the `class` keyword. They only have 1 construc
 // value is a private field of the class while message is public (making it a val makes it public)
 class Foo(value: Int, val message: String) {
   def func() = println("My value is " + value + " and my message is \"" + message + "\"")
+}
 ```
 
 Classes are instantiated with the `new` keyword:

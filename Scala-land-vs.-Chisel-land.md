@@ -12,11 +12,12 @@ It's tempting when one has created some Chisel literal to try and use the value 
  subsequent Scala code, perhaps as a parameter or iteration control.  Although in
   some cases this is possible, typically it just leads to confusion and unpredictable behavior.  Don't do this.
 ```scala
-for (i < 0 until 10) {
-  val enable := (i % 2 == 0).B
+for (i <- 0 until 10) {
+  val enable = (i % 2 == 0).B
   if (enable.litValue()) {
     ...
   }
+}
 ```
 
 ### Keep a clear distinction between types and values
