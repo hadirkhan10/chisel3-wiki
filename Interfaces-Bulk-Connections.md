@@ -45,9 +45,10 @@ where the io field contains FilterIO.
 
 Beyond single elements, vectors of elements form richer hierarchical interfaces. For example, in order to create a crossbar with a vector of inputs, producing a vector of outputs, and selected by a UInt input, we utilize the Vec constructor:
 ```scala
+import chisel3.util.log2Ceil
 class CrossbarIo(n: Int) extends Bundle {
   val in = Vec(n, Flipped(new PLink))
-  val sel = Input(UInt(sizeof(n).W)
+  val sel = Input(UInt(log2Ceil(n).W))
   val out = Vec(n, new PLink)
 }
 ```

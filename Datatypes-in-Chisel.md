@@ -84,10 +84,10 @@ val sint = 3.S(4.W)             // 4-bit SInt
 
 val uint = sint.asUInt          // cast SInt to UInt
 uint.asSInt                     // cast UInt to SInt
-
-val uint = sint.asUInt(8.W)     // cast SInt to UInt (explicit width)
-uint.asSInt(8.W)                // cast UInt to SInt (explicit width)
 ```
+
+**NOTE**: `asUInt`/`asSInt` with an explicit width can **not** be used to cast (convert) between Chisel datatypes.
+No width parameter is accepted, as Chisel will automatically pad or truncate as required when the objects are connected.
 
 We can also perform casts on clocks, though you should be careful about this, since clocking (especially in ASIC) requires special attention:
 
