@@ -5,6 +5,7 @@ This is a brief guide to the Chisel hardware description language. To get starte
   1. [Datatypes in Chisel](Datatypes-in-Chisel)
   1. [Combinational Circuits](Combinational-Circuits)
   1. [Builtin Operators](Builtin-Operators)
+  1. [Width Inference](Width-Inference)
   1. [Functional Abstraction](Functional-Abstraction)
   1. [Bundles and Vecs](Bundles-and-Vecs)
   1. [Ports](Ports)
