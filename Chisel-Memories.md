@@ -1,5 +1,8 @@
 ## Loading Memories in simulation
 
+***
+NOTE: This information is currently supported in master versions, and will shortly be added to the Chisel release
+***
 Chisel now supports a method for annotating memories to be loaded from a text file containing
 hex or binary numbers. When using verilog simulation it uses the `$readmemh` or `$readmemb`
 verilog extension. The treadle simulator can also load memories using the same annotation.
