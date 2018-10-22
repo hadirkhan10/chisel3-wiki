@@ -131,4 +131,35 @@ class Top extends Module {
 }
 ```
 
+Generally cloneType can be automatically defined if all arguments to the Bundle are vals e.g.
+
+```scala
+class MyBundle(val width: Int) extends Bundle {
+   val field = UInt(width.W)
+   // ...
+}
+```
+
+The only caveat is if you are passing something of type Data as a "generator" parameter, in which case you should make it a `private val`.
+
+For example, consider the following Bundle:
+
+```scala
+class RegisterWriteIO[T <: Data](gen: T) extends Bundle {
+  val request  = Decoupled(gen).flip
+  val response = Irrevocable(Bool()) // ignore .bits
+
+  override def cloneType = new RegisterWriteIO(gen).asInstanceOf[this.type]
+}
+```
+
+We can make this this infer cloneType by making `gen` private since it is a "type parameter":
+
+```scala
+class RegisterWriteIO[T <: Data](private val gen: T) extends Bundle {
+  val request  = Flipped(Decoupled(gen)) // Also use Flipped(...) instead of .flip
+  val response = Irrevocable(Bool()) // ignore .bits
+}
+```
+
 [Prev (Functional Abstraction)](Functional-Abstraction) [[Next (Ports)|Ports]]
