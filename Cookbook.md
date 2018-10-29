@@ -122,6 +122,9 @@ Use Chisel Enum to construct the states and switch & is to construct the FSM
 control logic.
 
 ```scala
+import chisel3._
+import chisel3.util._
+
 class DetectTwoOnes extends Module {
   val io = IO(new Bundle {
     val in = Input(Bool())
