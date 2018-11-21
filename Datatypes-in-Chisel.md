@@ -96,7 +96,8 @@ val bool: Bool = false.B        // always-low wire
 val clock = bool.asClock        // always-low clock
 
 clock.asUInt                    // convert clock to UInt (width 1)
-clock.asUInt.toBool             // convert clock to Bool 
+clock.asUInt.asBool             // convert clock to Bool (Chisel 3.2+)
+clock.asUInt.toBool             // convert clock to Bool (Chisel 3.0 and 3.1 only)
 ```
 
 [Prev (Hardware Expressible in Chisel)](Hardware-Expressible-in-Chisel)  [Next (Combinational Circuits)](Combinational-Circuits)
