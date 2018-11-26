@@ -90,9 +90,13 @@ To use the Scala `Predef.printf()`, you need to qualify it with `Predef`.
 *  in Chisel2, bulk-connects `<>` with unconnected source components do not update connections from the unconnected components.
 ** In Chisel3, bulk-connects strictly adhere to last connection semantics and unconnected OUTPUTs will be connected to INPUTs resulting in the assignment of random values to those inputs.
 * In Chisel3, adding hardware inside `BlackBox` for simulation is no longer supported. (#289)
+* `ChiselError` is gone
+  * Change `ChiselError.error("error msg")` to `throw new Error("error msg")`
+  * Change `ChiselError.info("info msg")` to `println("info msg")`
 
 ## Further changes
-*  The clock signal was renamed from `clk` to `clock` in Chisel3.
+* The clock signal was renamed from `clk` to `clock` in Chisel3.
+* Change `getWidth()` to `getWidth`
 
 ## Packaging
 Chisel3 is implemented as several packages.
