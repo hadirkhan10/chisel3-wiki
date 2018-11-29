@@ -1,4 +1,5 @@
 * [How do I ...?](#how-do-i-do-this-like-that-in-verilog-in-chisel)
+* [How can I contribute to Chisel?](#how-can-i-contribute-to-chisel)
 * [What is the difference between release and master branches?](#what-is-the-difference-between-release-and-master-branches)
 * [Why DecoupledIO instead of ReadyValidIO?](#why-decoupledio-instead-of-readyvalidio)
 * [Why do I have to wrap module instantiations in `Module(...)`?](#why-do-i-have-to-wrap-module-instantiations-in-module)
@@ -14,6 +15,10 @@
 ### How do I do this (like that in Verilog) in Chisel?
 
 See the [cookbook](Cookbook).
+
+### How can I contribute to Chisel?
+
+A good to place to start is to fill out the [How Can I Contribute Form](https://docs.google.com/forms/d/e/1FAIpQLSfwTTY8GkfSZ2sU2T2mNpfNMpIM70GlXOrjqiHoC9ZBvwn_CA/viewform).
 
 ### What is the difference between release and master branches?
 
