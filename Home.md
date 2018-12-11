@@ -18,6 +18,7 @@ Interested in the Future of Chisel, see [Governance](Governance).
 
 #### Other interesting pages:
 * [Frequently Asked Questions](Frequently-Asked-Questions)
+* [The new Experimental Interval Type](Experimental---Interval-Type)
 * [Printing in Chisel](Printing-in-Chisel)
 * [How to use IntelliJ to run chisel3](intellij-setup)
 * [Tips and Tricks](tips-and-tricks)
