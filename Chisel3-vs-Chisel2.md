@@ -93,6 +93,7 @@ To use the Scala `Predef.printf()`, you need to qualify it with `Predef`.
 * `ChiselError` is gone
   * Change `ChiselError.error("error msg")` to `throw new Error("error msg")`
   * Change `ChiselError.info("info msg")` to `println("info msg")`
+* In Chisel3, subword assignments are not supported. [Alternative constructions exist](https://github.com/freechipsproject/chisel3/wiki/Cookbook#how-do-i-do-subword-assignment-assign-to-some-bits-in-a-uint) in Chisel3.
 
 ## Further changes
 * The clock signal was renamed from `clk` to `clock` in Chisel3.
