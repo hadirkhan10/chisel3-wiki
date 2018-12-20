@@ -19,9 +19,8 @@ hardware so that the source Interval's value will be mapped into the new Interva
 Values that are outside the result range will be wrapped until they fall within the result range.
 
 ### Squeeze -- Fit the value **source** into the smallest IntervalRange based on source and target, clipping the result
-The clip method applied to an interval creates a new interval based on the argument to clip,
-and constructs the necessary hardware so that the source Interval's value will be mapped into the new Interval.
-Values that are outside the result range will be pegged to either maximum or minimum of result range as appropriate.
+The squeeze method applied to an interval creates a new interval based on the argument to clip, the two ranges must overlap
+behavior of squeeze with inputs outside of the produced range is undefined.
 
 ### Applying binary point operators to an Interval
 
