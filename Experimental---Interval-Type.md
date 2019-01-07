@@ -12,15 +12,36 @@ The clip method applied to an interval creates a new interval based on the argum
 and constructs the necessary hardware so that the source Interval's value will be mapped into the new Interval.
 Values that are outside the result range will be pegged to either maximum or minimum of result range as appropriate.
 
+> Generates necessary hardware to clip values, values greater than range are set to range.high, values lower than range are set to range min.
+
 ### Wrap -- Fit the value **source** into the IntervalRange of **target**, wrapping around if out of bounds
 The wrap method applied to an interval creates a new interval based on the argument to wrap,
 and constructs the necessary
 hardware so that the source Interval's value will be mapped into the new Interval.
 Values that are outside the result range will be wrapped until they fall within the result range.
 
+> Generates necessary hardware to wrap values, values greater than range are set to range.high, values lower than range are set to range min.
+
+> Does not handle out of range values that are less than half the minimum or greater than twice maximum
+
 ### Squeeze -- Fit the value **source** into the smallest IntervalRange based on source and target, clipping the result
 The squeeze method applied to an interval creates a new interval based on the argument to clip, the two ranges must overlap
 behavior of squeeze with inputs outside of the produced range is undefined.
+
+> Generates no hardware, strictly a sizing operation
+
+#### Range combinations
+
+| Condition | A.clip(B) | A.wrap(B) | A.squeeze(B) |
+| --------- | --------------- | --------------- | --------------- |
+| A === B   | B               | B               | B               |
+| A contains B   | B               | B               | B               |
+| B contains A   | B               | B               | B               |
+| A min < B min, A max in B  | B               | B               | B               |
+| A min in B, A max > B max  | B               | B               | B               |
+| A strictly less than B   | error               | error               | error               |
+| A strictly greater than B   | error               | error               | error               |
+
 
 ### Applying binary point operators to an Interval
 
