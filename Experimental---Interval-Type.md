@@ -24,7 +24,7 @@ Values that are outside the result range will be wrapped until they fall within 
 
 > Does not handle out of range values that are less than half the minimum or greater than twice maximum
 
-### Squeeze -- Fit the value **source** into the smallest IntervalRange based on source and target, clipping the result
+### Squeeze -- Fit the value **source** into the smallest IntervalRange based on source and target.
 The squeeze method applied to an interval creates a new interval based on the argument to clip, the two ranges must overlap
 behavior of squeeze with inputs outside of the produced range is undefined.
 
