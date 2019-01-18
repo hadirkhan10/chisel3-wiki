@@ -34,11 +34,11 @@ behavior of squeeze with inputs outside of the produced range is undefined.
 
 | Condition | A.clip(B) | A.wrap(B) | A.squeeze(B) |
 | --------- | --------------- | --------------- | --------------- |
-| A === B   | B               | B               | B               |
-| A contains B   | B               | B               | B               |
-| B contains A   | B               | B               | B               |
-| A min < B min, A max in B  | B               | B               | B               |
-| A min in B, A max > B max  | B               | B               | B               |
+| A === B   | max(Alo, Blo), min(Ahi, Bhi)  | max(Alo, Blo), min(Ahi, Bhi)  | max(Alo, Blo), min(Ahi, Bhi)  |
+| A contains B   | max(Alo, Blo), min(Ahi, Bhi)  | max(Alo, Blo), min(Ahi, Bhi)  | max(Alo, Blo), min(Ahi, Bhi)  |
+| B contains A   | max(Alo, Blo), min(Ahi, Bhi)  | max(Alo, Blo), min(Ahi, Bhi)  | max(Alo, Blo), min(Ahi, Bhi)  |
+| A min < B min, A max in B  | max(Alo, Blo), min(Ahi, Bhi)  | max(Alo, Blo), min(Ahi, Bhi)  | max(Alo, Blo), min(Ahi, Bhi)  |
+| A min in B, A max > B max  | max(Alo, Blo), min(Ahi, Bhi)  | max(Alo, Blo), min(Ahi, Bhi)  | max(Alo, Blo), min(Ahi, Bhi)  |
 | A strictly less than B   | error               | error               | error               |
 | A strictly greater than B   | error               | error               | error               |
 
