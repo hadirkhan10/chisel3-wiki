@@ -158,6 +158,8 @@ class DetectTwoOnes extends Module {
 }
 ```
 
+The `is` statement can take multiple conditions e.g. `is (sTwo1s, sOne1) { ... }`.
+
 ### How do I unpack a value ("reverse concatenation") like in Verilog?
 
 ```verilog
