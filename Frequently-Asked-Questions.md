@@ -1,4 +1,5 @@
-* [How do I ...?](#how-do-i-do-this-like-that-in-verilog-in-chisel)
+* [Where should I start if I want to learn Chisel?](#where-should-i-start-if-i-want-to-learn-chisel)
+* [How do I ... in Chisel?](#how-do-i-do--eg-like-that-in-verilog-in-chisel)
 * [How can I contribute to Chisel?](#how-can-i-contribute-to-chisel)
 * [What is the difference between release and master branches?](#what-is-the-difference-between-release-and-master-branches)
 * [Why DecoupledIO instead of ReadyValidIO?](#why-decoupledio-instead-of-readyvalidio)
@@ -8,11 +9,13 @@
 * [I just want some Verilog; what do I do?](#get-me-verilog)
 * [I just want some FIRRTL; what do I do?](#get-me-firrtl)
 * [Why doesn't Chisel tell me which wires aren't connected?](#why-doesnt-chisel-tell-me-which-wires-arent-connected)
-* [What does `Reference ... is not fully initialized.` mean?](#how-do-i-find-unconnected-wires)
-* [How can I dynamically set/parametrize the name of a module?](#how-can-i-dynamically-setparametrize-the-name-of-a-module)
-* [How do I create an optional I/O?](#how-do-i-create-an-optional-io)
+* [What does `Reference ... is not fully initialized.` mean?](#what-does-reference--is-not-fully-initialized-mean)
 
-### How do I do this (like that in Verilog) in Chisel?
+### Where should I start if I want to learn Chisel?
+
+We recommend the [Chisel Bootcamp](https://github.com/freechipsproject/chisel-bootcamp) for getting started with Chisel.
+
+### How do I do ... (e.g. like that in Verilog) in Chisel?
 
 See the [cookbook](Cookbook).
 
@@ -218,62 +221,11 @@ res3: java.io.File = output.fir
 As of commit [c313e13](https://github.com/freechipsproject/chisel3/commit/c313e137d4e562ef20195312501840ceab8cbc6a) it can!
 Please visit the wiki page [Unconnected Wires](Unconnected-Wires) for details.
 
-### How do I find unconnected wires?
+### What does `Reference ... is not fully initialized.` mean?
+
+It means that you have unconnected wires in your design which could be an indication of a design bug.
 
 In Chisel2 compatibility mode (`NotStrict` compile options), chisel generates firrtl code that disables firrtl's initialized wire checks.
 In pure chisel3 (`Strict` compile options), the generated firrtl code does not contain these disablers (`is invalid`).
 Output wires that are not driven (not connected) are reported by firrtl as `not fully initialized`.
 Please visit the wiki page [Unconnected Wires](Unconnected-Wires) for details on solving the problem.
-
-### How can I dynamically set/parametrize the name of a module?
-
-You can override the `desiredName` function. This works with normal Chisel modules and `BlackBox`es. Example:
-```scala
-class Coffee extends BlackBox {
-    val io = IO(new Bundle {
-        val I = Input(UInt(32.W))
-        val O = Output(UInt(32.W))
-    })
-    override def desiredName = "Tea"
-}
-class Salt extends Module {
-    val io = IO(new Bundle {})
-    val drink = Module(new Coffee)
-    override def desiredName = "SodiumMonochloride"
-}
-```
-
-Elaborating the Chisel module `Salt` yields:
-```verilog
-module SodiumMonochloride(
-  input   clock,
-  input   reset
-);
-  wire [31:0] drink_O;
-  wire [31:0] drink_I;
-  Tea drink (
-    .O(drink_O),
-    .I(drink_I)
-  );
-  assign drink_I = 32'h0;
-endmodule
-```
-
-### How do I create an optional I/O?
-
-The following example is a module which includes the optional port `out2` only if the given parameter is `true`.
-
-```scala
-class ModuleWithOptionalIOs(flag: Boolean) extends Module {
-  val io = IO(new Bundle {
-    val in = Input(UInt(12.W))
-    val out = Output(UInt(12.W))
-    val out2 = if (flag) Some(Output(UInt(12.W))) else None
-  })
-  
-  io.out := io.in
-  if (flag) {
-    io.out2.get := io.in
-  }
-}
-```
