@@ -11,10 +11,13 @@ Please note that these examples make use of [Chisel's scala-style printing](Prin
 * [How do I create a finite state machine?](#how-do-i-create-a-finite-state-machine)
 * [How do I unpack a value ("reverse concatenation") like in Verilog?](#how-do-i-unpack-a-value-reverse-concatenation-like-in-verilog)
 * [How do I do subword assignment (assign to some bits in a UInt)?](#how-do-i-do-subword-assignment-assign-to-some-bits-in-a-uint)
+* [How can I dynamically set/parametrize the name of a module?](#how-can-i-dynamically-setparametrize-the-name-of-a-module)
+* [How do I create an optional I/O?](#how-do-i-create-an-optional-io)
+* [How do I get Chisel to name signals properly in blocks like when/withClockAndReset?](#how-do-i-get-chisel-to-name-signals-properly-in-blocks-like-whenwithclockandreset)
 
 ### How do I create a UInt from an instance of a Bundle?
 
-Call asUInt on the Bundle instance
+Call asUInt on the Bundle instance.
 
 ```scala
   // Example
@@ -86,7 +89,7 @@ Use the builtin function asUInt
   assert(0xd.U === uint)
 ```
 
-### Vectors and Registers
+# Vectors and Registers
 
 ## How do I create a Vector of Registers?
 
@@ -222,4 +225,133 @@ class TestModule extends Module {
   bools(0) := io.bit
   io.out := bools.asUInt
 }
+```
+
+### How can I dynamically set/parametrize the name of a module?
+
+You can override the `desiredName` function. This works with normal Chisel modules and `BlackBox`es. Example:
+```scala
+class Coffee extends BlackBox {
+    val io = IO(new Bundle {
+        val I = Input(UInt(32.W))
+        val O = Output(UInt(32.W))
+    })
+    override def desiredName = "Tea"
+}
+class Salt extends Module {
+    val io = IO(new Bundle {})
+    val drink = Module(new Coffee)
+    override def desiredName = "SodiumMonochloride"
+}
+```
+
+Elaborating the Chisel module `Salt` yields:
+```verilog
+module SodiumMonochloride(
+  input   clock,
+  input   reset
+);
+  wire [31:0] drink_O;
+  wire [31:0] drink_I;
+  Tea drink (
+    .O(drink_O),
+    .I(drink_I)
+  );
+  assign drink_I = 32'h0;
+endmodule
+```
+
+### How do I create an optional I/O?
+
+The following example is a module which includes the optional port `out2` only if the given parameter is `true`.
+
+```scala
+class ModuleWithOptionalIOs(flag: Boolean) extends Module {
+  val io = IO(new Bundle {
+    val in = Input(UInt(12.W))
+    val out = Output(UInt(12.W))
+    val out2 = if (flag) Some(Output(UInt(12.W))) else None
+  })
+  
+  io.out := io.in
+  if (flag) {
+    io.out2.get := io.in
+  }
+}
+```
+
+### How do I get Chisel to name signals properly in blocks like when/withClockAndReset?
+
+To get Chisel to name signals (wires and registers) declared inside of blocks like `when`, `withClockAndReset`, etc, use the `chiselName` annotation as shown below:
+
+```scala
+import chisel3._
+import chisel3.experimental.chiselName
+
+@chiselName
+class TestMod extends Module {
+  val io = IO(new Bundle {
+    val a = Input(Bool())
+    val b = Output(UInt(4.W))
+  })
+  when (io.a) {
+    val innerReg = RegInit(5.U(4.W))
+    innerReg := innerReg + 1.U
+    io.b := innerReg
+  } .otherwise {
+    io.b := 10.U
+  }
+}
+```
+
+Note that you will need to add the following line to your project's `build.sbt` file.
+
+```
+addCompilerPlugin("org.scalamacros" % "paradise" % "2.1.0" cross CrossVersion.full)
+```
+
+Without `chiselName`, Chisel is not able to name `innerReg` correctly (notice the `_T`):
+
+```verilog
+module TestMod(
+  input        clock,
+  input        reset,
+  input        io_a,
+  output [3:0] io_b
+);
+  reg [3:0] _T;
+  wire [3:0] _T_2;
+  assign _T_2 = _T + 4'h1;
+  assign io_b = io_a ? _T : 4'ha;
+  always @(posedge clock) begin
+    if (reset) begin
+      _T <= 4'h5;
+    end else begin
+      _T <= _T_2;
+    end
+  end
+endmodule
+```
+
+In contrast, Chisel is able to name `innerReg` correctly with `chiselName`:
+
+```verilog
+module TestMod(
+  input        clock,
+  input        reset,
+  input        io_a,
+  output [3:0] io_b
+);
+  reg [3:0] innerReg;
+  wire [3:0] _T_1;
+  assign _T_1 = innerReg + 4'h1;
+  assign io_b = io_a ? innerReg : 4'ha;
+  always @(posedge clock) begin
+    if (reset) begin
+      innerReg <= 4'h5;
+    end else begin
+      innerReg <= _T_1;
+    end
+  end
+endmodule
 ```
