@@ -2,18 +2,22 @@ Welcome to the Chisel cookbook. This cookbook is still in early stages. If you h
 
 Please note that these examples make use of [Chisel's scala-style printing](Printing-in-Chisel#scala-style).
 
-* [How do I create a UInt from an instance of a Bundle?](#how-do-i-create-a-uint-from-an-instance-of-a-bundle)
-* [How do I create a Bundle from a UInt?](#how-do-i-create-a-bundle-from-a-uint)
-* [How do I create a Vec of Bools from a UInt?](#how-do-i-create-a-vec-of-bools-from-a-uint)
-* [How do I create a UInt from a Vec of Bool?](#how-do-i-create-a-uint-from-a-vec-of-bool)
-* [How do I create a Vector of Registers?](#how-do-i-create-a-vector-of-registers)
-* [How do I create a Reg of type Vec?](#how-do-i-create-a-reg-of-type-vec)
+* Converting Chisel Types to/from UInt
+  * [How do I create a UInt from an instance of a Bundle?](#how-do-i-create-a-uint-from-an-instance-of-a-bundle)
+  * [How do I create a Bundle from a UInt?](#how-do-i-create-a-bundle-from-a-uint)
+  * [How do I create a Vec of Bools from a UInt?](#how-do-i-create-a-vec-of-bools-from-a-uint)
+  * [How do I create a UInt from a Vec of Bool?](#how-do-i-create-a-uint-from-a-vec-of-bool)
+* Vectors and Registers
+  * [How do I create a Vector of Registers?](#how-do-i-create-a-vector-of-registers)
+  * [How do I create a Reg of type Vec?](#how-do-i-create-a-reg-of-type-vec)
 * [How do I create a finite state machine?](#how-do-i-create-a-finite-state-machine)
 * [How do I unpack a value ("reverse concatenation") like in Verilog?](#how-do-i-unpack-a-value-reverse-concatenation-like-in-verilog)
 * [How do I do subword assignment (assign to some bits in a UInt)?](#how-do-i-do-subword-assignment-assign-to-some-bits-in-a-uint)
 * [How can I dynamically set/parametrize the name of a module?](#how-can-i-dynamically-setparametrize-the-name-of-a-module)
 * [How do I create an optional I/O?](#how-do-i-create-an-optional-io)
 * [How do I get Chisel to name signals properly in blocks like when/withClockAndReset?](#how-do-i-get-chisel-to-name-signals-properly-in-blocks-like-whenwithclockandreset)
+
+## Converting Chisel Types to/from UInt
 
 ### How do I create a UInt from an instance of a Bundle?
 
@@ -89,15 +93,15 @@ Use the builtin function asUInt
   assert(0xd.U === uint)
 ```
 
-# Vectors and Registers
+## Vectors and Registers
 
-## How do I create a Vector of Registers?
+### How do I create a Vector of Registers?
 
 **Rule!  Use Reg of Vec not Vec of Reg!** 
 
 You create a [Reg of type Vec](#how-do-i-create-a-reg-of-type-vec). Because Vecs are a *type* (like `UInt`, `Bool`) rather than a *value*, we must bind the Vec to some concrete *value*.
 
-## How do I create a Reg of type Vec?
+### How do I create a Reg of type Vec?
 
 For information, please see the API documentation
 (https://chisel.eecs.berkeley.edu/api/index.html#chisel3.core.Vec)
