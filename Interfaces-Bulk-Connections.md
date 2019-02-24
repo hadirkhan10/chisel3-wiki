@@ -75,7 +75,9 @@ Caution: bulk connections should only be used with **directioned elements** (lik
 
 ## The standard ready-valid interface (ReadyValidIO / Decoupled)
 
-Chisel provides a standard interface for ready-valid interfaces as well as a utility function `Decoupled()` to turn any type into a ready-valid interface.
+Chisel provides a standard interface for [ready-valid interfaces](http://inst.eecs.berkeley.edu/~cs150/Documents/Interfaces.pdf). 
+
+Usually, we use the utility function [`Decoupled()`](https://chisel.eecs.berkeley.edu/api/latest/chisel3/util/Decoupled$.html) to turn any type into a ready-valid interface rather than directly using [ReadyValidIO](http://chisel.eecs.berkeley.edu/api/latest/chisel3/util/ReadyValidIO.html).
 
 * `Decoupled(...)` creates a producer / output ready-valid interface (i.e. bits is an output).
 * `Flipped(Decoupled(...))` creates a consumer / input ready-valid interface (i.e. bits is an input).
