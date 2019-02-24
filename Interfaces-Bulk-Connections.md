@@ -4,6 +4,8 @@ For more sophisticated modules it is often useful to define and instantiate inte
 
 Secondly, interfaces allow users to dramatically reduce wiring by supporting bulk connections between producer and consumer modules. Finally, users can make changes in large interfaces in one place reducing the number of updates required when adding or removing pieces of the interface.
 
+Note that Chisel has some built-in standard interface which should be used whenever possible for interoperability (e.g. Decoupled).
+
 ## Ports: Subclasses & Nesting
 
 As we saw earlier, users can define their own interfaces by defining a class that subclasses Bundle. For example, a user could define a simple link for hand-shaking data as follows:
