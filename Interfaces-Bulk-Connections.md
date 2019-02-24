@@ -73,4 +73,52 @@ Bulk connections connect leaf ports of the same name to each other. If the names
 
 Caution: bulk connections should only be used with **directioned elements** (like IOs), and is not magical (e.g. connecting two wires isn't supported since Chisel can't necessarily figure out the directions automatically [chisel3#603](https://github.com/freechipsproject/chisel3/issues/603)).
 
+## The standard ready-valid interface (ReadyValidIO / Decoupled)
+
+Chisel provides a standard interface for ready-valid interfaces as well as a utility function `Decoupled()` to turn any type into a ready-valid interface.
+
+* `Decoupled(...)` creates a producer / output ready-valid interface (i.e. bits is an output).
+* `Flipped(Decoupled(...))` creates a consumer / input ready-valid interface (i.e. bits is an input).
+
+Take a look at the following example Chisel code to better understand exactly what is generated:
+
+```scala
+import chisel3._
+import chisel3.util.Decoupled
+
+/**
+  * Using Decoupled(...) creates a producer interface.
+  * i.e. it has bits as an output.
+  * This produces the following ports:
+  *   input         io_readyValid_ready,
+  *   output        io_readyValid_valid,
+  *   output [31:0] io_readyValid_bits
+  */
+class ProducingData extends Module {
+  val io = IO(new Bundle {
+    val readyValid = Decoupled(UInt(32.W))
+  })
+  // do something with io.readyValid.ready
+  io.readyValid.valid := true.B
+  io.readyValid.bits := 5.U
+}
+
+/**
+  * Using Flipped(Decoupled(...)) creates a consumer interface.
+  * i.e. it has bits as an input.
+  * This produces the following ports:
+  *   output        io_readyValid_ready,
+  *   input         io_readyValid_valid,
+  *   input  [31:0] io_readyValid_bits
+  */
+class ConsumingData extends Module {
+  val io = IO(new Bundle {
+    val readyValid = Flipped(Decoupled(UInt(32.W)))
+  })
+  io.readyValid.ready := false.B
+  // do something with io.readyValid.valid
+  // do something with io.readyValid.bits
+}
+```
+
 [Prev(Memories)](Memories) [Next(Functional Module Creation)](Functional-Module-Creation)
