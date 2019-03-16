@@ -99,9 +99,9 @@ class Fifo[T <: Data](gen: T, n: Int) extends Module {
     val enqDat = Input(gen)
     val deqDat = Output(gen)
   })
-  val enqPtr     = Reg(init = 0.asUInt(sizeof(n).W))
-  val deqPtr     = Reg(init = 0.asUInt(sizeof(n).W))
-  val isFull     = Reg(init = false.B)
+  val enqPtr     = RegInit(0.asUInt(sizeof(n).W))
+  val deqPtr     = RegInit(0.asUInt(sizeof(n).W))
+  val isFull     = RegInit(false.B)
   val doEnq      = io.enqRdy && io.enqVal
   val doDeq      = io.deqRdy && io.deqVal
   val isEmpty    = !isFull && (enqPtr === deqPtr)
