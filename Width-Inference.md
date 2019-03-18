@@ -14,7 +14,7 @@ Hardware operators have output widths as defined by the following set of rules:
 | `z = x +& y`       | `w(z) = max(w(x), w(y)) + 1`   |
 | `z = x - y` *or* `z = x -% y`       | `w(z) = max(w(x), w(y))`    |
 | `z = x -& y`       | `w(z) = max(w(x), w(y)) + 1`   |
-| `z = x & y`        | `w(z) = min(w(x), w(y))`    |
+| `z = x & y`        | `w(z) = max(w(x), w(y))`    |
 | `z = Mux(c, x, y)` | `w(z) = max(w(x), w(y))`    |
 | `z = w * y`        | `w(z) = w(x) + w(y)`        |
 | `z = x << n`       | `w(z) = w(x) + maxNum(n)` |
