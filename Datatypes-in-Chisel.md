@@ -102,5 +102,30 @@ clock.asUInt.asBool             // convert clock to Bool (Chisel 3.2+)
 clock.asUInt.toBool             // convert clock to Bool (Chisel 3.0 and 3.1 only)
 ```
 
+## Analog/BlackBox type
+
+(Experimental, Chisel 3.1+)
+
+Chisel supports an `Analog` type (equivalent to Verilog `inout`) that can be used to support arbitrary nets in Chisel. This includes analog wires, tri-state/bi-directional wires, and power nets (with appropriate annotations).
+
+`Analog` is an undirectioned type, and so it is possible to connect multiple `Analog` nets together using the `attach` operator. It is possible to connect an `Analog` **once** using `<>` but illegal to do it more than once.
+
+```scala
+val a = IO(Analog(1.W))
+val b = IO(Analog(1.W))
+val c = IO(Analog(1.W))
+
+// Legal
+attach(a, b)
+attach(a, c)
+
+// Legal
+a <> b
+
+// Illegal - connects 'a' multiple times
+a <> b
+a <> c
+```
+
 [Prev (Hardware Expressible in Chisel)](Hardware-Expressible-in-Chisel)  [Next (Combinational Circuits)](Combinational-Circuits)
 
