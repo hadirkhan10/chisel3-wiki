@@ -1,8 +1,6 @@
 `Bundle` and `Vec` are classes that allow the user to expand the set of Chisel datatypes with aggregates of other types.
 
-Bundles group together several named fields of potentially different
-types into a coherent unit, much like a `struct` in C. Users
-define their own bundles by defining a class as a subclass of `Bundle`
+Bundles group together several named fields of potentially different types into a coherent unit, much like a `struct` in C. Users define their own bundles by defining a class as a subclass of `Bundle`.
 ```scala
 class MyFloat extends Bundle {
   val sign        = Bool()
@@ -24,10 +22,7 @@ floatConst.exponent := 10.U
 floatConst.significand := 128.U
 ```
 
-A Scala convention is to capitalize the name of new classes and we
-suggest you follow that convention in Chisel too.  The ```width```
-named parameter to the `UInt` constructor specifies the number
-of bits in the type.
+A Scala convention is to capitalize the name of new classes and we suggest you follow that convention in Chisel too.
 
 Vecs create an indexable vector of elements, and are constructed as
 follows:
