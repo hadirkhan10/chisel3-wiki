@@ -141,7 +141,7 @@ For example, consider the following Bundle:
 
 ```scala
 class RegisterWriteIO[T <: Data](gen: T) extends Bundle {
-  val request  = Decoupled(gen).flip
+  val request  = Flipped(Decoupled(gen))
   val response = Irrevocable(Bool()) // ignore .bits
 
   override def cloneType = new RegisterWriteIO(gen).asInstanceOf[this.type]
@@ -152,7 +152,7 @@ We can make this this infer cloneType by making `gen` private since it is a "typ
 
 ```scala
 class RegisterWriteIO[T <: Data](private val gen: T) extends Bundle {
-  val request  = Flipped(Decoupled(gen)) // Also use Flipped(...) instead of .flip
+  val request  = Flipped(Decoupled(gen))
   val response = Irrevocable(Bool()) // ignore .bits
 }
 ```
