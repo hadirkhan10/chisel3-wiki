@@ -60,6 +60,43 @@ datatypes will.  A Scala `apply` constructor can be defined so
 that a user datatype also does not require `new`, as described in
 [Function Constructor](Functional-Module-Creation).
 
+### Flipping Bundles
+
+The `Flipped()` function recursively flips all elements in a Bundle/Record. This is very useful for building bidirectional interfaces that connect to each other (e.g. `Decoupled`). See below for an example.
+
+```scala
+import chisel3.experimental.RawModule
+class MyBundle extends Bundle {
+  val a = Input(Bool())
+  val b = Output(Bool())
+}
+class MyModule extends RawModule {
+  // Normal instantiation of the bundle
+  // 'a' is an Input and 'b' is an Output
+  val normalBundle = IO(new MyBundle)
+  normalBundle.b := normalBundle.a
+
+  // Flipped recursively flips the direction of all Bundle fields
+  // Now 'a' is an Output and 'b' is an Input
+  val flippedBundle = IO(Flipped(new MyBundle))
+  flippedBundle.a := flippedBundle.b
+}
+```
+
+This generates the following Verilog:
+
+```verilog
+module MyModule( // @[:@3.2]
+  input   normalBundle_a, // @[:@4.4]
+  output  normalBundle_b, // @[:@4.4]
+  output  flippedBundle_a, // @[:@5.4]
+  input   flippedBundle_b // @[:@5.4]
+);
+  assign normalBundle_b = normalBundle_a;
+  assign flippedBundle_a = flippedBundle_b;
+endmodule
+```
+
 ### MixedVec
 
 (Chisel 3.2+)
