@@ -133,7 +133,7 @@ object HelloWorld extends App {
   chisel3.Driver.execute(args, () => new HelloWorld)
 }
 ```
-Now you can get some verilog, start sbt
+Now you can get some Verilog. Start sbt:
 ```
 bash> sbt
 > run-main intro.HelloWorld
@@ -142,7 +142,7 @@ bash> sbt
 [info] [0.100] Done elaborating.
 [success] Total time: 1 s, completed Jan 12, 2017 6:24:03 PM
 ```
-or as a single command line
+or as a one-liner:
 ```
 bash> sbt 'runMain intro.HelloWorld'
 ```
