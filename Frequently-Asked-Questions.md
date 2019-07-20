@@ -131,6 +131,8 @@ Add the following
 ```scala
 object HelloWorld extends App {
   chisel3.Driver.execute(args, () => new HelloWorld)
+  // Alternate version if there are no args
+  // chisel3.Driver.execute(Array[String](), () => new HelloWorld)
 }
 ```
 Now you can get some Verilog. Start sbt:
