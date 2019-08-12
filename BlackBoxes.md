@@ -1,11 +1,18 @@
-Chisel *BlackBoxes* are used to instantiate externally defined modules. This construct is useful
-for hardware constructs that cannot be described in Chisel and for connecting to FPGA or other IP not defined in Chisel.
+Chisel provides two constructs,  `ExtModule` and `BlackBox` for implementing externally defined modules.
+This construct is useful for hardware constructs that cannot be described in Chisel and for connecting to FPGA or other IP not defined in Chisel.
 
-Modules defined as a `BlackBox` will be instantiated in the generated Verilog, but no code
+Modules defined as a `ExtModule` or `BlackBox` will be instantiated in the generated Verilog, but no code
 will be generated to define the behavior of module.
 
-Unlike Module, BlackBox has no implicit clock and reset. Ports declared
-in the IO Bundle will be generated with the requested name (ie. no preceding `io_`).
+The preferred `ExtModule` works much like a `MultiIOMOdule`.
+Port naming is entirely under the developers control, there is no required IO Bundle, but one can be used manually if desired.
+Clock and Reset Ports must be explicitly declared.
+
+Ports declared in the required `val io = IO()` bundle will be generated with the requested name (ie. no preceding `io_`). This can be confusing at times.
+Like `ExtMOdule`, `BlackBox` has no implicit clock and reset.
+
+In general, in the following discussion. BlackBox and ExtModule behave almost identically except for the
+port naming.
 
 ### Parameterization
 
@@ -110,8 +117,10 @@ This technique will copy the inline verilog into the target directory under the 
 This mechanism of delivering verilog content to the testing backends is implemented via chisel/firrtl annotations.  The two methods, inline and resource, are two kinds of annotations that are created via the ```setInline``` and ```setResource``` methods calls.  Those annotations are passed through to the chisel-testers which in turn passes them on to firrtl.  The default firrtl verilog compilers have a pass that detects the annotations and moves the files or inline test into the build directory.  For each unique file added, the transform adds a line to a file black_box_verilog_files.f, this file is added to the command line constructed for verilator or vcs to inform them where to look.
 The [dsptools project](/ucb-bar/dsptools) is a good example of using this feature to build a real number simulation tester based on black boxes.
 
-### The interpreter
-The [firrtl interpreter](/ucb-bar/firrtl-interpreter) uses a separate system that allows users to construct scala implementations of the black boxes.  The scala implementation code built into a BlackBoxFactory which is passed down to the interpreter by the execution harness.  The interpreter is a scala simulation tester.  Once again the dsptools project uses this mechanism and is a good place to look at it.  
+### Treadle and the firrtl-interpreter (Scala based simulators)
+Both [Treadle](/freechipsproject/treadle) and the [firrtl interpreter](/freechipsproject/firrtl-interpreter) use a separate system that allows users to construct scala implementations of the black boxes.
+The Scala implementation code built into a BlackBoxFactory which is passed down to the simulators by the execution harness.
+Once again the [dsptools](/ucb-bar/dsptools) project uses this mechanism and is a good place to look at it.  
 > It is planned that the BlackBoxFactory will be replaced by integration with the annotation based blackbox methods stuff soon.
 
 [Prev(Modules)](Modules) [Next(State Elements)](State-Elements)
