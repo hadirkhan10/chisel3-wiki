@@ -49,7 +49,7 @@ Consider a Interval with a binary point of 3: aaa.bbb
 
 | operation | after operation | binary point | lower | upper | meaning | 
 | --------- | --------------- | ------------ | ----- | ----- | ------- |
-| setBinaryPoint(2) | aaa.bb |  2 | X | X  | set the precision |
-| shiftLeftBinaryPoint(2) | a.aabbb |  5 | X | X  | increase the precision |
-| shiftRighBinaryPoint(2) | aaaa.b |  1 | X | X  | reduce the precision |
+| setPrecision(2) | aaa.bb |  2 | X | X  | set the precision |
+| increasePrecision(2) | a.aabbb |  5 | X | X  | increase the precision |
+| decreasePrecision(2) | aaaa.b |  1 | X | X  | reduce the precision |
 
