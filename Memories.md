@@ -61,13 +61,25 @@ Creating an asynchronous-read version of the above simply involves replacing `Sy
 
 Chisel can also infer other features such as single ports and masks directly with Mem.
 
-Single-ported SRAMs can be inferred when the read and write conditions are
-mutually exclusive in the same `when` chain:
+Single-ported SRAMs can be inferred when the same port is both read-from and written to:
 
 ``` scala
+val width:Int = 32
+val enable = Input(Bool())
+val write = Input(Bool())
+val addr  = Input(UInt(10.W))
+val dataIn = Input(UInt(width.W))
+val dataOut = Output(UInt(width.W))
+
+
 val mem = SyncReadMem(2048, UInt(32.W))
-when (write) { mem.write(addr, dataIn); dataOut := DontCare }
-.otherwise { dataOut := mem.read(addr, read) }
+
+dataOut := DontCare
+when(enable) {
+  val rdwrPort = mem(addr)
+  when (write) { rdwrPort := dataIn }
+  .otherwise { dataOut := rdwrPort }
+}
 ```
 
 (The `DontCare` is there to make Chisel's [unconnected wire detection](Unconnected-Wires) aware that reading while writing is undefined.)
